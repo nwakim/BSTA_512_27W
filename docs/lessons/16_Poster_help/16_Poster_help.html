@@ -257,6 +257,139 @@ window.Quarto = {
 </header>
 
 
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.1     ✔ readr     2.2.0
+✔ ggplot2   4.0.3     ✔ stringr   1.6.0
+✔ lubridate 1.9.5     ✔ tibble    3.3.1
+✔ purrr     1.2.2     ✔ tidyr     1.3.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+
+Attaching package: 'janitor'
+
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+
+
+Attaching package: 'rstatix'
+
+
+The following object is masked from 'package:janitor':
+
+    make_clean_names
+
+
+The following object is masked from 'package:stats':
+
+    filter
+
+
+
+Attaching package: 'gridExtra'
+
+
+The following object is masked from 'package:dplyr':
+
+    combine
+
+
+
+Attaching package: 'plotly'
+
+
+The following object is masked from 'package:ggplot2':
+
+    last_plot
+
+
+The following object is masked from 'package:stats':
+
+    filter
+
+
+The following object is masked from 'package:graphics':
+
+    layout
+
+
+Loading required package: maditr
+
+
+To aggregate several columns with one summary: take(mtcars, mpg, hp, fun = mean, by = am)
+
+
+
+Attaching package: 'maditr'
+
+
+The following object is masked from 'package:purrr':
+
+    transpose
+
+
+The following object is masked from 'package:readr':
+
+    cols
+
+
+The following objects are masked from 'package:dplyr':
+
+    between, coalesce, first, last
+
+
+
+Attaching package: 'expss'
+
+
+The following objects are masked from 'package:gtsummary':
+
+    contains, vars, where
+
+
+The following objects are masked from 'package:gt':
+
+    contains, gt, tab_caption, vars, where
+
+
+The following objects are masked from 'package:stringr':
+
+    fixed, regex
+
+
+The following objects are masked from 'package:purrr':
+
+    keep, modify, modify_if, when
+
+
+The following objects are masked from 'package:tidyr':
+
+    contains, nest
+
+
+The following object is masked from 'package:ggplot2':
+
+    vars
+
+
+The following objects are masked from 'package:dplyr':
+
+    compute, contains, na_if, recode, vars, where</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `freedom_status = case_match(...)`.
+Caused by warning:
+! `case_match()` was deprecated in dplyr 1.2.0.
+ℹ Please use `recode_values()` instead.</code></pre>
+</div>
+</div>
 <section id="some-lab-4-notes" class="level2">
 <h2 class="anchored" data-anchor-id="some-lab-4-notes">Some lab 4 notes</h2>
 <ul>
@@ -282,7 +415,7 @@ window.Quarto = {
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<countdown-timer class="countdown" id="timer_e2553798" minutes="2" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_da200fd8" minutes="2" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 </div>
 </div>
 </section>
@@ -297,7 +430,7 @@ window.Quarto = {
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<countdown-timer class="countdown" id="timer_d9a34c1c" minutes="8" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_6224eba4" minutes="8" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 </div>
 </div>
 </section>
@@ -315,14 +448,6 @@ window.Quarto = {
 <li>I highly suggest making your poster in powerpoint!</li>
 </ul></li>
 </ul>
-<div class="cell">
-<style type="text/css">
-.reveal .sourceCode {
-  font-size: 0.9em !important;
-}
-
-</style>
-</div>
 </section>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
@@ -385,49 +510,73 @@ window.Quarto = {
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gapm2_vars <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cell_phones_100, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         vax_rate, </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         freedom_status, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         income_level_4, </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         basic_sani,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         happiness_score)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  gapm2_vars, </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    cell_phones_100 <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>, </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    basic_sani <span class="sc">~</span> <span class="st">"Basic sanitation (%)"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    freedom_status <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    vax_rate <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    happiness_score <span class="sc">~</span> <span class="st">"Happiness score"</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    ), </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gapm2_vars <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cell_phones_100, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         vax_rate, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         freedom_status, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>         income_level_4, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         basic_sani,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         happiness_score)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  gapm2_vars, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    cell_phones_100 <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    basic_sani <span class="sc">~</span> <span class="st">"Basic sanitation (%)"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    freedom_status <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    vax_rate <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    happiness_score <span class="sc">~</span> <span class="st">"Happiness score"</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    ), </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gapm2_vars <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cell_phones_100, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>         vax_rate, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>         freedom_status, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>         income_level_4, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>         basic_sani,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>         happiness_score)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  gapm2_vars, </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    cell_phones_100 <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    basic_sani <span class="sc">~</span> <span class="st">"Basic sanitation (%)"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    freedom_status <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    vax_rate <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    happiness_score <span class="sc">~</span> <span class="st">"Happiness score"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ), </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">26</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="hxubymzejr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hxubymzejr table {
+<div id="dkonklquhf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dkonklquhf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hxubymzejr thead, #hxubymzejr tbody, #hxubymzejr tfoot, #hxubymzejr tr, #hxubymzejr td, #hxubymzejr th {
+#dkonklquhf thead, #dkonklquhf tbody, #dkonklquhf tfoot, #dkonklquhf tr, #dkonklquhf td, #dkonklquhf th {
   border-style: none;
 }
 
-#hxubymzejr p {
+#dkonklquhf p {
   margin: 0;
   padding: 0;
 }
 
-#hxubymzejr .gt_table {
+#dkonklquhf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -453,12 +602,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_caption {
+#dkonklquhf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hxubymzejr .gt_title {
+#dkonklquhf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -470,7 +619,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#hxubymzejr .gt_subtitle {
+#dkonklquhf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -482,7 +631,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#hxubymzejr .gt_heading {
+#dkonklquhf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -494,13 +643,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_bottom_border {
+#dkonklquhf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_col_headings {
+#dkonklquhf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -515,7 +664,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_col_heading {
+#dkonklquhf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -535,7 +684,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#hxubymzejr .gt_column_spanner_outer {
+#dkonklquhf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -547,15 +696,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#hxubymzejr .gt_column_spanner_outer:first-child {
+#dkonklquhf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hxubymzejr .gt_column_spanner_outer:last-child {
+#dkonklquhf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hxubymzejr .gt_column_spanner {
+#dkonklquhf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -567,11 +716,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#hxubymzejr .gt_spanner_row {
+#dkonklquhf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hxubymzejr .gt_group_heading {
+#dkonklquhf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -597,7 +746,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#hxubymzejr .gt_empty_group_heading {
+#dkonklquhf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -612,15 +761,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#hxubymzejr .gt_from_md > :first-child {
+#dkonklquhf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hxubymzejr .gt_from_md > :last-child {
+#dkonklquhf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hxubymzejr .gt_row {
+#dkonklquhf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +788,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#hxubymzejr .gt_stub {
+#dkonklquhf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -652,7 +801,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#hxubymzejr .gt_stub_row_group {
+#dkonklquhf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -666,15 +815,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#hxubymzejr .gt_row_group_first td {
+#dkonklquhf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hxubymzejr .gt_row_group_first th {
+#dkonklquhf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hxubymzejr .gt_summary_row {
+#dkonklquhf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -684,16 +833,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#hxubymzejr .gt_first_summary_row {
+#dkonklquhf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_first_summary_row.thick {
+#dkonklquhf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hxubymzejr .gt_last_summary_row {
+#dkonklquhf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -703,7 +852,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_grand_summary_row {
+#dkonklquhf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -713,7 +862,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#hxubymzejr .gt_first_grand_summary_row {
+#dkonklquhf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -723,7 +872,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_last_grand_summary_row_top {
+#dkonklquhf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -733,11 +882,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_striped {
+#dkonklquhf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hxubymzejr .gt_table_body {
+#dkonklquhf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -746,7 +895,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_footnotes {
+#dkonklquhf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -760,7 +909,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_footnote {
+#dkonklquhf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -769,7 +918,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#hxubymzejr .gt_sourcenotes {
+#dkonklquhf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -783,7 +932,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#hxubymzejr .gt_sourcenote {
+#dkonklquhf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -791,72 +940,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#hxubymzejr .gt_left {
+#dkonklquhf .gt_left {
   text-align: left;
 }
 
-#hxubymzejr .gt_center {
+#dkonklquhf .gt_center {
   text-align: center;
 }
 
-#hxubymzejr .gt_right {
+#dkonklquhf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hxubymzejr .gt_font_normal {
+#dkonklquhf .gt_font_normal {
   font-weight: normal;
 }
 
-#hxubymzejr .gt_font_bold {
+#dkonklquhf .gt_font_bold {
   font-weight: bold;
 }
 
-#hxubymzejr .gt_font_italic {
+#dkonklquhf .gt_font_italic {
   font-style: italic;
 }
 
-#hxubymzejr .gt_super {
+#dkonklquhf .gt_super {
   font-size: 65%;
 }
 
-#hxubymzejr .gt_footnote_marks {
+#dkonklquhf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hxubymzejr .gt_asterisk {
+#dkonklquhf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hxubymzejr .gt_indent_1 {
+#dkonklquhf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hxubymzejr .gt_indent_2 {
+#dkonklquhf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hxubymzejr .gt_indent_3 {
+#dkonklquhf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hxubymzejr .gt_indent_4 {
+#dkonklquhf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hxubymzejr .gt_indent_5 {
+#dkonklquhf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hxubymzejr .katex-display {
+#dkonklquhf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hxubymzejr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dkonklquhf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -946,40 +1095,53 @@ window.Quarto = {
 <div class="columns">
 <div class="column" style="width:52%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  final_model, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    cell_phones_100 <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    BS_q <span class="sc">~</span> <span class="st">"Basic sanitation (%)"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    freedom_status <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    vax_rate <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    happiness_score <span class="sc">~</span> <span class="st">"Happiness score"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(label <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">250</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  final_model, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    cell_phones_100 <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    BS_q <span class="sc">~</span> <span class="st">"Basic sanitation (%)"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    freedom_status <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    vax_rate <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    happiness_score <span class="sc">~</span> <span class="st">"Happiness score"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(label <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">250</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:48%;">
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  final_model, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    cell_phones_100 <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    BS_q <span class="sc">~</span> <span class="st">"Basic sanitation (%)"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    freedom_status <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    vax_rate <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    happiness_score <span class="sc">~</span> <span class="st">"Happiness score"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(label <span class="sc">~</span> <span class="fu">px</span>(<span class="dv">250</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="euqtpukfvw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#euqtpukfvw table {
+<div id="hfyunwoyey" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hfyunwoyey table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#euqtpukfvw thead, #euqtpukfvw tbody, #euqtpukfvw tfoot, #euqtpukfvw tr, #euqtpukfvw td, #euqtpukfvw th {
+#hfyunwoyey thead, #hfyunwoyey tbody, #hfyunwoyey tfoot, #hfyunwoyey tr, #hfyunwoyey td, #hfyunwoyey th {
   border-style: none;
 }
 
-#euqtpukfvw p {
+#hfyunwoyey p {
   margin: 0;
   padding: 0;
 }
 
-#euqtpukfvw .gt_table {
+#hfyunwoyey .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1005,12 +1167,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_caption {
+#hfyunwoyey .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#euqtpukfvw .gt_title {
+#hfyunwoyey .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1022,7 +1184,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#euqtpukfvw .gt_subtitle {
+#hfyunwoyey .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1034,7 +1196,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#euqtpukfvw .gt_heading {
+#hfyunwoyey .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1046,13 +1208,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_bottom_border {
+#hfyunwoyey .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_col_headings {
+#hfyunwoyey .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1067,7 +1229,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_col_heading {
+#hfyunwoyey .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1087,7 +1249,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#euqtpukfvw .gt_column_spanner_outer {
+#hfyunwoyey .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1099,15 +1261,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#euqtpukfvw .gt_column_spanner_outer:first-child {
+#hfyunwoyey .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#euqtpukfvw .gt_column_spanner_outer:last-child {
+#hfyunwoyey .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#euqtpukfvw .gt_column_spanner {
+#hfyunwoyey .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1119,11 +1281,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#euqtpukfvw .gt_spanner_row {
+#hfyunwoyey .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#euqtpukfvw .gt_group_heading {
+#hfyunwoyey .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1149,7 +1311,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#euqtpukfvw .gt_empty_group_heading {
+#hfyunwoyey .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1164,15 +1326,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#euqtpukfvw .gt_from_md > :first-child {
+#hfyunwoyey .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#euqtpukfvw .gt_from_md > :last-child {
+#hfyunwoyey .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#euqtpukfvw .gt_row {
+#hfyunwoyey .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1191,7 +1353,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#euqtpukfvw .gt_stub {
+#hfyunwoyey .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1204,7 +1366,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#euqtpukfvw .gt_stub_row_group {
+#hfyunwoyey .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1218,15 +1380,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#euqtpukfvw .gt_row_group_first td {
+#hfyunwoyey .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#euqtpukfvw .gt_row_group_first th {
+#hfyunwoyey .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#euqtpukfvw .gt_summary_row {
+#hfyunwoyey .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1236,16 +1398,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#euqtpukfvw .gt_first_summary_row {
+#hfyunwoyey .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_first_summary_row.thick {
+#hfyunwoyey .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#euqtpukfvw .gt_last_summary_row {
+#hfyunwoyey .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1255,7 +1417,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_grand_summary_row {
+#hfyunwoyey .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1265,7 +1427,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#euqtpukfvw .gt_first_grand_summary_row {
+#hfyunwoyey .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1275,7 +1437,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_last_grand_summary_row_top {
+#hfyunwoyey .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1285,11 +1447,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_striped {
+#hfyunwoyey .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#euqtpukfvw .gt_table_body {
+#hfyunwoyey .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1298,7 +1460,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_footnotes {
+#hfyunwoyey .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1312,7 +1474,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_footnote {
+#hfyunwoyey .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1321,7 +1483,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#euqtpukfvw .gt_sourcenotes {
+#hfyunwoyey .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1335,7 +1497,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#euqtpukfvw .gt_sourcenote {
+#hfyunwoyey .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1343,72 +1505,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#euqtpukfvw .gt_left {
+#hfyunwoyey .gt_left {
   text-align: left;
 }
 
-#euqtpukfvw .gt_center {
+#hfyunwoyey .gt_center {
   text-align: center;
 }
 
-#euqtpukfvw .gt_right {
+#hfyunwoyey .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#euqtpukfvw .gt_font_normal {
+#hfyunwoyey .gt_font_normal {
   font-weight: normal;
 }
 
-#euqtpukfvw .gt_font_bold {
+#hfyunwoyey .gt_font_bold {
   font-weight: bold;
 }
 
-#euqtpukfvw .gt_font_italic {
+#hfyunwoyey .gt_font_italic {
   font-style: italic;
 }
 
-#euqtpukfvw .gt_super {
+#hfyunwoyey .gt_super {
   font-size: 65%;
 }
 
-#euqtpukfvw .gt_footnote_marks {
+#hfyunwoyey .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#euqtpukfvw .gt_asterisk {
+#hfyunwoyey .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#euqtpukfvw .gt_indent_1 {
+#hfyunwoyey .gt_indent_1 {
   text-indent: 5px;
 }
 
-#euqtpukfvw .gt_indent_2 {
+#hfyunwoyey .gt_indent_2 {
   text-indent: 10px;
 }
 
-#euqtpukfvw .gt_indent_3 {
+#hfyunwoyey .gt_indent_3 {
   text-indent: 15px;
 }
 
-#euqtpukfvw .gt_indent_4 {
+#hfyunwoyey .gt_indent_4 {
   text-indent: 20px;
 }
 
-#euqtpukfvw .gt_indent_5 {
+#hfyunwoyey .gt_indent_5 {
   text-indent: 25px;
 }
 
-#euqtpukfvw .katex-display {
+#hfyunwoyey .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#euqtpukfvw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hfyunwoyey div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1562,48 +1724,104 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code for forest plot</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.helpers)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model_tidy <span class="ot">=</span> <span class="fu">tidy_and_attach</span>(final_model, <span class="at">conf.int=</span>T) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_remove_intercept</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_add_reference_rows</span>() <span class="sc">%&gt;%</span> <span class="fu">tidy_add_estimate_to_reference_rows</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_add_term_labels</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_inorder</span>(label))) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_label =</span> <span class="fu">case_match</span>(var_label, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"BS_q"</span> <span class="sc">~</span> <span class="st">"Basic sanitation"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"freedom_status"</span> <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"income_level_4"</span> <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"vax_rate"</span> <span class="sc">~</span> <span class="st">" "</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"happiness_score"</span> <span class="sc">~</span> <span class="st">"  "</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"cell_phones_100"</span> <span class="sc">~</span> <span class="st">"    "</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">.default =</span> var_label</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                         )) <span class="sc">%&gt;%</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">case_match</span>(label, </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"vax_rate"</span> <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"happiness_score"</span> <span class="sc">~</span> <span class="st">"Happiness score"</span>,</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"cell_phones_100"</span> <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                               <span class="at">.default =</span> label</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                         ))</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>model_tidy, <span class="fu">aes</span>(<span class="at">y=</span>label, <span class="at">x=</span>estimate, <span class="at">xmin=</span>conf.low, <span class="at">xmax=</span>conf.high)) <span class="sc">+</span> </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(var_label), <span class="at">scales =</span> <span class="st">"free"</span>,</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">space=</span><span class="st">'free_y'</span>, <span class="at">switch =</span> <span class="st">"y"</span>) <span class="sc">+</span> </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="fu">geom_errorbarh</span>(<span class="at">height=</span>.<span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'#C2352F'</span>, <span class="at">linetype=</span><span class="st">'dashed'</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Beta"</span>, <span class="at">y =</span> <span class="st">"Variables"</span>) <span class="sc">+</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">angle =</span> <span class="dv">0</span>), </span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.helpers)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model_tidy <span class="ot">=</span> <span class="fu">tidy_and_attach</span>(final_model, <span class="at">conf.int=</span>T) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_remove_intercept</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_add_reference_rows</span>() <span class="sc">%&gt;%</span> <span class="fu">tidy_add_estimate_to_reference_rows</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_add_term_labels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_inorder</span>(label))) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_label =</span> <span class="fu">case_match</span>(var_label, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"BS_q"</span> <span class="sc">~</span> <span class="st">"Basic sanitation"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"freedom_status"</span> <span class="sc">~</span> <span class="st">"Freedom status"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"income_level_4"</span> <span class="sc">~</span> <span class="st">"Income level"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"vax_rate"</span> <span class="sc">~</span> <span class="st">" "</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"happiness_score"</span> <span class="sc">~</span> <span class="st">"  "</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"cell_phones_100"</span> <span class="sc">~</span> <span class="st">"    "</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">.default =</span> var_label</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                         )) <span class="sc">%&gt;%</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">case_match</span>(label, </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"vax_rate"</span> <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"happiness_score"</span> <span class="sc">~</span> <span class="st">"Happiness score"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"cell_phones_100"</span> <span class="sc">~</span> <span class="st">"Cell phones per 100 people"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                               <span class="at">.default =</span> label</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                         ))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>model_tidy, <span class="fu">aes</span>(<span class="at">y=</span>label, <span class="at">x=</span>estimate, <span class="at">xmin=</span>conf.low, <span class="at">xmax=</span>conf.high)) <span class="sc">+</span> </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(var_label), <span class="at">scales =</span> <span class="st">"free"</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">space=</span><span class="st">'free_y'</span>, <span class="at">switch =</span> <span class="st">"y"</span>) <span class="sc">+</span> </span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="fu">geom_errorbarh</span>(<span class="at">height=</span>.<span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'#C2352F'</span>, <span class="at">linetype=</span><span class="st">'dashed'</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Beta"</span>, <span class="at">y =</span> <span class="st">"Variables"</span>) <span class="sc">+</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, </span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">angle =</span> <span class="dv">0</span>), </span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom.helpers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'broom.helpers'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:expss':
+
+    contains, vars, where</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:gtsummary':
+
+    all_categorical, all_continuous, all_contrasts, all_dichotomous,
+    all_interaction, all_intercepts</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>model_tidy <span class="ot">=</span> <span class="fu">tidy_and_attach</span>(final_model, <span class="at">conf.int=</span>T) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_remove_intercept</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_add_reference_rows</span>() <span class="sc">%&gt;%</span> <span class="fu">tidy_add_estimate_to_reference_rows</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy_add_term_labels</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_label =</span> <span class="fu">case_match</span>(var_label, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"BS_q"</span> <span class="sc">~</span> <span class="st">"Basic </span><span class="sc">\n</span><span class="st"> sanitation"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"freedom_status"</span> <span class="sc">~</span> <span class="st">"Freedom </span><span class="sc">\n</span><span class="st"> status"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"income_level_4"</span> <span class="sc">~</span> <span class="st">"Income </span><span class="sc">\n</span><span class="st"> level"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"vax_rate"</span> <span class="sc">~</span> <span class="st">" "</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"happiness_score"</span> <span class="sc">~</span> <span class="st">"  "</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"cell_phones_100"</span> <span class="sc">~</span> <span class="st">"    "</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                               <span class="at">.default =</span> var_label</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                         )) <span class="sc">%&gt;%</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">case_match</span>(label, </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"vax_rate"</span> <span class="sc">~</span> <span class="st">"Vaccination rate (%)"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"happiness_score"</span> <span class="sc">~</span> <span class="st">"Happiness score"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"cell_phones_100"</span> <span class="sc">~</span> <span class="st">"Cell phones per </span><span class="sc">\n</span><span class="st"> 100 people "</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                               <span class="at">.default =</span> label</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                         )) <span class="sc">%&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_inorder</span>(label)))</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>model_tidy, <span class="fu">aes</span>(<span class="at">y=</span>label, <span class="at">x=</span>estimate, <span class="at">xmin=</span>conf.low, <span class="at">xmax=</span>conf.high)) <span class="sc">+</span> </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(var_label), <span class="at">scales =</span> <span class="st">"free"</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">space=</span><span class="st">'free_y'</span>, <span class="at">switch =</span> <span class="st">"y"</span>) <span class="sc">+</span> </span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="fu">geom_errorbarh</span>(<span class="at">height=</span>.<span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'#C2352F'</span>, <span class="at">linetype=</span><span class="st">'dashed'</span>, <span class="at">alpha=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Beta"</span>, <span class="at">y =</span> <span class="st">"Variables"</span>) <span class="sc">+</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), </span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, </span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">angle =</span> <span class="dv">0</span>), </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `geom_errorbarh()` was deprecated in ggplot2 4.0.0.
+ℹ Please use the `orientation` argument of `geom_errorbar()` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`height` was translated to `width`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16_Poster_help_files/figure-revealjs/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="16_Poster_help_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -1662,44 +1880,6 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

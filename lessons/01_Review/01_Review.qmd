@@ -33,10 +33,11 @@ library(gtsummary)
 library(moderndive)
 library(gt)
 library(broom) # NEW!!
-
-set.seed(456)
+library(here)
 
 load(here("data", "dds.discr.rda"))  # dds.discr data from the oibiostat package
+
+set.seed(456)
 ```
 
 ## What did we learn in 511/611? (1/2)
