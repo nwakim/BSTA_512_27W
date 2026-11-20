@@ -1,0 +1,28 @@
+---
+title: "Muddy Points"
+subtitle: "Lab 2 Discussion"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+editor_options: 
+  chunk_output_type: console
+---
+
+### 1. For the lab, can you show us what you would do for the Quality Control piece? everyone in my group did something different.
+
+I would do something like the following. It won't be exactly what you did, but I can stack different filtering options to get a subset of the data that may not be truthful responders.
+
+```{r}
+#| eval: false
+
+iat_filtered = iat_data %>%
+  filter(edu > 13) %>%
+  filter(age < 15) %>%
+  filter(re_asian == 1 & re_black == 1 & re_hispanic == 1 & re_white == 1)
+```
+
+
+
+
+

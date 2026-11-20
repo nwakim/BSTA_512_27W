@@ -1,0 +1,33 @@
+---
+title: "Key Info and Announcements"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Announcements
+
+- Homework 4
+  - Using hats in population models is WRONG!
+- Quiz 3 will be up at 3pm on Wednesday
+- Next class will be virtual and informal office hours
+  - You can use the usual class Zoom link
+- **On 3/15, we will have a poster day!!**
+  - We will have a potluck style party!!
+    - [Please sign up for the potluck here](https://forms.office.com/Pages/ResponsePage.aspx?id=V3lz4rj6fk2U9pvWr59xWFMopmPUjRtDiHLswhgacNhUREw3U1VYWE43RTVMVkVDM0NYNzFWOE85WiQlQCNjPTEu)
+    - Contributions are dessert-focused so far, so if you want to bring something savory, that would be great!
+    - **If you sign-up and bring something to the potluck, I will give you 1 point of extra credit on the poster**
+  - You will need to informally print your poster (see instructions)
+    - Printed poster does not necessarily need to be what you turn in that night
+  - Meant to be a relaxed environment - no grading attached to it other than attendance (unless you spoke to me about previous commitments)
+  - You'll be able to see others' work and discuss different research questions!
+
+## Key Dates
+
+- Quiz 3 will open 3/10 and close 3/14
+- Optional HW 5 due 3/14
+- Poster presentation (mandatory in-person attendance) on 3/15
+- Poster due 3/16 at 11pm

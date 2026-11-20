@@ -1,0 +1,88 @@
+---
+title: "Lab 3: Feedback and Discussion"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "`r library(here); source(here('class_dates.R')); w8d2`"
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "Lab 3: Feedback and Discussion"
+    html-math-method: mathjax
+    highlight-style: ayu
+execute:
+  echo: true
+  freeze: auto  # re-render only when source changes
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(gt)
+library(janitor)
+library(rstatix)
+library(knitr)
+library(gtsummary)
+library(moderndive)
+library(broom) 
+library(here) 
+library(ggplot2)
+library(ggpubr)
+library(boot) # for inv.logit()
+library(lmtest)
+library(epiDisplay)
+
+```
+
+
+## Get into groups of 2-4
+
+- No more than 4! 
+- Introduce yourself and your research question
+- Share you html documents with each other (email, airdrop, etc.)
+
+```{r}
+#| echo: false
+countdown::countdown(2)
+```
+
+## Discuss confounders and potential interactions
+
+- This will drive a lot of our model selection
+
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+
+## Multivariate plots
+
+- Does your plot show all the categories together? 
+- AKA can you get a sense of possible confounder/interaction easily from your plot?
+  - Can someone unfamiliar with the data get a sense of it in a minute or less?
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+## Multiple Linear Regression
+
+- Does everyone have an interpretation for each coefficient for the main variable?
+- How would you synthesize the results in a sentence or two?
+  - In the poster, it will be good to discuss the trend, then give an example of how you would interpret each coefficient
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+

@@ -1,0 +1,119 @@
+---
+title: "Lab 2: Feedback and Discussion"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "`r library(here); source(here('class_dates.R')); w6d2`"
+format: 
+  revealjs:
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "Lab 2: Feedback and Discussion"
+    html-math-method: mathjax
+    highlight-style: ayu
+execute:
+  echo: true
+  freeze: auto  # re-render only when source changes
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(gt)
+library(janitor)
+library(rstatix)
+library(knitr)
+library(gtsummary)
+library(moderndive)
+library(broom) 
+library(here) 
+library(ggplot2)
+library(ggpubr)
+library(boot) # for inv.logit()
+library(lmtest)
+library(epiDisplay)
+```
+
+
+## Notes from me and the TAs
+
+- Make sure your .Rproj is open! 
+- Please use the template .qmd that I give you!
+- Univariate exploration should include all the race variables (indicators for each race)
+- You should not have any NA's
+  - Please make sure you coded EACH variable correctly...
+  - Saw people missing a gender identity
+- Please interpret all the coefficient estimates!!
+  - Everyone should have more than one coefficient
+  - Good reference for self-perception: "Neither ...."
+- The whole point of plotting each variable is to start understanding trends in the data...
+  - Looking at some plots, I don't think you can do that...
+  
+## Notes on plots
+
+- Make sure your categorical variable is presented in order
+- Make sure your plots are clear and easy to read (e.g., axis labels, title, etc.)
+    - If the category names are too long, tilt the names or make new line
+- Histograms are for CONTINUOUS variables, bar plots are for CATEGORICAL variables
+- Do NOT use the continuous variables for your categorical predictor!!
+  - I'm seeing a lot of people use `important_001` instead of their categorical/factor version of this variable
+- Univariate vs bivariate
+- Colors in histograms are fun, but not necessary!! 
+    - Do not use a different color for each plot - color is meant to convey information! 
+    - The main thing it does it alert me that you might be using AI bc AI does this a lot!
+
+## Get into groups of 2-4
+
+- No more than 4! 
+- Try to group with people with whom you do not already work on labs 
+- Introduce yourself if you do not know each other
+- Share you html documents with each other (email, airdrop, etc.)
+
+```{r}
+#| echo: false
+countdown::countdown(2)
+```
+
+## Introduce Research Question
+
+- Share your research question with each other! 
+  - Should be using the same outcome + your main variable
+- Share your other variables
+
+ 
+
+```{r}
+#| echo: false
+countdown::countdown(3)
+```
+
+## Share your bivariate plots
+
+- Can you get an idea of the relationship between your main variable and the outcome from the plot?
+- Is your predictor categorical?
+- Do you see any trends?
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+
+
+## Simple logistic regression
+
+- Does everyone have the correct interpretations of the coefficient estimates?
+- What's your reference group? Does this make sense?
+- What trends are you seeing? 
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+

@@ -1,0 +1,36 @@
+---
+title: "Key Info and Announcements"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Announcements
+
+- Quiz 1 information
+- Lab 1 feedback: we will have some time to discuss after break
+  - Make sure you are working with a `.Rproj` file within an overarching folder for the class project. 
+  - Race/ethnicity variable
+    - Almost no one coded this correctly
+  - Check your feedback! 
+    - There are warnings about points being taken off later
+    - Points will be taken off if you do not have an html file
+
+## Announcements from Last Class
+
+- Please email me if you are missing class today
+- Going through labs
+  - Please submit your labs using html files!! (I took off a point if you submitted a qmd only)
+  - Please write your answers outside of the task box and below it
+- Office hours / TAs: Instructor page
+- Will likely NOT finish categorical covariates today
+  - Be on the look out for changes in lessons on the schedule
+
+## Key Dates
+
+- Quiz 1 opens on 1/27
+  - Closes on 1/31
+- Homework 2 due 1/31 at 11pm

@@ -1,0 +1,36 @@
+---
+title: "Key Info and Announcements"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Announcements
+
+- Quick decision for today's class: Do you want to...
+  - take more time on purposeful selection and push diagnostics to next week? Then we can treat the remaining time as office hours for Lab 4.
+  - finish purposeful selection and diagnostics today and finish all new material?
+- Poster instructions are ready to go!
+  - There are examples
+  - Poster rubric
+  - There is a template for PPT and QMD
+    - I recommend the PPT
+- **On 3/15, we will have a poster day!!**
+  - We will have a potluck style party!!
+    - [Please sign up for the potluck here](https://forms.office.com/Pages/ResponsePage.aspx?id=V3lz4rj6fk2U9pvWr59xWFMopmPUjRtDiHLswhgacNhUREw3U1VYWE43RTVMVkVDM0NYNzFWOE85WiQlQCNjPTEu)
+    - If you sign-up and bring something to the potluck, I will give you 1 point of extra credit on the poster
+  - You will need to informally print your poster (see instructions)
+    - Printed poster does not necessarily need to be what you turn in that night
+  - Meant to be a relaxed environment - no grading attached to it other than attendance (unless you spoke to me about previous commitments)
+  - You'll be able to see others' work and discuss different research questions!
+
+## Key Dates
+
+- Lab 4 this Sunday (3/7)
+- Quiz 3 will open 3/10
+- Optional HW 5 due 3/14
+- Poster presentation (mandatory in-person attendance) on 3/15
+- Poster due 3/16 at 11pm
