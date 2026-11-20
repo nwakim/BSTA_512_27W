@@ -1,0 +1,112 @@
+---
+title: "Quiz Info"
+date-modified: "today"
+format: 
+  html:
+    page-layout: full
+    link-external-newwindow: true
+---
+
+```{r setup, include=FALSE}
+library(here)
+source(here("class_dates.R"))
+```
+
+Below is the general timing and lessons for each quiz:
+
+| Quiz | Lessons | Open Date \@ 3pm | Close Date \@ 11pm |
+|----|----|----|----|
+| 1 | 1-4 | `r q1_open %>% format("%m/%d")` | `r q1_close %>% format("%m/%d")` |
+| 2 | 5-8 | `r q2_open %>% format("%m/%d")` | `r q2_close %>% format("%m/%d")` |
+| 3 | 9-12 | `r q3_open %>% format("%m/%d")` | `r q3_close %>% format("%m/%d")` |
+
+Quizzes will be mostly conceptual questions with 10-15 multiple choice questions. Some calculations will need to be done for certain questions, but the focus will be on understanding concepts.
+
+More information specific to each quiz will be posted below.
+
+### Instructions that will presented for each quiz
+
+1.  I have written a 30-minute quiz, but there is no time limit on the quiz. You will have from Wednesday at 3pm to Sunday at 11pm to finish the quiz.
+
+2.  The quiz is open book and open notes. You may use books other than the class textbook, you may use anything on our course webpage, and you may use reference websites (like Wikipedia, Googling expected value of specific distribution, etc.).
+
+3.  No cheating will be tolerated. Cheating includes:
+
+    -   Using ChatGPT or any other AI software
+    -   Copy and pasting the question from Sakai to any search engine.
+    -   Using question and answer threads typically seen on sites like StackExchange, WikiHow, Quora, Reddit, StackOverflow, Chegg, etc.
+    -   Asking other students, sharing quiz work or sharing quiz results.
+
+4.  Each question is worth 1 point.
+
+5.  Questions are multiple choice with options A-D.
+
+### Quiz 1
+
+-   No coding is necessary, mostly conceptual
+
+-   Covers lesson 1-4
+
+    -   Mostly focused on Lessons 3-4:
+
+        -   simple linear regression,
+
+        -   population vs. estimated regression model,
+
+        -   important components of the model (coefficients and residuals),
+
+        -   process (not math) for finding best fit line,
+
+        -   intpreting coefficients for continuous predictor,
+
+        -   predicting mean response,
+
+        -   interpreting mean response
+
+### Quiz 2
+
+-   Some info
+
+    -   diagnostic plots
+
+    -   knowing what models you are testing
+
+    -   interpreting coefficient estimates
+
+    -   lots of plots and picking the best one
+
+    -   one question with calculations
+
+-   Covers Lessons 5-8
+
+    -   SLR
+
+    -   Categorical covariates
+
+    -   F-test in SLR
+
+    -   LINE assumptions
+
+    -   Diagnostics
+
+    -   Transformations
+
+### Quiz 3
+
+-   Some info
+
+    -   F-tests: know what models are tested based on a description AND describe what we are testing based on models
+
+    -   Know what confounders and effect modifiers are
+
+        -   And how to test each in model
+
+    -   Interpretations of effect modifiers and main effects
+
+-   Covers Lessons 9-12
+
+    -   MLR
+
+    -   F-tests
+
+    -   Interactions
