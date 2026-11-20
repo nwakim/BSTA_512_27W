@@ -254,7 +254,7 @@ window.Quarto = {
 <section id="some-important-tasks" class="level2">
 <h2 class="anchored" data-anchor-id="some-important-tasks">Some important tasks</h2>
 <ul>
-<li><p>Star the class website: <a href="https://nwakim.github.io/BSTA_512_26W/" class="uri">https://nwakim.github.io/BSTA_512_26W/</a></p></li>
+<li><p>Star the class website: <a href="https://nwakim.github.io/BSTA_512_27W/" class="uri">https://nwakim.github.io/BSTA_512_27W/</a></p></li>
 <li><p>Complete Homework 0 by this Thursday at 11pm!</p>
 <ul>
 <li>Checking OneDrive access</li>
@@ -262,19 +262,10 @@ window.Quarto = {
 </ul></li>
 <li><p>Highly suggest that you make an appointment with a learning specialist through <a href="https://sakai.ohsu.edu/portal/site/Student_Support">Student Academic Support Services</a>!</p></li>
 </ul>
-<div class="cell">
-<style type="text/css">
-<style>
-#wrap { width: 600px; height: 390px; padding: 0; overflow: hidden; }
-#frame { width: 1300px; height: 600px; border: 1px solid black; }
-#frame { zoom: 1.5; -moz-transform: scale(1.5); -moz-transform-origin: 0 0; }
-</style>
-
-</div>
 </section>
 <section id="lets-visit-the-website-homepage" class="level2">
 <h2 class="anchored" data-anchor-id="lets-visit-the-website-homepage">Let’s visit the website: Homepage</h2>
-<iframe id="frame" src="https://nwakim.github.io/BSTA_512_26W/"></iframe>
+<iframe id="frame" src="https://nwakim.github.io/BSTA_512_27W/"></iframe>
 </section>
 <section id="lets-visit-the-website-syllabus" class="level2">
 <h2 class="anchored" data-anchor-id="lets-visit-the-website-syllabus">Let’s visit the website: Syllabus</h2>
@@ -303,7 +294,7 @@ window.Quarto = {
 <ul>
 <li>Weeks, class info, homeworks, labs</li>
 </ul>
-<iframe id="frame" src="https://nwakim.github.io/BSTA_512_26W/schedule.html"></iframe>
+<iframe id="frame" src="https://nwakim.github.io/BSTA_512_27W/schedule.html"></iframe>
 </section>
 <section id="lets-visit-the-website-schedule-22" class="level2">
 <h2 class="anchored" data-anchor-id="lets-visit-the-website-schedule-22">Let’s visit the website: Schedule (2/2)</h2>
@@ -466,44 +457,6 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

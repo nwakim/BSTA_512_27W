@@ -38,7 +38,7 @@ library(gtsummary)
 library(plotly) # for plot_ly() command
 library(GGally) # for ggpairs() command 
 library(ggiraphExtra)   # for ggPredict() command
-library(dvmisc)
+#library(dvmisc)
 library(expss)
 
 load(here("data", "gapminder2022.RData"))
