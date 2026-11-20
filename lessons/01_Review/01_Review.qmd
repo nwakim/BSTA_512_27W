@@ -25,7 +25,7 @@ format:
 #| warning: false
 
 library(tidyverse)    
-library(oibiostat)
+library(here)
 library(janitor)
 library(rstatix)
 library(knitr)
@@ -36,7 +36,7 @@ library(broom) # NEW!!
 
 set.seed(456)
 
-data("dds.discr")
+load(here("data", "dds.discr.rda"))  # dds.discr data from the oibiostat package
 ```
 
 ## What did we learn in 511/611? (1/2)
