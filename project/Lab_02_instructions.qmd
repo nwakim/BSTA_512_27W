@@ -1,0 +1,197 @@
+---
+title: "Lab 2 Instructions"
+pagetitle: "Lab 2 Instructions"
+author: "Nicky Wakim"
+subtitle: "BSTA 512/612"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    self-contained: true
+    number-sections: true
+    number-depth: 4
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-caution
+Ready to be worked on! (Nicky, 1/23/26)
+:::
+
+```{r}
+#| message: false
+#| echo: false
+
+# PLEASE DO NOT REMOVE THIS CODE CHUNK!!!
+### ADD YOUR LIBRARIES HERE!!! ####
+
+library(tidyverse)
+library(gtsummary)
+library(here)
+if(!require(lubridate)) { install.packages("lubridate"); library(lubridate) }
+#load("~/Library/CloudStorage/OneDrive-OregonHealth&ScienceUniversity/Teaching/Datasets/Implicit_anti_fat_bias/Data/Data_2021/iat_data.rda")
+load(here("../Project/data/iat_data_lab3.rda"))
+```
+
+
+## Directions
+
+Please turn in your `.html` file on Sakai. Please let me know if you greatly prefer to submit a physical copy.
+
+[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_26W/blob/main/project/Lab_02.qmd)  Please use the linked qmd file and not this one! (This is specifically the instructions.)
+
+The rest of this lab's instructions are embedded into the lab activities.
+
+::: callout-tip
+Make your plots as clean and easy to read as possible! The more presentable you make plots now, the less work you need to do in the future.
+:::
+
+### Purpose
+
+The main purpose of this lab is to introduce our dataset, codebook, and variables. We will continue to think about the context of our research question, but our main focus is to become familiar with the data.
+
+The main purpose of this lab is to perform some quality control on our data, recode some of the multi-selection categorical variables, continue data exploration, and start analyzing the main relationship of our research question.
+
+### Grading
+
+This lab is graded out of 21 points. Each lab will follow the specific rubric on the Project page. 
+
+## Lab activities
+
+### Restate your research question
+
+::: callout-important
+##### Task
+
+Please restate your research question below using the provided format. It's repetitive, but it helps me contextualize my feedback as I look through your lab.
+:::
+
+How is implicit anti-fat bias, as measured by the IAT score, associated with "insert main independent variable here"?
+
+### Load in your saved data from Lab 1
+
+Instead of using the raw data (which takes a while to load), we will load in the cleaned data that you saved from Lab 1.
+
+::: callout-important
+##### Task
+
+Please load in your saved data from Lab 1 using `here`. 
+:::
+
+### Some exploratory data analysis
+
+#### Peek at your outcome
+
+This serves as a check to make sure we are all looking at the correct outcome: IAT score.
+
+::: callout-important
+##### Task
+
+Please plot a histogram of the IAT scores. What do you notice about the outcome?
+:::
+
+#### Univariate exploratory data analysis
+
+::: callout-important
+##### Task
+
+Using `ggplot` or tables, visualize your variables. Get a sense of each variable's distribution. No need to report any summary statistics. Do you notice anything out of the ordinary? (This is meant to serve as check on the data and to make notes to yourself for later analysis.)
+:::
+
+Note, you should have a plot for EACH variable in your dataset other than IAT score. 
+
+You can use a function called `ggpairs()` from the `GGally` package to make a matrix of plots. The plots on the diagonal are the univariate plots of each variables' distributions. If you have trouble seeing or interpreting the individual plots, recreate them in `ggplot()`. Here is an example of how I would use `ggpairs()`:
+
+```{r}
+#| eval: false
+
+library(GGally)
+
+iat_data %>% ggpairs()
+```
+
+#### Bivariate exploratory data analysis
+
+[Some data visualization help can be found here.](https://rkabacoff.github.io/datavis/Bivariate.html#Bivariate) 
+
+We want to look at the relationship between IAT score and your main predictor (from your research question). Depending on whether your variable of interest is continuous or categorical, you will need to make a different type of plot. 
+
+Please note, if your variable of interest is categorical with ordered levels, please make sure to reorder the levels. You can use `fct_relevel()` or `fct_reorder()` from the `forcats` package to do this.
+Here is an example:
+```{r}
+#| eval: false
+
+library(forcats)
+iat_data2 = iat_data %>%
+  mutate(
+    important_001_f = fct_relevel(
+      important_001_f,
+      "Not at all important",
+      "Slightly important",
+      "Moderately important",
+      "Very important",
+      "Extremely important"
+    )
+  )
+```
+
+::: callout-important
+##### Task
+
+Take a look at the plot of IAT score and your main predictor (from your. research question). Use R and `ggplot` to make this plot.
+:::
+
+### Quality Control
+
+We need to look at individuals who have potentially answered the survey questions untruthfully. We cannot catch everything, but a good place to start is by looking at individuals who have done **more than one of the following**:
+
+-   selected the earliest or latest possible birth year
+
+-   selected the lowest or highest possible education
+
+-   selected all races 
+
+-   selected the lowest or highest weight (for those looking at BMI)
+
+-   selected the lowest or highest height (for those looking at BMI)
+
+I want to take a second to mention that any of the above selections, and combinations of the above selections, are valid. However, we should start to flag the possibility that someone has **not** gone through the survey properly if we notice that most or all of the respondent's answers are the first answer choice, last answer choice, or selected all options. Additionally, not all of these carry the same importance in discerning validity. For example, a recorded age of 111 years old is the most striking to me. When paired with other selections that are the maximum or minimum (or first or last) option, then I will record it for future investigation. If this observation looks to be an outlier or high leverage point in our analysis, that is when I'll decide to remove it.
+
+::: callout-important
+#### Tasks
+
+**Glimpse** at the observations that may indicate a respondent who has not properly completed the survey portion. This will require filtering **for** specific answer choices. [Please see examples of `filter()` on it's documentation page.](https://dplyr.tidyverse.org/reference/filter.html#ref-examples)
+
+Do NOT remove these observations from your dataset!! We are only flagging them for future investigation.
+:::
+
+### Fit a simple linear regression
+
+As a starting point, it is good to fit a simple linear regression for our primary research question. This is often called the "crude" or "unadjusted" association. It just means that we are not adjusting for any other variables, and establishing the "starting point" for our analysis. It is likely that the results of the regression will change as we add other variables in the model.
+
+::: callout-tip
+This is not required, but will be very helpful later: You can use inline code to extract the coefficient estimate and confidence intervals for your main variable. Here is an example of how to do this:
+```{r}
+#| eval: false
+
+model_temp <- lm(IAT_score ~ important_001, data = iat_prep2)
+model_temp_tidy <- tidy(model_temp, conf.int = T)
+```
+
+Then you can use inline code to extract the estimate and confidence intervals like such:
+
+`` `r knitr::inline_expr("round(model_temp_tidy$estimate[2], 2)")` `` (for the estimate of important_001) and `` `r knitr::inline_expr("round(model_temp_tidy$conf.low[2], 2)")` `` and `` `r knitr::inline_expr("round(model_temp_tidy$conf.high[2], 2)")` `` (for the confidence intervals of important_001).
+
+You can also see an [example in my `qmd` file on the Github page](https://github.com/nwakim/BSTA_512_26W/blob/main/lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.qmd#L1119-L1132) that corresponds to [this slide](https://nwakim.github.io/BSTA_512_26W/lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.html#/usually-three-options-for-your-interpretations). You'll notice that the slide looks pretty clean with the numbers, but the code to get those numbers is a bit more involved. If I change anything in my code, the numbers in the slides will automatically update!
+:::
+
+::: callout-important
+##### Task
+
+Run a simple linear regression model for the relationship in your primary research question. Print the regression table. Interpret the coefficient estimates (with confidence intervals) and comment on the initial trend you see.
+:::
+
+## Bibliography
+
+Redpath, F. (2023). Abolish the Body Mass Index: A Historical and Current Analysis of the Traumatizing Nature of the BMI. *Tapestries:  Interwoven Voices of Local and Global Identities*, *12*(1). <https://digitalcommons.macalester.edu/tapestries/vol12/iss1/12>

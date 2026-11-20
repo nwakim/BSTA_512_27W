@@ -1,0 +1,77 @@
+---
+title: "Lab 2"
+subtitle: "BSTA 512/612"
+author: "Your Name Here"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc-depth: 4
+    embed-resources: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Lab activities
+
+### Restate your research question
+
+::: callout-important
+##### Task
+
+Please restate your research question below using the provided format. It's repetitive, but it helps me contextualize my feedback as I look through your lab.
+:::
+
+### Load in your saved data from Lab 1
+
+::: callout-important
+##### Task
+
+Please load in your saved data from Lab 1 using `here`. 
+:::
+
+### Some exploratory data analysis
+
+#### Peek at your outcome
+
+::: callout-important
+##### Task
+
+Please plot a histogram of the IAT scores. What do you notice about the outcome?
+:::
+
+#### Univariate exploratory data analysis
+
+::: callout-important
+##### Task
+
+Using `ggplot` or tables, visualize your variables. Get a sense of each variable's distribution. No need to report any summary statistics. Do you notice anything out of the ordinary? (This is meant to serve as check on the data and to make notes to yourself for later analysis.)
+:::
+
+#### Bivariate exploratory data analysis
+
+::: callout-important
+##### Task
+
+Take a look at the plot of IAT score and your main predictor (from your. research question). Use R and `ggplot` to make this plot.
+:::
+
+### Quality Control
+
+::: callout-important
+#### Tasks
+
+**Glimpse** at the observations that may indicate a respondent who has not properly completed the survey portion. This will require filtering **for** specific answer choices. [Please see examples of `filter()` on it's documentation page.](https://dplyr.tidyverse.org/reference/filter.html#ref-examples)
+
+Do NOT remove these observations from your dataset!! We are only flagging them for future investigation.
+:::
+
+### Fit a simple linear regression
+
+::: callout-important
+##### Task
+
+Run a simple linear regression model for the relationship in your primary research question. Print the regression table. Interpret the results and comment on the initial trend you see.
+:::
+
