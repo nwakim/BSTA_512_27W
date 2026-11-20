@@ -38,7 +38,6 @@ library(gtsummary)
 library(plotly) # for plot_ly() command
 library(GGally) # for ggpairs() command 
 library(ggiraphExtra)   # for ggPredict() command
-#library(dvmisc)
 library(expss)
 
 load(here("data", "gapminder2022.RData"))
@@ -64,8 +63,10 @@ gapm = gapm %>%
 
 gapm2 = gapm %>% select(cell_phones_100, life_exp, vax_rate, freedom_status, income_level_4, basic_sani,  co2_emissions, happiness_score)
 gapm2 = gapm2 %>% 
-  mutate(BS_q = quant_groups(basic_sani, groups = 4) %>% factor(labels = c("Quartile 1", "Quartile 2", "Quartile 3", "Quartile 4")),  
-         BS_q = fct_relevel(BS_q, "Quartile 1", "Quartile 2", "Quartile 3", "Quartile 4"))
+  mutate(BS_q = cut(basic_sani,
+                    breaks = quantile(basic_sani, probs = seq(0, 1, 0.25), na.rm = TRUE),
+                    include.lowest = TRUE,
+                    labels = c("Quartile 1", "Quartile 2", "Quartile 3", "Quartile 4")))
 
 #load(here("./lessons/15_MLR_Diagnostics/final_mod.rda"))
 final_model = gapm2 %>% lm(formula = life_exp ~ cell_phones_100 + BS_q + freedom_status + income_level_4 + vax_rate + happiness_score)

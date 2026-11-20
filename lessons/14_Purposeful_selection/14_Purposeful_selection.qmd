@@ -1203,9 +1203,10 @@ grid.arrange(CO2, basic_sani, nrow=1)
 
 ```{r}
 #| echo: true
-library(dvmisc)
 gapm2 = gapm2 %>% 
-  mutate(BS_q = quant_groups(basic_sani, groups = 4) %>% factor())
+  mutate(BS_q = cut(basic_sani,
+                    breaks = quantile(basic_sani, probs = seq(0, 1, 0.25), na.rm = TRUE),
+                    include.lowest = TRUE))
 ```
 
 ```{r}
