@@ -1,4 +1,6 @@
-/* Styles for schedule.qmd */
+/* Styles for schedule.qmd
+   Colors match sandstone_NW.scss: blue3 #213c96, blue2 #4FADF3,
+   orange #FF8021, pink #F14124 */
 
 .title {
   font-size: 30px;
@@ -11,21 +13,21 @@
 
 /* Homework */
 .sched table tbody tr:has(.pract-row) td {
-  background-color: #FCF6F1 !important;
-  color: #E89543;
+  background-color: #FFF2E9 !important;  /* light tint of orange */
+  color: #FF8021;
 }
 
 /* Quizzes */
 .sched table tbody tr:has(.quiz-row) td {
-  background-color: #F4F7FC !important;
-  color: #6B8CC4;
+  background-color: #EDF7FE !important;  /* light tint of blue2 */
+  color: #4FADF3;
 }
 
 /* Project labs and the final project */
 .sched table tbody tr:has(.lab-row) td,
 .sched table tbody tr:has(.proj-row) td {
-  background-color: #FEF6F7 !important;
-  color: #F08897;
+  background-color: #FEECE9 !important;  /* light tint of pink */
+  color: #F14124;
 }
 
 /* ---- Blank separator rows between weeks: any row whose cells are all empty ---- */

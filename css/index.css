@@ -1,17 +1,20 @@
 /* Styles for index.qmd (home page) */
 
-/* ---- BSTA 512 color palette ---- */
+/* ---- BSTA 512 color palette (same as sandstone_NW.scss) ---- */
 :root {
-  --navy:   #213c96;
-  --blue:   #4FADF3;  --blue-text:   #1F7FC4;
-  --orange: #FF8021;  --orange-text: #C25A0E;
-  --pink:   #F08897;  --pink-deep:   #C9445A;
-  --green:  #34AC8B;  --green-text:  #23785F;
+  --blue3:      #213c96;
+  --blue2:      #4FADF3;
+  --orange:     #FF8021;
+  --pink:       #F14124;
+  --yellow:     #A7EA52;
+  --green:      #34AC8B;
+  --slate-grey: #6C757D;
+  --ivory:      #F2EFEA;
 }
 
 /* ---- Welcome banner ---- */
 .hero {
-  background-color: var(--navy);
+  background-color: var(--blue3);
   color: white;
   border-radius: 16px;
   padding: 2rem 2rem 1.5rem 2rem;
@@ -28,8 +31,8 @@
 .hero img { border-radius: 12px; }
 .term-pill {
   display: inline-block;
-  background-color: var(--blue);
-  color: white;
+  background-color: var(--yellow);
+  color: var(--blue3);
   font-weight: 700;
   padding: 0.2em 0.9em;
   border-radius: 999px;
@@ -42,7 +45,7 @@
 .hero-btn {
   display: inline-block;
   background-color: white;
-  color: var(--navy) !important;
+  color: var(--blue3) !important;
   font-weight: 700;
   text-decoration: none;
   padding: 0.45em 1.1em;
@@ -58,7 +61,7 @@
 }
 .info-card {
   background-color: white;
-  border: 1px solid #E4DFD7;
+  border: 1px solid var(--ivory);
   border-top: 6px solid var(--card);
   border-radius: 12px;
   padding: 1rem 1.25rem 0.5rem 1.25rem;
@@ -73,9 +76,9 @@
 }
 .info-card .icon { color: var(--card); }
 .info-card p { margin-bottom: 0.6rem; }
-.card-orange { --card: var(--orange);    --card-text: var(--orange-text); }
-.card-blue   { --card: var(--blue);      --card-text: var(--blue-text); }
-.card-pink   { --card: var(--pink-deep); --card-text: var(--pink-deep); }
-.card-green  { --card: var(--green);     --card-text: var(--green-text); }
+.card-orange { --card: var(--orange); --card-text: var(--orange); }
+.card-blue   { --card: var(--blue2);  --card-text: var(--blue2); }
+.card-pink   { --card: var(--pink);   --card-text: var(--pink); }
+.card-green  { --card: var(--green);  --card-text: var(--green); }
 
-.source-link { text-align: right; color: #6C757D; margin-top: 1rem; }
+.source-link { text-align: right; color: var(--slate-grey); margin-top: 1rem; }
