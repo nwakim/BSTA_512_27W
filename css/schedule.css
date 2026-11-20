@@ -60,3 +60,12 @@
 .sched table th:nth-of-type(13) {
   width: 5% !important;
 }
+
+/* ---- Links not released yet (see js/release-links.html) ---- */
+/* Same faint color as the placeholder icons for materials that aren't posted */
+.sched a.locked-link,
+.sched a.locked-link:hover {
+  color: #f8f5f0 !important;
+  cursor: not-allowed;
+  text-decoration: none;
+}

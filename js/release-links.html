@@ -1,0 +1,88 @@
+<script>
+/*
+  Release schedule links on a timer (used by schedule.qmd).
+
+  Each class-day row gets its date from class_dates.R (the date cell is a
+  <span class="class-date" data-date="YYYY-MM-DD">). Rows under it with no
+  date (a second lesson, a lab discussion) belong to that same day.
+
+  Links in the columns listed in RELEASE stay locked (greyed out, not
+  clickable) until that time, in Pacific time, on the row's class day.
+  Columns not listed are always open. Edit the times below to change them.
+
+  Note: this hides links on the schedule only. The pages themselves are
+  still published, so anyone with the direct URL can open them.
+*/
+(function () {
+  const RELEASE = {
+    "Exit tix": "13:00",      // when class starts
+    "Record-ing": "14:50",    // after class
+    "Slides Notes": "14:50",  // after class
+    "Muddy Points": "14:50"   // after class
+  };
+  const TZ = "America/Los_Angeles";
+
+  const norm = s => s.toLowerCase().replace(/[^a-z]/g, "");
+  const rules = {};
+  for (const [col, time] of Object.entries(RELEASE)) rules[norm(col)] = time;
+
+  // "2027-01-04" + "14:50" (Pacific) -> Date, handling daylight saving time
+  function pacificTime(dateStr, hm) {
+    const [y, m, d] = dateStr.split("-").map(Number);
+    const [h, mi] = hm.split(":").map(Number);
+    const guess = Date.UTC(y, m - 1, d, h, mi);
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ, hourCycle: "h23", year: "numeric", month: "2-digit",
+      day: "2-digit", hour: "2-digit", minute: "2-digit"
+    }).formatToParts(new Date(guess));
+    const get = t => Number(parts.find(p => p.type === t).value);
+    const shown = Date.UTC(get("year"), get("month") - 1, get("day"), get("hour"), get("minute"));
+    return new Date(guess - (shown - guess));
+  }
+
+  function label(date) {
+    return "Available " + date.toLocaleString("en-US", {
+      timeZone: TZ, weekday: "short", month: "short", day: "numeric",
+      hour: "numeric", minute: "2-digit"
+    }) + " PT";
+  }
+
+  function update() {
+    const table = document.querySelector(".sched table");
+    if (!table) return;
+    const cols = [...table.querySelectorAll("thead th")].map(th => rules[norm(th.textContent)]);
+    const now = new Date();
+    let day = null;
+
+    for (const tr of table.querySelectorAll("tbody tr")) {
+      const dateSpan = tr.querySelector(".class-date");
+      if (dateSpan) day = dateSpan.dataset.date;
+      if (!day) continue;
+
+      [...tr.children].forEach((td, i) => {
+        const time = cols[i];
+        if (!time) return;
+        const opens = pacificTime(day, time);
+        for (const a of td.querySelectorAll("a[href], a[data-locked-href]")) {
+          if (now < opens) {
+            if (a.hasAttribute("href")) {
+              a.dataset.lockedHref = a.getAttribute("href");
+              a.removeAttribute("href");
+            }
+            a.classList.add("locked-link");
+            a.title = label(opens);
+          } else if (a.dataset.lockedHref) {
+            a.setAttribute("href", a.dataset.lockedHref);
+            delete a.dataset.lockedHref;
+            a.classList.remove("locked-link");
+            a.removeAttribute("title");
+          }
+        }
+      });
+    }
+  }
+
+  update();
+  setInterval(update, 60 * 1000);  // unlocks on its own if the page is left open
+})();
+</script>
