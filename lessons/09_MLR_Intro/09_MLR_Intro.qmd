@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w6d1`"
 format: 
   revealjs:
+    css: [../../css/slides.css, ../../css/09_MLR_Intro.css]
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -60,12 +61,6 @@ theme_set(theme_bw(base_size = 12))
 3.  Interpret MLR coefficient estimates from model with one continuous and one categorical predictor.
 4.  Fit MLR model (in `R`) with two continuous predictors.
 5.  Interpret MLR coefficient estimates from model with two continuous predictors.
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 ## Reminder of what we learned in the context of SLR
 
@@ -535,12 +530,6 @@ Adjusting/controlling for $X_1$-variable, the difference in mean $Y$-variable co
 
 ## Interpreting the estimated population coefficient: $\widehat{\beta}_0$ {#color-slide1}
 
-```{css, echo=FALSE}
-#color-slide1 h2 {
- color: #34AC8B;
-}
-```
-
 - For an estimated model: 
 
 $$\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \widehat{\beta}_2 I(X_2=\text{``cat 2"}) + \widehat{\beta}_3 I(X_2=\text{``cat 3"})$$
@@ -554,12 +543,6 @@ $$\begin{aligned}
 **Interpretation:** The expected $Y$-variable is ($\widehat\beta_0$ units) when the $X_1$-variable is 0 $X_1$-units and $X_2$-variable is reference group (cat 1) (95% CI: LB, UB).
 
 ## Interpreting the estimated population coefficient: $\widehat{\beta}_1$ {#color-slide2}
-
-```{css, echo=FALSE}
-#color-slide2 h2 {
- color: #4FADF3;
-}
-```
 
 - We will use: $x_{1a}$ and $x_{1b} = x_{1a} + 1$, with the implication that $\Delta{x_1} = x_{1b} - x_{1a} = 1$
 
@@ -592,12 +575,6 @@ As long as $X_2$ is the category (aka adjusting or controlling for $X_2$), then 
 
 
 ## Interpreting the estimated population coefficient: $\widehat{\beta}_2$ {#color-slide3}
-
-```{css, echo=FALSE}
-#color-slide3 h2 {
- color: #FF8021;
-}
-```
 
 - We can so the same for $X_2$: $x_{2a}$ is the reference group and $x_{2b}$ is category 2
 
@@ -1062,12 +1039,6 @@ For every increase of 1 $X_2$-unit in the $X_2$-variable, adjusting/controlling 
 
 ## Interpreting the estimated population coefficient: $\widehat{\beta}_0$ {#color-slide9}
 
-```{css, echo=FALSE}
-#color-slide9 h2 {
- color: #34AC8B;
-}
-```
-
 - For an estimated model: $\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1 X_2 + \widehat{\beta}_2 X_2$
 
 $$\begin{aligned}
@@ -1078,12 +1049,6 @@ $$\begin{aligned}
 **Interpretation:** The expected $Y$-variable is ($\widehat\beta_0$ units) when the $X_1$-variable is 0 $X_1$-units and $X_2$-variable is 0 $X_1$-units (95% CI: LB, UB).
 
 ## Interpreting the estimated population coefficient: $\widehat{\beta}_1$ {#color-slide10}
-
-```{css, echo=FALSE}
-#color-slide10 h2 {
- color: #4FADF3;
-}
-```
 
 - We will use: $x_{1a}$ and $x_{1b} = x_{1a} + 1$, with the implication that $\Delta{x_1} = x_{1b} - x_{1a} = 1$
 
@@ -1116,12 +1081,6 @@ As long as $X_2$ is the same value (aka adjusting or controlling for $X_2$), the
 
 
 ## Interpreting the estimated population coefficient: $\widehat{\beta}_2$ {#color-slide11}
-
-```{css, echo=FALSE}
-#color-slide11 h2 {
- color: #FF8021;
-}
-```
 
 - We can so the same for $X_2$: $x_{2a}$ and $x_{2b} = x_{2a} + 1$, with the implication that $\Delta{x_2} = x_{2b} - x_{2a} = 1$
 

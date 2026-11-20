@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w2d2`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -92,12 +93,6 @@ tidy(model1) %>% gt()
 4.  Calculate and report the estimate and confidence interval for the
     expected/mean response given $X$
     
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
-
 ## Process of regression data analysis
 
 ::: box

@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w4d2`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -144,11 +145,6 @@ gapm_slr_plot
 :::
 
 
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 ## Process of regression data analysis
 
 ::: box

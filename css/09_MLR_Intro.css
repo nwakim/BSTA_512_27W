@@ -1,0 +1,16 @@
+/* Styles for lessons/09_MLR_Intro: colored headings on specific slides */
+
+#color-slide1 h2,
+#color-slide9 h2 {
+  color: #34AC8B;
+}
+
+#color-slide2 h2,
+#color-slide10 h2 {
+  color: #4FADF3;
+}
+
+#color-slide3 h2,
+#color-slide11 h2 {
+  color: #FF8021;
+}

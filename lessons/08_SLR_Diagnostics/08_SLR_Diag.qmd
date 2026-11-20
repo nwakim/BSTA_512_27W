@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w5d2`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -78,12 +79,6 @@ gapm = gapm %>%
 2.  Handle influential points and assumption violations by checking data
     errors, reassessing the model, and making data transformations.
     
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
-
 ## Process of regression data analysis
 
 ::: box

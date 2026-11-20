@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "02/24/2025"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -71,12 +72,6 @@ iat_2021 = iat_2021 %>% mutate(iam_001_f = case_match(iam_001,
 # Homework 3
 
 ## 
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 # Lab 3
 

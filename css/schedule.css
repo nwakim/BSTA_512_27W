@@ -1,0 +1,62 @@
+/* Styles for schedule.qmd */
+
+.title {
+  font-size: 30px;
+  color: #213c96;
+  background-color: #fff;
+  padding: 0px;
+}
+
+/* ---- Due-date rows: the class on the Topic text colors the whole row ---- */
+
+/* Homework */
+.sched table tbody tr:has(.pract-row) td {
+  background-color: #FCF6F1 !important;
+  color: #E89543;
+}
+
+/* Quizzes */
+.sched table tbody tr:has(.quiz-row) td {
+  background-color: #F4F7FC !important;
+  color: #6B8CC4;
+}
+
+/* Project labs and the final project */
+.sched table tbody tr:has(.lab-row) td,
+.sched table tbody tr:has(.proj-row) td {
+  background-color: #FEF6F7 !important;
+  color: #F08897;
+}
+
+/* ---- Blank separator rows between weeks: any row whose cells are all empty ---- */
+.sched table tbody tr:not(:has(td:not(:empty))) td {
+  background-color: #213c96 !important;
+  box-shadow: none !important;   /* stops Bootstrap's striping/hover from covering it */
+  padding: 0 !important;
+  height: 10px;
+  line-height: 0;
+  border: none;
+}
+
+/* ---- Column widths ---- */
+.sched table th:nth-of-type(1),
+.sched table th:nth-of-type(2),
+.sched table th:nth-of-type(3),
+.sched table th:nth-of-type(4),
+.sched table th:nth-of-type(5),
+.sched table th:nth-of-type(6) {
+  width: 5% !important;
+}
+.sched table th:nth-of-type(7) {   /* Topic */
+  width: 25% !important;
+}
+.sched table th:nth-of-type(8),
+.sched table th:nth-of-type(9) {   /* TB 1, TB 2 */
+  width: 7% !important;
+}
+.sched table th:nth-of-type(10),
+.sched table th:nth-of-type(11),
+.sched table th:nth-of-type(12),
+.sched table th:nth-of-type(13) {
+  width: 5% !important;
+}

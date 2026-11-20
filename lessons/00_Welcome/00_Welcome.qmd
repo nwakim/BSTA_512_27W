@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w1d1`"
 format: 
   revealjs:
+    css: ../../css/00_Welcome.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -64,7 +65,7 @@ library(tidyverse)
 
 ## Some important tasks
 
--   Star the class website: <https://nwakim.github.io/BSTA_512_26W/>
+-   Star the class website: <https://nwakim.github.io/BSTA_512_27W/>
 
 -   Complete Homework 0 by this Thursday at 11pm!
     - Checking OneDrive access
@@ -77,20 +78,10 @@ library(tidyverse)
 g=3
 ```
 
-```{css}
-#| echo: false
-
-<style>
-#wrap { width: 600px; height: 390px; padding: 0; overflow: hidden; }
-#frame { width: 1300px; height: 600px; border: 1px solid black; }
-#frame { zoom: 1.5; -moz-transform: scale(1.5); -moz-transform-origin: 0 0; }
-</style>
-```
-
 ## Let's visit the website: Homepage
 
 ```{=html}
-<iframe id="frame" src="https://nwakim.github.io/BSTA_512_26W/"></iframe>
+<iframe id="frame" src="https://nwakim.github.io/BSTA_512_27W/"></iframe>
 ```
 
 ## Let's visit the website: Syllabus
@@ -114,7 +105,7 @@ g=3
 -   Weeks, class info, homeworks, labs
 
 ```{=html}
-<iframe id="frame" src="https://nwakim.github.io/BSTA_512_26W/schedule.html"></iframe>
+<iframe id="frame" src="https://nwakim.github.io/BSTA_512_27W/schedule.html"></iframe>
 ```
 
 ## Let's visit the website: Schedule (2/2)

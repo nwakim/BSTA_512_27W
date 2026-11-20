@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w9d1`"
 format: 
   revealjs:
+    css: [../../css/slides.css, ../../css/13_Model_selection.css]
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -73,18 +74,6 @@ gapm2 = gapm %>% select(cell_phones_100, life_exp, vax_rate, freedom_status, inc
 1.  Understand the motivation for model selection, including bias-variance trade off and alignment of research goals (association vs. prediction)
 2.  Explain the general process or idea behind different model selection techniques
 3.  Recognize common model fit statistics and understand what they measure
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
-
-```{css, echo=FALSE}
-.sourceCode code {
-  font-size: 1.3em;
-}
-```
 
 ## Regression analysis process
 

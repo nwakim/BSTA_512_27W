@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w2d1`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -63,12 +64,6 @@ theme_set(theme_bw(base_size = 22))
     using OLS
 
 5.  Apply OLS in R for simple linear regression of real data
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 ## Process of regression data analysis
 

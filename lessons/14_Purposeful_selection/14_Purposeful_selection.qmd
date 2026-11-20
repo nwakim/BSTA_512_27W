@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w9d1`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -74,12 +75,6 @@ gapm2 = gapm %>% select(cell_phones_100, life_exp, vax_rate, freedom_status, inc
 
 
 ## Regression analysis process
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 ::: box
 ![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}

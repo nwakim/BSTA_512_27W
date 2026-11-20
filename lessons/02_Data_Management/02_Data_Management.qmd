@@ -7,6 +7,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w1d2`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -61,12 +62,6 @@ library(gt)
  
 
 - Not covered: basic Quarto set up. Please see R recordings in OneDrive and my [EPI 525 site](https://nwakim.github.io/F24_EPI_525/schedule.html) for videos and slides.
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 ## 
 

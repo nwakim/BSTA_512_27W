@@ -1,0 +1,5 @@
+/* Styles for lessons/00_Welcome: the embedded course-website previews */
+
+#wrap { width: 600px; height: 390px; padding: 0; overflow: hidden; }
+#frame { width: 1300px; height: 600px; border: 1px solid black; }
+#frame { zoom: 1.5; -moz-transform: scale(1.5); -moz-transform-origin: 0 0; }

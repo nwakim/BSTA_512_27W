@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w10d1`"
 format: 
   revealjs:
+    css: ../../css/16_Poster_help.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -112,13 +113,6 @@ countdown::countdown(8)
 -   Do NOT make bullet points really long!
 -   I tried the QMD poster, and it is REALLY hard to troubleshoot
     -   I highly suggest making your poster in powerpoint!
-
-```{css}
-.reveal .sourceCode {
-  font-size: 0.9em !important;
-}
-
-```
 
 ## Background
 

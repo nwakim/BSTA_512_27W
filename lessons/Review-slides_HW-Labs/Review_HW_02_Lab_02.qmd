@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "02/12/2025"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -40,12 +41,6 @@ library(gtsummary) ## Added this package!!
 
 -   Mostly good work! 
 - Main note: Please look at the solutions to make sure you have the correct beta's and interpretations when we work with categorical variables!!
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 # Lab 2
 

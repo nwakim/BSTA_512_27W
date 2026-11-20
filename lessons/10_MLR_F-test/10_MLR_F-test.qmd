@@ -6,6 +6,7 @@ title-slide-attributes:
 date: "`r library(here); source(here('class_dates.R')); w7d2`"
 format: 
   revealjs:
+    css: ../../css/slides.css
     theme: "../simple_NW.scss"
     chalkboard: true
     slide-number: true
@@ -71,12 +72,6 @@ mlr1 <- gapm %>% lm(formula = life_exp ~ cell_phones_100 + vax_rate)
 2.  Understand the context of the **Overall F-test**, conduct the needed hypothesis test, and interpret the results.
 3.  Understand the context of the **single covariate/coefficient F-test**, conduct the needed hypothesis test, and interpret the results.
 4.  Understand the context of the **group of covariates/coefficients F-test**, conduct the needed hypothesis test, and interpret the results.
-
-```{css, echo=FALSE}
-.reveal code {
-  max-height: 100% !important;
-}
-```
 
 ## Let's map that to our regression analysis process
 
