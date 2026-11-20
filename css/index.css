@@ -1,0 +1,81 @@
+/* Styles for index.qmd (home page) */
+
+/* ---- BSTA 512 color palette ---- */
+:root {
+  --navy:   #213c96;
+  --blue:   #4FADF3;  --blue-text:   #1F7FC4;
+  --orange: #FF8021;  --orange-text: #C25A0E;
+  --pink:   #F08897;  --pink-deep:   #C9445A;
+  --green:  #34AC8B;  --green-text:  #23785F;
+}
+
+/* ---- Welcome banner ---- */
+.hero {
+  background-color: var(--navy);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+.hero h1 {
+  color: white;
+  border-bottom: none;
+  margin-top: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.hero img { border-radius: 12px; }
+.term-pill {
+  display: inline-block;
+  background-color: var(--blue);
+  color: white;
+  font-weight: 700;
+  padding: 0.2em 0.9em;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+.hero-text { font-size: 1.08rem; line-height: 1.6; }
+.hero-text strong { color: white; }
+
+/* Buttons in the banner */
+.hero-btn {
+  display: inline-block;
+  background-color: white;
+  color: var(--navy) !important;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.45em 1.1em;
+  border-radius: 999px;
+  margin: 0.25rem 0.4rem 0.25rem 0;
+  border: 2px solid white;
+}
+.hero-btn:hover { background-color: transparent; color: white !important; }
+
+/* ---- Info cards ---- */
+.cards-band {
+  padding: 0.5rem 0;
+}
+.info-card {
+  background-color: white;
+  border: 1px solid #E4DFD7;
+  border-top: 6px solid var(--card);
+  border-radius: 12px;
+  padding: 1rem 1.25rem 0.5rem 1.25rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+.info-card h3 {
+  color: var(--card-text);
+  margin-top: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.info-card .icon { color: var(--card); }
+.info-card p { margin-bottom: 0.6rem; }
+.card-orange { --card: var(--orange);    --card-text: var(--orange-text); }
+.card-blue   { --card: var(--blue);      --card-text: var(--blue-text); }
+.card-pink   { --card: var(--pink-deep); --card-text: var(--pink-deep); }
+.card-green  { --card: var(--green);     --card-text: var(--green-text); }
+
+.source-link { text-align: right; color: #6C757D; margin-top: 1rem; }
