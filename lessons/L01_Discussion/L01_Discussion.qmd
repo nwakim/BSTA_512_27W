@@ -95,7 +95,7 @@ countdown::countdown(5)
 
 # File Management
 
-## From Lesson 2: Folder organization
+## From Lesson 1: Folder organization
 
 -   Make a folder for our class!
     -   I suggest naming it something like `BSTA_512_W27` to indicate the class and the term
@@ -127,7 +127,7 @@ countdown::countdown(5)
 :::
 :::
 
-## From Lesson 2: Creating project in RStudio
+## From Lesson 1: Creating project in RStudio
 
 -   Way to designate a working directory: basically your home base when working in R
 
@@ -148,7 +148,7 @@ countdown::countdown(5)
 
 - Only make one project for now!! 
 
-## From Lesson 2: Using `here` package
+## From Lesson 1: Using `here` package
 
 -   Within your console, type `here()` and enter
 
