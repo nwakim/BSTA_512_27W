@@ -322,7 +322,7 @@ A few things we can do:
 
     -   Units
 
--   Make yourself a [codebook](https://nwakim.github.io/BSTA_512_26W/lessons/gapminder_codebook.html) for reference
+-   Make yourself a [codebook](https://nwakim.github.io/BSTA_512_27W/lessons/gapminder_codebook.html) for reference
 
 -   Then make sure the summary of values makes sense
 

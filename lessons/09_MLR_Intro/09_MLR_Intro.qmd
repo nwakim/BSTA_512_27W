@@ -335,7 +335,6 @@ $$
 
  
 
--   The models have similar "LINE" assumptions and follow the same general diagnostic procedure
 
 ## Population multiple regression model
 
@@ -433,7 +432,7 @@ Multiple linear regression population model (with added income level)
 
 ::: fact-cont
 $$\begin{aligned}
-\text{LE}  = & \beta_0 + \beta_1 \text{CP} + \beta_2 I(IL = \text{``Lower middle"}) + \\ & \beta_3 I(IL = \text{``Upper middle"}) + \beta_2 I(IL = \text{``High"}) + \epsilon
+\text{LE}  = & \beta_0 + \beta_1 \text{CP} + \beta_2 I(IL = \text{``Lower middle"}) + \\ & \beta_3 I(IL = \text{``Upper middle"}) + \beta_4 I(IL = \text{``High"}) + \epsilon
 \end{aligned}$$
 :::
 :::
@@ -447,7 +446,7 @@ $$\begin{aligned}
 
 [New **population** model for example:]{style="color: #4FADF3;"}
 
-$$\text{LE}  = \beta_0 + \beta_1 \text{CP} + \beta_2 I(IL = \text{``Lower middle"}) + \beta_3 I(IL = \text{``Upper middle"}) + \beta_2 I(IL = \text{``High"}) + \epsilon $$
+$$\text{LE}  = \beta_0 + \beta_1 \text{CP} + \beta_2 I(IL = \text{``Lower middle"}) + \beta_3 I(IL = \text{``Upper middle"}) + \beta_4 I(IL = \text{``High"}) + \epsilon $$
 
 ```{r}
 #| code-fold: true
@@ -466,7 +465,7 @@ mr1_tidy = tidy(mr1, conf.int=T)
 [**Fitted** multiple regression model:]{style="color: #34AC8B;"}
 
 $$\begin{aligned}
-\widehat{\text{LE}}  = & \widehat{\beta}_0 + \widehat{\beta}_1 \text{CP} + \widehat{\beta}_2 I(IL = \text{``Lower middle"}) + \widehat{\beta}_3 I(IL = \text{``Upper middle"}) + \widehat{\beta}_2 I(IL = \text{``High"}) \\
+\widehat{\text{LE}}  = & \widehat{\beta}_0 + \widehat{\beta}_1 \text{CP} + \widehat{\beta}_2 I(IL = \text{``Lower middle"}) + \widehat{\beta}_3 I(IL = \text{``Upper middle"}) + \widehat{\beta}_4 I(IL = \text{``High"}) \\
 \widehat{\text{LE}} = & `r round(mr1_tidy$estimate[1], 2)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{CP}
 + `r round(mr1_tidy$estimate[3], 2)`\ I(IL = \text{``Lower middle"}) + `r round(mr1_tidy$estimate[4], 2)`\ I(IL = \text{``Upper middle"}) + \\ & `r round(mr1_tidy$estimate[5], 2)`\ I(IL = \text{``High"})
 \end{aligned}$$
@@ -639,7 +638,7 @@ ggplot(aug_mod1) +
 [**Fitted** multiple regression model:]{style="color: #34AC8B;"}
 
 $$\begin{aligned}
-\widehat{\text{LE}}  = & \widehat{\beta}_0 + \widehat{\beta}_1 \text{CP} + \widehat{\beta}_2 I(IL = \text{``Lower middle"}) + \widehat{\beta}_3 I(IL = \text{``Upper middle"}) + \widehat{\beta}_2 I(IL = \text{``High"}) \\
+\widehat{\text{LE}}  = & \widehat{\beta}_0 + \widehat{\beta}_1 \text{CP} + \widehat{\beta}_2 I(IL = \text{``Lower middle"}) + \widehat{\beta}_3 I(IL = \text{``Upper middle"}) + \widehat{\beta}_4 I(IL = \text{``High"}) \\
 \widehat{\text{LE}} = & `r round(mr1_tidy$estimate[1], 2)` + `r round(mr1_tidy$estimate[2], 3)` \ \text{CP}
 + `r round(mr1_tidy$estimate[3], 2)`\ I(IL = \text{``Lower middle"}) + `r round(mr1_tidy$estimate[4], 2)`\ I(IL = \text{``Upper middle"}) + \\ & `r round(mr1_tidy$estimate[5], 2)`\ I(IL = \text{``High"})
 \end{aligned}$$
@@ -681,6 +680,54 @@ The difference in average life expectancy comparing lower middle income countrie
 :::
 :::
 :::
+
+## Why add income level? A first look at confounding
+
+::: definition
+::: def-title
+Confounder
+:::
+::: def-cont
+A variable that is associated with **both** the exposure (here, cell phones) and the outcome (life expectancy), and is not on the causal path between them
+:::
+:::
+
+ 
+
+-   Higher income countries tend to have **more cell phones** *and* **longer life expectancy**
+
+```{r}
+#| echo: false
+gapm %>% group_by(income_level_4) %>%
+  summarize(`Mean cell phones per 100` = mean(cell_phones_100),
+            `Mean life expectancy` = mean(life_exp)) %>%
+  rename(`Income level` = income_level_4) %>%
+  gt() %>% tab_options(table.font.size = 32) %>% fmt_number(decimals = 1)
+```
+
+-   So some of the association between cell phones and life expectancy in SLR may really be due to income
+
+## Confounding in our example: compare the slopes
+
+```{r}
+#| echo: false
+slr_cp = tidy(lm(life_exp ~ cell_phones_100, data = gapm), conf.int = T) %>% 
+  filter(term == "cell_phones_100")
+mlr_cp = mr1_tidy %>% filter(term == "cell_phones_100")
+```
+
+| Model | Slope for cell phones (95% CI) |
+|----------------------------------|----------------------------------|
+| SLR: $\text{LE} \sim \text{CP}$ | `r round(slr_cp$estimate, 3)` (`r round(slr_cp$conf.low, 3)`, `r round(slr_cp$conf.high, 3)`) |
+| MLR: $\text{LE} \sim \text{CP} + \text{income level}$ | `r round(mlr_cp$estimate, 3)` (`r round(mlr_cp$conf.low, 3)`, `r round(mlr_cp$conf.high, 3)`) |
+
+ 
+
+-   After **adjusting** for income level, the slope for cell phones is `r round((1 - mlr_cp$estimate / slr_cp$estimate) * 100, 0)`% smaller
+
+-   This is what "adjusting for income level" means in our interpretation of $\widehat\beta_1$: we compare countries **with the same income level**
+
+-   This is one of the main reasons we use MLR! We will dig deeper into confounders (and effect modifiers) in Lesson 11
 
 # Learning Objectives
 

@@ -20,7 +20,7 @@ Ready to go!
 
 Please turn in your `.html` file on Sakai. 
 
-This document is the instructions for the lab. You will use a cleaner version to fill in your work. [You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_26W/blob/main/project/Lab_01.qmd) 
+This document is the instructions for the lab. You will use a cleaner version to fill in your work. [You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_27W/blob/main/project/Lab_01.qmd) 
 
 ### Purpose
 
@@ -31,6 +31,12 @@ There will be no analysis in this lab. Instead, we are building our knowledge ar
 ### Grading
 
 This lab is worth 24 points. Each lab will follow the specific rubric on the Project page. 
+
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
 
 ## Lab activities
 

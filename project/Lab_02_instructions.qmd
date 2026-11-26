@@ -39,7 +39,7 @@ load(here("../Project/data/iat_data_lab3.rda"))
 
 Please turn in your `.html` file on Sakai. Please let me know if you greatly prefer to submit a physical copy.
 
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_26W/blob/main/project/Lab_02.qmd)  Please use the linked qmd file and not this one! (This is specifically the instructions.)
+[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_27W/blob/main/project/Lab_02.qmd)  Please use the linked qmd file and not this one! (This is specifically the instructions.)
 
 The rest of this lab's instructions are embedded into the lab activities.
 
@@ -56,6 +56,12 @@ The main purpose of this lab is to perform some quality control on our data, rec
 ### Grading
 
 This lab is graded out of 21 points. Each lab will follow the specific rubric on the Project page. 
+
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
 
 ## Lab activities
 
@@ -183,13 +189,27 @@ Then you can use inline code to extract the estimate and confidence intervals li
 
 `` `r knitr::inline_expr("round(model_temp_tidy$estimate[2], 2)")` `` (for the estimate of important_001) and `` `r knitr::inline_expr("round(model_temp_tidy$conf.low[2], 2)")` `` and `` `r knitr::inline_expr("round(model_temp_tidy$conf.high[2], 2)")` `` (for the confidence intervals of important_001).
 
-You can also see an [example in my `qmd` file on the Github page](https://github.com/nwakim/BSTA_512_26W/blob/main/lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.qmd#L1119-L1132) that corresponds to [this slide](https://nwakim.github.io/BSTA_512_26W/lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.html#/usually-three-options-for-your-interpretations). You'll notice that the slide looks pretty clean with the numbers, but the code to get those numbers is a bit more involved. If I change anything in my code, the numbers in the slides will automatically update!
+You can also see an [example in my `qmd` file on the Github page](https://github.com/nwakim/BSTA_512_27W/blob/main/lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.qmd#L1114-L1126) that corresponds to [this slide](https://nwakim.github.io/BSTA_512_27W/lessons/04_SLR_Inf_Pred/04_SLR_Inf_Pred.html#/usually-three-options-for-your-interpretations). You'll notice that the slide looks pretty clean with the numbers, but the code to get those numbers is a bit more involved. If I change anything in my code, the numbers in the slides will automatically update!
+:::
+
+::: callout-tip
+##### Writing out your fitted equation
+
+You can type the equation with LaTeX between `$$` signs, like this example from class:
+
+```
+$$
+\widehat{\text{LE}} = 60.04 + 0.094 \cdot \text{CP}
+$$
+```
+
+Use your own variable names and estimates. If LaTeX is giving you trouble, you can instead write the equation by hand, take a picture, and insert the image with `![](your_image.png)`.
 :::
 
 ::: callout-important
 ##### Task
 
-Run a simple linear regression model for the relationship in your primary research question. Print the regression table. Interpret the coefficient estimates (with confidence intervals) and comment on the initial trend you see.
+Run a simple linear regression model for the relationship in your primary research question. Print the regression table. Write out the fitted regression equation (in LaTeX or as an inserted image). Interpret the coefficient estimates (with confidence intervals) and comment on the initial trend you see.
 :::
 
 ## Bibliography

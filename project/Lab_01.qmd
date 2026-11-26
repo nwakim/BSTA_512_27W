@@ -16,6 +16,12 @@ format:
 
 Directions and instructions are on the website!
 
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
+
 ## Lab activities
 
 ### Reading and listening activities

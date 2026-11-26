@@ -18,7 +18,7 @@ editor_options:
 
 Here are the instructions for downloading and submitting your homework:
 
-1.  Go to [this github site](https://github.com/nwakim/BSTA_512_26W/blob/main/homework/HW_00.qmd) to download the homework's `.qmd` file.
+1.  Go to [this github site](https://github.com/nwakim/BSTA_512_27W/blob/main/homework/HW_00.qmd) to download the homework's `.qmd` file.
 
 2.  When you reach the site, it should look like this (from my 2023 class):![](hw_images/HW0_github.png)
 

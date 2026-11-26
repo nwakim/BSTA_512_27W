@@ -311,7 +311,7 @@ ggplot(regression_points,
 
 $$ \begin{aligned}
 Y_i - \overline{Y} & = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\\
-\text{Total variation} & = \text{Residual variation after regression} + \text{Variation explained by regression}
+\text{Total deviation} & = \text{Residual deviation after regression} + \text{Deviation explained by regression}
 \end{aligned}$$
 
 ## More on the equation
@@ -322,14 +322,14 @@ $$Y_i - \overline{Y} = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})$$
 
 -   $Y_i - \overline{Y}$ = the deviation of $Y_i$ around the mean
     $\overline{Y}$
-    -   (the **total** amount deviation)
+    -   (the **total** deviation)
 -   $Y_i - \widehat{Y}_i$ = the deviation of the observation $Y$ around the
     fitted regression line
-    -   (the amount deviation **unexplained** by the regression at $X_i$
+    -   (the deviation **unexplained** by the regression at $X_i$)
         ).
 -   $\widehat{Y_i}- \overline{Y}$ = the deviation of the fitted value
     $\widehat{Y}_i$ around the mean $\overline{Y}$
-    -   (the amount deviation **explained** by the regression at $X_i$ )
+    -   (the deviation **explained** by the regression at $X_i$)
 :::
 
 ::: {.column width="60%"}
@@ -442,12 +442,13 @@ ggplot(regression_points, aes(x = .resid)) +
 
 $$ \begin{aligned}
 Y_i - \overline{Y} & = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\\
-\text{Total variation} & = \text{Variation explained by regression} + \text{Residual variation after regression}
+\text{Total deviation} & = \text{Deviation explained by regression} + \text{Residual deviation after regression}
 \end{aligned}$$
 
 $$\begin{aligned}
 \sum_{i=1}^n (Y_i - \overline{Y})^2 & = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
-SSY & = SSR + SSE 
+SSY & = SSR + SSE \\
+\text{Total variation} & = \text{Variation explained by regression} + \text{Residual variation}
 \end{aligned}$$
 $$\text{Total Sum of Squares} = \text{Sum of Squares explained by Regression} + \text{Sum of Squares due to Error (residuals)}$$
 
@@ -473,7 +474,8 @@ ANOVA table:
 
 $$\begin{aligned}
 \sum_{i=1}^n (Y_i - \overline{Y})^2 & = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
-SSY & = SSR + SSE 
+SSY & = SSR + SSE \\
+\text{Total variation} & = \text{Variation explained by regression} + \text{Residual variation}
 \end{aligned}$$
 $$\text{Total Sum of Squares} = \text{Sum of Squares explained by Regression} + \text{Sum of Squares due to Error (residuals)}$$
 
