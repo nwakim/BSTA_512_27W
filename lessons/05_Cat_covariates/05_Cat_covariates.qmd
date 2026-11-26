@@ -43,7 +43,12 @@ gapm = gapm %>%
   mutate(fs_order = case_when(freedom_status == "F" ~ 3,
                                 freedom_status == "PF" ~ 2,
                                 freedom_status == "NF" ~ 1), 
-         freedom_status = fct_relevel(freedom_status, "NF", "PF", "F"))
+         freedom_status = fct_relevel(freedom_status, "NF", "PF", "F")) %>%
+  # World region (continent) for each country: a nominal variable
+  left_join(read_csv(here("data", "gapminder2022_continent.csv"), 
+                     show_col_types = FALSE) %>% select(geo, continent), 
+            by = "geo") %>%
+  mutate(continent = factor(continent))
 ```
 
 # Learning Objectives
@@ -842,6 +847,59 @@ ggplot(m1_aug, aes(x = freedom_status, y = .fitted)) + geom_point() +
 ggplot(m1_aug, aes(x=.resid)) + geom_histogram() + 
   theme(axis.text = element_text(size = 22), title = element_text(size = 22))
 ```
+
+## Another categorical variable: world region
+
+-   Freedom status has a natural **order** (not free < partly free < free): an **ordinal** variable
+
+-   World region has **no** natural order: a **nominal** variable
+
+::: columns
+::: {.column width="55%"}
+```{r}
+#| echo: false
+#| fig-height: 6
+#| fig-width: 9
+ggplot(gapm, aes(x = continent, y = life_exp)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.15, alpha = 0.6, size = 2) +
+  labs(x = "World region", y = "Life expectancy (years)") +
+  theme(axis.text = element_text(size = 22), axis.title = element_text(size = 24))
+```
+:::
+
+::: {.column width="45%"}
+```{r}
+#| echo: true
+gapm %>% count(continent)
+```
+
+-   Reference cell coding works **exactly the same way** for nominal variables
+:::
+:::
+
+## Regression with world region
+
+```{r}
+#| echo: true
+m_region = lm(life_exp ~ continent, data = gapm)
+```
+
+```{r}
+#| echo: false
+m_region_tidy = tidy(m_region, conf.int = T)
+m_region_tidy %>% gt() %>% tab_options(table.font.size = 35) %>% fmt_number(decimals = 2)
+```
+
+-   R picked **Africa** as the reference (first alphabetically)
+
+::: heq
+Countries in Europe have a mean life expectancy `r round(m_region_tidy$estimate[4], 2)` years higher than countries in Africa (95% CI: `r round(m_region_tidy$conf.low[4], 2)`, `r round(m_region_tidy$conf.high[4], 2)`).
+:::
+
+-   With no natural order, choose a reference that makes the comparisons **meaningful** for your question (and use `fct_relevel()` to set it)
+
+-   We **cannot** score a nominal variable as 1, 2, 3, 4: the numbers would imply an order that doesn't exist. Scoring is only for ordinal variables (next!)
 
 ## Poll Everywhere Question 3
 

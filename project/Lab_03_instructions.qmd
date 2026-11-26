@@ -44,7 +44,7 @@ load(here("../Project/data/iat_2024_comp_clean_factor_2026-02-05.rda"))
 
 Please turn in your `.html` file on Sakai. Please let me know if you greatly prefer to submit a physical copy.
 
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_26W/blob/main/project/Lab_03.qmd) Please use the linked qmd file and not this one! (This is specifically the instructions.)
+[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_27W/blob/main/project/Lab_03.qmd) Please use the linked qmd file and not this one! (This is specifically the instructions.)
 
 The rest of this lab's instructions are embedded into the lab activities.
 
@@ -55,6 +55,12 @@ The purpose of this lab is to fit a multiple logistic regression model and **pra
 ### Grading
 
 This lab is graded out of 18 points. Each lab will follow the specific rubric on the Project page.
+
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
 
 ## Lab activities
 
@@ -186,10 +192,24 @@ Create the appropriate plot to visualize the relationship between IAT score, you
 
 We will fit a **temporary** multiple linear regression model so that we can set up some of the code and interpretations that we will need for our final poster.
 
+::: callout-tip
+##### Writing out your fitted equation
+
+With more than one covariate, write each term out. Indicator variables for categories need their own terms, for example:
+
+```
+$$
+\widehat{\text{IAT}} = \widehat\beta_0 + \widehat\beta_1 \cdot I(\text{Agree}) + \widehat\beta_2 \cdot I(\text{Disagree}) + \ldots
+$$
+```
+
+Replace each $\widehat\beta$ with your estimate. If LaTeX is giving you trouble, you can instead write the equation by hand, take a picture, and insert the image with `![](your_image.png)`.
+:::
+
 ::: callout-important
 #### Task
 
-Fit a model with you variable of interest (the one in the research question), the variable in your research subquestion, and 1 other covariate. This will not necessarily be your final model, but we can construct interpretations and code that will be useful in your final model. 
+Fit a model with you variable of interest (the one in the research question), the variable in your research subquestion, and 1 other covariate. Print the regression table and write out the fitted regression equation (in LaTeX or as an inserted image). This will not necessarily be your final model, but we can construct interpretations and code that will be useful in your final model. 
 :::
 
 ### Interpret the coefficient estimate(s) for your main covariate

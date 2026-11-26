@@ -25,6 +25,12 @@ library(gtsummary)
 library(here)
 ```
 
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
+
 ## Lab activities
 
 Before starting this lab, you should go back to Lab 2, save a new `.rda` file that contains all the new variables from that Lab. Then you can load it here!
@@ -80,13 +86,14 @@ Remove variables from the initial model based on your common sense, change in co
 No tasks here! If you want to try out what I did above, you can!
 :::
 
-### Step 5: Check for interactions
+### Step 5: Check for an interaction (subquestion only)
 
 ::: callout-important
 #### Tasks
 
-1.    Using `add1()`, determine what interactions you will include in your preliminary final model.
-2.    Run the preliminary final model that includes the main effects and interactions.
+1.    Test the interaction between your main variable and your subquestion variable using an F-test (`add1()` or `anova()`). Report the F-statistic and p-value.
+2.    If the interaction is significant, add it to your preliminary final model. If it is not, keep the main effects model. Explain your decision in a sentence.
+3.    Run the preliminary final model.
 :::
 
 ### Step 6: Assess model fit

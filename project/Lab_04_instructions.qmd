@@ -45,7 +45,7 @@ iat = iat_2024_comp_factor %>% filter(age > 18)
 
 Please turn in your `.html` file on Sakai. Please let me know if you greatly prefer to submit a physical copy.
 
-[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_26W/blob/main/project/Lab_04.qmd) Please use the linked qmd file and not this one! (This is specifically the instructions.)
+[You can download the `.qmd` file for this lab here.](https://github.com/nwakim/BSTA_512_27W/blob/main/project/Lab_04.qmd) Please use the linked qmd file and not this one! (This is specifically the instructions.)
 
 The rest of this lab's instructions are embedded into the lab activities.
 
@@ -56,6 +56,12 @@ The main purpose of this lab is to perform model selection through **purposeful 
 ### Grading
 
 This lab is graded out of ___ points. Each lab will follow the specific rubric on the Project page.
+
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
 
 ## Lab activities
 
@@ -249,19 +255,34 @@ The red line is the best fit line for all data and the blue is only for individu
 No tasks here! If you want to try out what I did above, you can!
 :::
 
-### Step 5: Check for interactions
+### Step 5: Check for an interaction (subquestion only)
 
-Now we're going to check if there are any interactions. We will use `add1()` as described in Lesson 14 (in Step 5). From the F-statistic and p-value, we can determine if the interaction should be included in the model.
+In a full purposeful selection, we would check for interactions between the main variable and every covariate. For our project, we will **only test the interaction between your main variable and your subquestion variable**. This is the interaction that answers your research subquestion.
 
-::: callout-note
-I've made a change to the Task below!!! I originally said to check for interactions between the main variable and each covariate, but that is overwhelming. If the interaction from your subquestion is significant, then you should include that one, but don't include all the significant interactions.
-:::
+We will use an F-test, as described in Lesson 14 (in Step 5). You can use `add1()` with only that interaction in the scope, or fit the model with and without the interaction and compare them with `anova()`:
+
+```{r}
+#| eval: false
+
+# Replace main_var, sub_var, and the other covariates with your own variables
+model_main = lm(iat_score ~ main_var + sub_var + covariate_1 + covariate_2, 
+                data = your_data)
+model_int  = lm(iat_score ~ main_var + sub_var + covariate_1 + covariate_2 + 
+                  main_var:sub_var, 
+                data = your_data)
+
+anova(model_main, model_int)
+
+# Or, the same F-test with add1():
+add1(model_main, scope = ~ . + main_var:sub_var, test = "F")
+```
 
 ::: callout-important
 #### Tasks
 
-1.    Using `add1()`, determine what interactions are significant. If your variable from your subquestion is significant, then add it to your preliminary model.  
-2.    Run the preliminary final model that includes the main effects and potential interaction.
+1.    Test the interaction between your main variable and your subquestion variable using an F-test (`add1()` or `anova()`). Report the F-statistic and p-value.
+2.    If the interaction is significant, add it to your preliminary final model. If it is not, keep the main effects model. Explain your decision in a sentence.
+3.    Run the preliminary final model.
 :::
 
 ### Step 6: Assess model fit

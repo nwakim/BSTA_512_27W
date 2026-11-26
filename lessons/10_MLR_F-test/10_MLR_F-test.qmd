@@ -170,80 +170,9 @@ Model Use (Inference)
 $$ \begin{aligned}
 SSE & = \displaystyle\sum^n_{i=1} \widehat\epsilon_i^2 \\
 SSE & = \displaystyle\sum^n_{i=1} (Y_i - \widehat{Y}_i)^2 \\
-SSE & = \displaystyle\sum^n_{i=1} (Y_i - (\widehat{\beta}_0 +\widehat{\beta}_1 X_{i1}+ \ldots+\widehat{\beta}_1 X_{ik}))^2 \\
-SSE & = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0 -\widehat{\beta}_1 X_{i1}- \ldots-\widehat{\beta}_1 X_{ik})^2
+SSE & = \displaystyle\sum^n_{i=1} (Y_i - (\widehat{\beta}_0 +\widehat{\beta}_1 X_{i1}+ \ldots+\widehat{\beta}_k X_{ik}))^2 \\
+SSE & = \displaystyle\sum^n_{i=1} (Y_i - \widehat{\beta}_0 -\widehat{\beta}_1 X_{i1}- \ldots-\widehat{\beta}_k X_{ik})^2
 \end{aligned}$$
-
-## LINE model assumptions in MLR
-
-::: columns
-::: column
-::: definition
-::: def-title
-**\[L\] Linearity** of relationship between variables
-:::
-
-::: def-cont
-The mean value of $Y$ given any combination of $X_1, X_2, \ldots, X_k$ values, is a linear function of $\beta_0, \beta_1, \beta_2, \ldots, \beta_k$:
-
-$$\mu_{Y|X_1, \ldots, X_k} = \beta_0 + \beta_1 X_1 + \beta_2 X_2+ \ldots + \beta_k X_k$$
-:::
-:::
-:::
-
-::: column
-::: proof1
-::: proof-title
-**\[I\] Independence** of the $Y$ values
-:::
-
-::: proof-cont
-Observations ($X_1, X_2, \ldots, X_k, Y$) are independent from one another
-:::
-:::
-:::
-
-::: column
-::: theorem
-::: thm-title
-**\[N\] Normality** of the $Y$'s given $X$ (residuals)
-:::
-
-::: thm-cont
-$Y$ has a normal distribution for any any combination of $X_1, X_2, \ldots, X_k$ values
-
--   Thus, the residuals are normally distributed
-:::
-:::
-:::
-
-::: column
-::: fact
-::: fact-title
-**\[E\] Equality** of variance of the residuals (homoscedasticity)
-:::
-
-::: fact-cont
-The variance of $Y$ is the same for any any combination of $X_1, X_2, \ldots, X_k$ values
-
-$$\sigma^2_{Y|X_1, X_2, \ldots, X_k} = Var(Y|X_1, X_2, \ldots, X_k) = \sigma^2$$
-:::
-:::
-:::
-:::
-
-## Summary of the LINE assumptions
-
--   Equivalently, the **residuals** are independently and identically distributed (iid):
-    -   normal
-    -   with mean 0 and
-    -   constant variance $\sigma^2$
-
- 
-    
-- Residuals are still $\widehat{\epsilon}_i=Y_i - \widehat{Y}_i$ for each observation
-  - It's just that $\widehat{Y}_i$ is now calculated with many covariates ($X_1, X_2, \ldots, X_k$)
-
 
 # Learning Objectives
 
@@ -421,11 +350,11 @@ SSY &= SSR + SSE
 \end{aligned}$$
 
 -   $Y_i - \overline{Y}$ = the deviation of $Y_i$ around the mean $\overline{Y}$
-    -   the **total** amount deviation
+    -   the **total** deviation
 -   $\widehat{Y}_i- \overline{Y}$ = the deviation of the fitted value $\widehat{Y}_i$ around the mean $\overline{Y}$
-    -   the amount deviation **explained** by the regression at $X_{i1},\ldots,X_{ik}$
+    -   the deviation **explained** by the regression at $X_{i1},\ldots,X_{ik}$
 -   $Y_i - \widehat{Y}_i$ = the deviation of the observation $Y$ around the fitted regression line
-    -   the amount deviation **unexplained** by the regression at $X_{i1},\ldots,X_{ik}$
+    -   the deviation **unexplained** by the regression at $X_{i1},\ldots,X_{ik}$
 
 ## Building the ANOVA table {visibility="hidden"}
 

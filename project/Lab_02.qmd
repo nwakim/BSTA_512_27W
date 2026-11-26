@@ -13,6 +13,12 @@ editor_options:
   chunk_output_type: console
 ---
 
+::: callout-note
+#### Explain your work
+
+Write a sentence or two with each code chunk explaining what you are doing and why. Someone else reading your lab (or you, a few weeks from now when you build your poster!) should be able to follow your steps without reading the code.
+:::
+
 ## Lab activities
 
 ### Restate your research question
@@ -72,6 +78,6 @@ Do NOT remove these observations from your dataset!! We are only flagging them f
 ::: callout-important
 ##### Task
 
-Run a simple linear regression model for the relationship in your primary research question. Print the regression table. Interpret the results and comment on the initial trend you see.
+Run a simple linear regression model for the relationship in your primary research question. Print the regression table. Write out the fitted regression equation (in LaTeX or as an inserted image). Interpret the results and comment on the initial trend you see.
 :::
 
