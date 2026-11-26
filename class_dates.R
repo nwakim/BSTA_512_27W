@@ -12,7 +12,7 @@ cal_dates = seq(from = first_day, to = last_day, by = "day")
 ## Week 1 dates
 w1d1 = cal_dates[1]
 w1d2 = cal_dates[3]
-hw0 = cal_dates[4]
+hw0 = cal_dates[7]
 
 ## Week 2 dates
 w2d1 = cal_dates[8]
@@ -52,6 +52,8 @@ q2_close = cal_dates[49]
 w8d1 = cal_dates[50]
 w8d2 = cal_dates[52]
 hw4 = cal_dates[56]
+q3_open = cal_dates[52]
+q3_close = cal_dates[56]
 
 ## Week 9 dates
 w9d1 = cal_dates[57]
@@ -62,8 +64,6 @@ lab4 = cal_dates[63]
 w10d1 = cal_dates[64]
 w10d2 = cal_dates[66]
 hw5 = cal_dates[70]
-q3_open = cal_dates[66]
-q3_close = cal_dates[70]
 
 ## Week 11 dates
 w11d1 = cal_dates[71]
