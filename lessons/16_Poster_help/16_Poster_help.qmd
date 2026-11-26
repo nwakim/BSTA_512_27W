@@ -151,7 +151,7 @@ countdown::countdown(8)
 
 ## Results: What should be in your results?
 
-1.  Table 1 (table summary in Lesson 2)
+1.  Table 1 (table summary in Lesson 1)
 
 2.  Regression table or Forest plot
 
@@ -159,7 +159,7 @@ countdown::countdown(8)
 
 4.  Interpretation(s) of important coefficient estimates 
 
-## 1. Table 1 (table summary in Lesson 2)
+## 1. Table 1 (table summary in Lesson 1)
 
 ::::: columns
 ::: {.column width="60%"}

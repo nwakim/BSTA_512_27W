@@ -3,7 +3,7 @@ title: "Lesson 11: Interactions, Part 1"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w8d1`"
+date: "`r library(here); source(here('class_dates.R')); w6d1`"
 format: 
   revealjs:
     theme: "../simple_NW.scss"

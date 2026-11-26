@@ -1,10 +1,11 @@
 ---
 title: "Lesson 1: Review"
+subtitle: "What we need from 511 and the R tools for this class"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
 date: "`r library(here); source(here('class_dates.R')); w1d1`"
-format: 
+format:
   revealjs:
     css: ../../css/slides.css
     theme: "../simple_NW.scss"
@@ -19,899 +20,560 @@ format:
 ---
 
 ```{r}
-#| label: "setup" 
+#| label: "setup"
 #| include: false
 #| message: false
 #| warning: false
 
-library(tidyverse)    
+library(tidyverse)
 library(here)
-library(janitor)
-library(rstatix)
-library(knitr)
 library(gtsummary)
-library(moderndive)
 library(gt)
-library(broom) # NEW!!
-library(here)
+library(broom)
 
 load(here("data", "dds.discr.rda"))  # dds.discr data from the oibiostat package
+BodyTemps = read.csv(here("data", "BodyTemperatures.csv"))
 
 set.seed(456)
 ```
 
-## What did we learn in 511/611? (1/2)
+## Learning Objectives
 
--   In 511, we talked about *categorical* and *continuous* outcomes (dependent variables)
+1.  Recognize the tools from 511/611 that we will keep using in 512/612
 
-     
+2.  Set up a class folder and R project, and load data with `here()`
 
--   We also talked about their relationship with 1-2 *continuous* or *categorical* exposure (independent variables or predictor)
+3.  Use the core R functions we will need for homework and labs
 
-     
+## Learning Objectives
 
--   We had many good ways to assess the relationship between an outcome and exposure:
+::: lob
+1.  Recognize the tools from 511/611 that we will keep using in 512/612
+:::
 
-     
+2.  Set up a class folder and R project, and load data with `here()`
 
-|                      |                                                  |                                                                                                                  |
-|----------------------|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+3.  Use the core R functions we will need for homework and labs
+
+## What did we learn in 511/611?
+
+-   We had many good ways to assess the relationship between an outcome and *one* exposure:
+
 |                      | Continuous Outcome                               | Categorical Outcome                                                                                              |
+|----------------------|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | Continuous Exposure  | Correlation, simple linear regression            | ??                                                                                                               |
-| Categorical Exposure | t-tests, paired t-tests, 2 sample t-tests, ANOVA | proportion t-test, Chi-squared goodness of fit test, Fisher's Exact test, Chi-squared test of independence, etc. |
+| Categorical Exposure | t-tests, paired t-tests, 2 sample t-tests, ANOVA | proportion test, Chi-squared goodness of fit test, Fisher's Exact test, Chi-squared test of independence, etc. |
 
 : {tbl-colwidths="\[15, 35,35\]"}
 
-## What did we learn in 511/611? (2/2)
 
--   You set up a really **important foundation**
 
-    -   Including distributions, mathematical definitions, hypothesis testing, and more!
+-   **Those tests cannot handle more complicated data**
 
-     
+    -   What happens when other variables influence the relationship between your exposure and outcome?
 
--   Tests and statistical approaches learned are incredibly helpful!
+-   Regression lets us handle many variables at once, but it is **built from the same pieces** you learned in 511
 
-     
+## Where 511 shows up in this class
 
--   While you had to learn a lot of different tests and approaches for each combination of categorical/continuous exposure with categorical/continuous outcome
+| From 511/611                            | Where we will use it in 512/612                                             |
+|-----------------------------------------|-----------------------------------------------------------------------------|
+| Mean, SD, histograms, scatterplots      | Exploring our data before fitting any model (every lab!)                    |
+| Correlation                             | Simple linear regression (Lesson 3)                                         |
+| Normal distribution                     | Assumption about the errors in our model (Lesson 7)                         |
+| t distribution                          | Tests and CIs for a single coefficient, $\beta$ (Lesson 4)                  |
+| F distribution / ANOVA                  | ANOVA table and F-tests to compare models (Lessons 6 and 10)                |
+| Confidence intervals, hypothesis tests  | Inference for our coefficients (all quarter)                                |
+| Type I error and power                  | Testing many coefficients, model selection (Lessons 13 and 14)              |
 
-    -   **Those tests cannot handle more complicated data**
+: {tbl-colwidths="\[35, 65\]"}
 
-     
 
--   **What happens when other variables influence the relationship between your exposure and outcome?**
 
-    -   Do we just ignore them?
+-   You do not need to memorize formulas from 511, but these **ideas** will come back again and again
 
-## What will we learn in this class?
-
--   We will be building towards models that can handle many variables!
-
-     
-
-    -   **Regression** is the building block for modeling multivariable relationships
-
-     
-
--   In Linear Models we will *build, interpret, and evaluate* **linear regression models**
-
-## Process of regression data analysis
-
-::: box
-![](../img_slides/arrow2.png){.absolute top="13.5%" right="62.1%" width="155"} ![](../img_slides/arrow2.png){.absolute top="13.5%" right="28.4%" width="155"}![](../img_slides/arrow_back4.png){.absolute top="7.5%" right="30.5%" width="820"} ![](../img_slides/arrow_down.png){.absolute top="60.5%" right="48%" width="85"}
-
-::: columns
-::: {.column width="30%"}
-::: RAP1
-::: RAP1-title
-Model Selection
-:::
-
-::: RAP1-cont
--   Building a model
-
--   Selecting variables
-
--   Prediction vs interpretation
-
--   Comparing potential models
-:::
-:::
-:::
-
-::: {.column width="4%"}
-:::
-
-::: {.column width="30%"}
-::: RAP2
-::: RAP2-title
-Model Fitting
-:::
-
-::: RAP2-cont
--   Find best fit line
-
--   Using OLS in this class
-
--   Parameter estimation
-
--   Categorical covariates
-
--   Interactions
-:::
-:::
-:::
-
-::: {.column width="4%"}
-:::
-
-::: {.column width="30%"}
-::: RAP3
-::: RAP3-title
-Model Evaluation
-:::
-
-::: RAP3-cont
--   Evaluation of model fit
--   Testing model assumptions
--   Residuals
--   Transformations
--   Influential points
--   Multicollinearity
-:::
-:::
-:::
-:::
-:::
-
-::: RAP4
-::: RAP4-title
-Model Use (Inference)
-:::
-
-::: RAP4-cont
-::: columns
-::: {.column width="50%"}
--   Inference for coefficients
--   Hypothesis testing for coefficients
-:::
-
-::: {.column width="50%"}
--   Inference for expected $Y$ given $X$
--   Prediction of new $Y$ given $X$
-:::
-:::
-:::
-:::
-
-## Main sections of the course
-
-1.  Review
-
-2.  Simple Linear Regression
-
-    -   [Model evaluation]{style="color:#A7EA52;"} and [Model use]{style="color:#4FADF3;"}
-
-3.  Intro to MLR: estimation and testing
-
-    -   [Model use]{style="color:#4FADF3;"}
-
-4.  Diving into our predictors: categorical variables, interactions between variable
-
-    -   [Model fitting]{style="color:#34AC8B;"}
-
-5.  Key ingredients: model evaluation, diagnostics, selection, and building
-
-    -   [Model evaluation]{style="color:#A7EA52;"} and [Model selection]{style="color:#FF8021;"}
-
-```{r}
-library(ggplot2)
-```
-
-## Main sections of the course
-
-::: lob
-1.  Review
-:::
-
-2.  Intro to SLR: estimation and testing
-
-    -   [Model fitting]{style="color:#34AC8B;"}
-
-3.  Intro to MLR: estimation and testing
-
-    -   [Model fitting]{style="color:#34AC8B;"}
-
-4.  Diving into our predictors: categorical variables, interactions between variable
-
-    -   [Model fitting]{style="color:#34AC8B;"}
-
-5.  Key ingredients: model evaluation, diagnostics, selection, and building
-
-    -   [Model evaluation]{style="color:#A7EA52;"} and [Model selection]{style="color:#FF8021;"}
-
-## Before we begin
-
-- Feel free to visit my or Meike's Introducation to Biostatistics
-
--   [Meike's BSTA 511 page](https://niederhausen.github.io/BSTA_511_F25/)
-
--   [Nicky's EPI 525 page](https://nwakim.github.io/EPI_525_25F/)
-
-## Learning Objectives
-
-1.  Identify important descriptive statistics and visualize data from a continuous variable
-
-2.  Identify important distributions that will be used in 512/612
-
-3.  Use our previous tools in 511 to estimate a parameter and construct a confidence interval
-
-4.  Use our previous tools in 511 to conduct a hypothesis test
-
-5.  Define error rates and power
-
-## Learning Objectives
-
-::: lob
-1.  Identify important descriptive statistics and visualize data from a continuous variable
-:::
-
-2.  Identify important distributions that will be used in 512/612
-
-3.  Use our previous tools in 511 to estimate a parameter and construct a confidence interval
-
-4.  Use our previous tools in 511 to conduct a hypothesis test
-
-5.  Define error rates and power
-
-
-## Some Basic Statistics "Talk"
-
-::: columns
-::: column
--   Random variable $Y$
-
-    -   Sample $Y_i, i=1,\dots, n$
-
--   Summation:
-
-    $\sum_{i=1}^n Y_i =Y_1 + Y_2 + \ldots + Y_n$
-
--   Product:
-
-    $\prod_{i=1}^n Y_i = Y_1 \times Y_2 \times \ldots \times Y_n$
-:::
-
-::: column
-:::
-:::
-
-## Descriptive Statistics: continuous variables
-
-::: columns
-::: {.column width="40%"}
-**Measures of central tendency**
-
--   Sample mean
-
-    $$
-    \overline{x} = \dfrac{x_1+x_2+...+x_n}{n}=\dfrac{\sum_{i=1}^nx_i}{n}
-    $$
-
--   Median
-:::
-
-::: column
-**Measures of variability (or dispersion)**
-
--   Sample variance
-
-    -   Average of the squared deviations from the sample mean
-
--   Sample standard deviation
-
-    $$
-    \begin{aligned}
-    s = & \sqrt{\dfrac{(x_1-\overline{x})^2+(x_2-\overline{x})^2+...+(x_n-\overline{x})^2}{n-1}} \\
-    = & \sqrt{\dfrac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}}
-    \end{aligned}
-    $$
-
--   IQR
-
-    -   Range from 1st to 3rd quartile
-:::
-:::
-
-## Descriptive Statistics: continuous variables (R code)
-
-::: columns
-::: {.column width="40%"}
-**Measures of central tendency**
-
--   Sample mean
-
-    ```{r}
-    #| eval: false
-    #| echo: true
-
-    mean( sample )
-    ```
-
--   Median
-
-    ```{r}
-    #| eval: false
-    #| echo: true
-
-    median( sample )
-    ```
-:::
-
-::: column
-**Measures of variability (or dispersion)**
-
--   Sample variance
-
-    ```{r}
-    #| eval: false
-    #| echo: true
-
-    var( sample )
-    ```
-
--   Sample standard deviation
-
-    ```{r}
-    #| eval: false
-    #| echo: true
-
-    sd( sample )
-    ```
-
--   IQR
-
-    ```{r}
-    #| eval: false
-    #| echo: true
-
-    IQR( sample )
-    ```
-:::
-:::
-
-- Or all together!!
-
-```{r}
-#| echo: true
-dds.discr %>% get_summary_stats(age)
-```
-
-## Data visualization
-
--   Using the library `ggplot2` to visualize data
-
--   We will load the package:
-
-```{r}
-#| echo: true
-
-library(ggplot2)
-```
-
-## Histogram using `ggplot2`
-
-We can make a basic graph for a continuous variable:
-
-::: columns
-```{r}
-data("dds.discr")
-```
-
-::: {.column width="50%"}
-```{r}
-#| echo: true
-#| fig-align: center
-
-ggplot(data = dds.discr, 
-       aes(x = age)) +
-  geom_histogram()
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| echo: true
-#| fig-align: center
-
-ggplot() +
-  geom_histogram(data = dds.discr, 
-       aes(x = age))
-```
-:::
-:::
-
-[Some more information](https://www.sharpsightlabs.com/blog/histogram-r-ggplot2/) on histograms using `ggplot2`
-
-## Spruced up histogram using `ggplot2`
-
-We can make a more formal, presentable graph:
-
-```{r}
-#| echo: true
-#| fig-align: center
-
-ggplot(data = dds.discr, 
-       aes(x = age)) +
-  geom_histogram() +
-  theme(text = element_text(size=20)) + # me making the text larger
-  labs(x = "Age", # me adding labels
-       y = "Count", 
-       title = "Distribution of Age in Sample")
-```
-
-I would like you to turn in homework, labs, and project reports with graphs like these.
-
-## Other basic plots from `ggplot2`
-
-We can also make a density and boxplot for the continuous variable with `ggplot2`
+## Distributions we will use
 
 ::: columns
 ::: {.column width="50%"}
-```{r}
-#| echo: true
+-   **Normal**: $Y\sim N(\mu,\sigma^2)$
 
-ggplot(data = dds.discr, 
-       aes(x = age)) +
-  geom_density()
-```
+    -   Our model assumes errors are Normal
+
+-   **Student's t**: $T \sim t_{df}$
+
+    -   Test and CI for one coefficient
+
+-   **F**: $F \sim F_{df_1, df_2}$
+
+    -   Test many coefficients at once (like ANOVA)
+    -   Related to t: $T^2 \sim F_{1,\nu}$
+
+-   **Chi-squared**: $X \sim \chi^2_{df}$
+
+    -   Building block for the F distribution
 :::
 
 ::: {.column width="50%"}
-```{r}
-#| echo: true
+![](../img_slides/normal.png){width="45%"} ![](../img_slides/student_t.png){width="45%"}
 
-ggplot(data = dds.discr, 
-       aes(x = age)) +
-  geom_boxplot()
-```
+![](../img_slides/f_dist.png){width="45%"} ![](../img_slides/chi_squared.png){width="45%"}
 :::
 :::
 
-## Learning Objectives
+## R functions for probability distributions
 
-1.  Identify important descriptive statistics and visualize data from a continuous variable
+-   Each distribution has a `p` function (probability) and a `q` function (quantile, or critical value)
 
-::: lob
-2.  Identify important distributions that will be used in 512/612
-:::
-
-3.  Use our previous tools in 511 to estimate a parameter and construct a confidence interval
-
-4.  Use our previous tools in 511 to conduct a hypothesis test
-
-5.  Define error rates and power
+| Distribution | Probability: $P(X \leq x)$  | Critical value          |
+|--------------|-----------------------------|-------------------------|
+| Normal       | `pnorm(x, mean, sd)`        | `qnorm(p, mean, sd)`    |
+| t            | `pt(x, df)`                 | `qt(p, df)`             |
+| F            | `pf(x, df1, df2)`           | `qf(p, df1, df2)`       |
+| Chi-squared  | `pchisq(x, df)`             | `qchisq(p, df)`         |
 
 
-## Distributions that will be used in this class
-
--   Normal distribution
-
--   Chi-square distribution
-
--   Student's t distribution
-
--   F distribution
-
-## Normal Distribution
 
 ::: columns
 ::: column
-
-- Where did we see this? 
-
-    - Basically everywhere! Think Central Limit Theorem
-    
- 
-    
--   Notation: $Y\sim N(\mu,\sigma^2)$
-
--   Arguably the most important distribution in statistics
-
--   If we know $E(Y)=\mu$, $Var(Y)=\sigma^2$ then
-
-    -   2/3 of $Y$'s distribution lies within 1 $\sigma$ of $\mu$
-
-    -   95% is within $\mu\pm 2\sigma$
-
-    -   $>99$% lies within $\mu\pm 3\sigma$
-
- 
-
--   Linear combinations of Normal's are Normal\
-    e.g., $(aY+b)\sim \mbox{N}(a\mu+b,\;a^2\sigma^2)$
-
--   Standard normal: $Z=\frac{Y-\mu}{\sigma} \sim \mbox{N}(0,1)$
-:::
-
-::: column
-![](../img_slides/normal.png)
-:::
-:::
-
-## Chi-squared distribution
-
-::: columns
-::: column
-- Where did we see this? 
-
-    - Hypothesis test if two categorical variables were independent
-
- 
-
--   Notation: $X \sim \chi^2_{df}$ OR $X \sim \chi^2_{\nu}$
-
-    -   Degrees of freedom (df): $df=n-1$
-
-    -   $X$ takes on only positive values
-    
- 
-
--   If $Z_i\sim \mbox{N}(0,1)$, then $Z_i^2\sim \chi^2_1$
-
-    -   A standard normal distribution squared is the Chi squared distribution with df of 1.
-
-:::
-
-::: column
-![](../img_slides/chi_squared.png)
-:::
-:::
-
-## Student's t Distribution
-
-::: columns
-::: column
-
-- Where did we see this? 
-
-    - Inference of means: single sample, paired, two independent samples
-
- 
-    
--   Notation: $T \sim t_{df}$ OR $T \sim t_{n-1}$
-
-    -   Degrees of freedom (df): $df=n-1$
-
-    -   $T = \dfrac{\overline{x} - \mu_x}{\dfrac{s}{\sqrt{n}}}\sim t_{n-1}$
-
- 
-
--   In linear modeling, used for inference on individual regression parameters
-
-    -   Think: our estimated coefficients ( $\hat{\beta_{}}$ )
-:::
-
-::: column
-![](../img_slides/student_t.png)
-:::
-:::
-
-## F-Distribution
-
-::: columns
-::: column
-
-- Where did we see this? 
-
-    - Inference for 2+ means: ANOVA test
-    
--   Model ratio of sample variances (and is a ratio of Chi-squared RVs)
-
--   If $X_1^2\sim \chi^2_{df1}$ and $X_2^2\sim \chi^2_{df2}$, where $X_1^2\perp X_2^2$, then:
-
-$$\dfrac{X_1^2/df1}{X_2^2/df2} \sim F_{df1,df2}$$ 
-
--   Important relationship with $t$ distribution: $T^2 \sim F_{1,\nu}$
-
-    -   The square of a t-distribution with $df=\nu$
-
-    -   is an F-distribution with numerator df ($df_1 = 1$) and denominator df ($df_2 = \nu$)
-:::
-
-::: column
-![](../img_slides/f_dist.png)
-:::
-:::
-
-
-## R code for probability distributions
-
-::: columns
-::: column
-[Here is a site](https://www.stat.umn.edu/geyer/5101/examp/rlook.html) with the various probability distributions and their R code.
-
--   It also includes practice with R code to see what each function outputs
-:::
-
-::: column
-![](../img_slides/r_code_prob_dist.png){fig-align="center" width="785"}
-:::
-:::
-
-## Learning Objectives
-
-1.  Identify important descriptive statistics and visualize data from a continuous variable
-
-2.  Identify important distributions that will be used in 512/612
-
-::: lob
-3.  Use our previous tools in 511 to estimate a parameter and construct a confidence interval
-:::
-
-4.  Use our previous tools in 511 to conduct a hypothesis test
-
-5.  Define error rates and power
-
-
-## Confidence interval for one mean
-
-::: columns
-::: column
-The confidence interval for population mean $\mu$:
-
-$$
-\overline{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
-$$
-
--   where $t^*$ is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on $df=n-1$
-
-::: proposition
-::: prop-title
-We can use `R` to find the critical t-value, $t^*$
-:::
-
-::: prop-cont
-For example the critical value for the 95% CI with $n=10$ subjects is...
+Critical value for a 95% CI with $n=10$:
 
 ```{r}
 #| echo: true
-
-qt(0.975, df=9)
+qt(0.975, df = 9)
 ```
-
--   Recall, that as the $df$ increases, the t-distribution converges towards the Normal distribution
-:::
-:::
 :::
 
 ::: column
-:::
-:::
-
-## Confidence interval for one mean
-
-::: columns
-::: column
-The confidence interval for population mean $\mu$:
-
-$$
-\overline{x} \pm t^{*}\dfrac{s}{\sqrt{n}}
-$$
-
--   where $t^*$ is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on $df=n-1$
-
-::: proposition
-::: prop-title
-We can use `R` to find the critical t-value, $t^*$
-:::
-
-::: prop-cont
-For example the critical value for the 95% CI with $n=10$ subjects is...
+$P(X > 2)$ when $X \sim N(4, 6^2)$:
 
 ```{r}
 #| echo: true
-
-qt(0.975, df=9)
-```
-
--   Recall, that as the $df$ increases, the t-distribution converges towards the Normal distribution
-:::
-:::
-:::
-
-::: column
-We can also use `t.test` in R to calculate the confidence interval if we have a dataset.
-
-```{r}
-#| echo: true 
-
-t.test(dds.discr$age)
+1 - pnorm(2, mean = 4, sd = 6)
 ```
 :::
 :::
 
-## Confidence interval for two independent means
+-   Use `lower.tail = FALSE` instead of `1 - ...` if you prefer
 
-::: columns
-::: column
-The confidence interval for difference in independent population means, $\mu_1$ and $\mu_2$:
-
-$$
-\overline{x}_1 - \overline{x}_2 \pm t^{*}\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}
-$$
-
--   where $t^*$ is the critical value for the 95% (or other percent) corresponding to the t-distribution and dependent on $df=n_1 + n_2 -2$
-:::
-
-::: column
-:::
-:::
-
- 
-
-- Please check out my notes on this if you'd like: <https://nwakim.github.io/F24_EPI_525/schedule.html>
-  - It's under Lesson 13
-
-## Here's a decent source for other R code for tests in 511
-
-[Website from UCLA](https://stats.oarc.ucla.edu/r/whatstat/what-statistical-analysis-should-i-usestatistical-analyses-using-r/)
-
-## Learning Objectives
-
-1.  Identify important descriptive statistics and visualize data from a continuous variable
-
-2.  Identify important distributions that will be used in 512/612
-
-3.  Use our previous tools in 511 to estimate a parameter and construct a confidence interval
-
-::: lob
-4.  Use our previous tools in 511 to conduct a hypothesis test
-:::
-
-5.  Define error rates and power
-
-
-## Reference: Steps in a Hypothesis Test
+## Steps in a hypothesis test
 
 1.  Check the [**assumptions**]{style="color:#4FADF3"}
-
-    - What sampling distribution are you using? What assumptions are required for it?
 
 2.  Set the [**level of significance**]{style="color:#4FADF3"} $\alpha$
 
 3.  Specify the [**null**]{style="color:#4FADF3"} ( $H_0$ ) and [**alternative**]{style="color:#4FADF3"} ( $H_A$ ) [**hypotheses**]{style="color:#4FADF3"}
 
-    -  In symbols and/or in words
-    -  Alternative: one- or two-sided?
+4.  Calculate the [**test statistic**]{style="color:#4FADF3"}
 
-4.  Calculate the [**test statistic**]{style="color:#4FADF3"}.
+5.  Calculate the [**p-value**]{style="color:#4FADF3"}
 
-5.  Calculate the [**p-value**]{style="color:#4FADF3"} based on the observed test statistic and its sampling distribution
+6.  Write a [**conclusion**]{style="color:#4FADF3"} in the context of the problem
 
-6.  Write a [**conclusion**]{style="color:#4FADF3"} to the hypothesis test
 
-    -  Do we reject or fail to reject $H_0$?
-    -  Write a conclusion in the context of the problem
-    
-## Another view: Steps in a Hypothesis Test
 
-![](../img_slides/hypothesis_test_steps.png){fig-align="center"}
+::: hl
+These are the **same steps** we will use in 512! The only change is that our parameter will be a regression coefficient (like $\beta_1$) instead of a mean ( $\mu$ )
+:::
 
-## Example: one sample t-test
-
-```{r}
-#| echo: true
-#| fig-align: center
-
-BodyTemps = read.csv("data/BodyTemperatures.csv")
-
-ggplot(data = BodyTemps, 
-       aes(x = Temperature)) +
-  geom_histogram() +
-  theme(text = element_text(size=20)) +
-  labs(x = "Temperature", y = "Count", 
-       title = "Distribution of Body Temperature in Sample") +
-  geom_vline(aes(xintercept = mean(BodyTemps$Temperature, na.rm = T)), 
-             color = "red", linewidth = 2)
-```
-
-## Reference: what does it all look like together?
+## Example: one sample t-test with `t.test()`
 
 ::::: example
 ::: ex-title
-Example of hypothesis test based on the 1992 JAMA data
+Is the population mean body temperature different from 98.6°F?
 :::
 
 ::: ex-cont
-Is there evidence to support that the population mean body temperature is different from 98.6°F?
+$H_0: \mu = 98.6$ vs. $H_A: \mu \neq 98.6$, with $\alpha = 0.05$
 :::
 :::::
 
-:::::: columns
-::: {.column width="50%"}
-1.  **Assumptions:** The individual observations are independent and the number of individuals in our sample is 130. Thus, we can use CLT to approximate the sampling distribution.
-
-4-5. Test statistic and p-value
-:::
-
-::: {.column width="25%"}
-2.  Set $\alpha = 0.05$
-:::
-
-::: {.column width="25%"}
-3.  **Hypothesis:**
-
-    \begin{aligned}
-    H_0 &: \mu = 98.6\\
-    \text{vs. } H_A&: \mu \neq 98.6
-    \end{aligned}
-:::
-::::::
-
 ```{r}
 #| echo: true
-#| code-fold: true
 
-
-temps_ttest <- t.test(x = BodyTemps$Temperature, mu = 98.6)
+temps_ttest = t.test(x = BodyTemps$Temperature, mu = 98.6)
 tidy(temps_ttest) %>% gt() %>% tab_options(table.font.size = 36)
 ```
 
 
-6.  **Conclusion:** We reject the null hypothesis. The average body temperature was 98.25°F (95% CI 98.12, 98.38°F), which is discernibly different from 98.6°F ( $p$-value \< 0.001).
 
-## How did we get the 95% CI?
+**Conclusion:** We reject the null hypothesis. The average body temperature was 98.25°F (95% CI 98.12, 98.38°F), which is discernibly different from 98.6°F ( $p$-value \< 0.001).
 
--   The `t.test` function can help us answer this, and give us the needed information for both approaches.
+-   For two groups, use `t.test(x = grp1, y = grp2, var.equal = TRUE)`
 
-```{r}
-#| echo: true
+## Type I error and power
 
-BodyTemps = read.csv("data/BodyTemperatures.csv")
+::: columns
+::: {.column width="55%"}
+![](../img_slides/type-i-and-type-ii-errors_chart.png){fig-align="center"}
+:::
 
-t.test(x = BodyTemps$Temperature, 
-       # alternative = "two-sided", 
-       mu = 98.6)
-```
+::: {.column width="45%"}
+-   **Type I error** ( $\alpha$ ): we reject $H_0$, but $H_0$ is true
+
+-   **Power** ( $1-\beta$ ): we correctly reject $H_0$
+
+
+
+-   This will matter when we run **many tests** on one model
+:::
+:::
 
 ## Learning Objectives
 
-1.  Identify important descriptive statistics and visualize data from a continuous variable
-
-2.  Identify important distributions that will be used in 512/612
-
-3.  Use our previous tools in 511 to estimate a parameter and construct a confidence interval
-
-4.  Use our previous tools in 511 to conduct a hypothesis test
+1.  Recognize the tools from 511/611 that we will keep using in 512/612
 
 ::: lob
-5.  Define error rates and power
+2.  Set up a class folder and R project, and load data with `here()`
 :::
 
-## Outcomes of our hypothesis test
+3.  Use the core R functions we will need for homework and labs
 
-![](../img_slides/type-i-and-type-ii-errors_chart.png){fig-align="center"}
+## Folder organization
 
--   Type 1 error is $\alpha$
+-   Make one folder for our class, like `BSTA_512_W27`
 
-    -   The probability that we falsely reject the null hypothesis (but the null is true!!)
+    -   On your computer, or in OneDrive **only if** you have the desktop app syncing it
 
--   Power is $1-\beta$
+::: columns
+::: column
+-   Inside it, I suggest:
 
-    -   The probability of correctly rejecting the null hypothesis
+    -   `Data`
+    -   `Homework`
+    -   `Lessons`
+    -   `Project` (with `Code`, `Data_Raw`, `Data_Processed`, and `Reports` folders)
+:::
 
-## What I think is the most intuitive way to look at it
+::: column
+-   Naming tips:
 
-![](../img_slides/type-i-and-type-ii-error.png){fig-align="center"}
+    -   Keep names short and relevant
+    -   Use leading numbers for order (`01_`, `02_`)
+    -   Use dates as "YYYY-MM-DD"
+    -   Use `_` instead of spaces
+:::
+:::
+
+## Create an R project
+
+-   A project tells R where "home" is for our work
+
+
+
+-   In RStudio: `File` → `New Project...` → `Existing Directory` → choose your `BSTA_512_W27` folder
+
+
+
+-   Open the `.Rproj` file whenever you work on this class
+
+    -   R will automatically start in that folder
+
+
+
+-   **Only make one project for now!** You will use it for homework and labs
+
+-   [5 minute video on R projects](https://rfortherestofus.com/2022/10/rstudio-projects)
+
+## The `here` package
+
+::: columns
+::: column
+-   A `.qmd` file looks for files starting in *its own* folder
+
+    -   But our data is in the `Data` folder!
+
+-   `here()` always starts at the folder with your `.Rproj` file
+
+    -   Your code works on any computer, and for future you
+
+
+
+```{r}
+#| echo: true
+#| eval: false
+library(here)
+here()   # shows your project folder
+```
+:::
+
+::: column
+![Illustration by [Allison Horst](https://github.com/allisonhorst)](../img_slides/here_pkg.png){fig-align="center"}
+:::
+:::
+
+## Loading data with `here()`
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(readxl)
+ch05q01 = read_excel(here("data", "CH05Q01.xls"))
+BodyTemps = read.csv(here("data", "BodyTemperatures.csv"))
+load(here("data", "dds.discr.rda"))
+```
+
+
+
+| Function       | Data file type    | Package needed |
+|----------------|-------------------|----------------|
+| `read_excel()` | `.xls`, `.xlsx`   | `readxl`       |
+| `read.csv()`   | `.csv`            | Built in       |
+| `load()`       | `.rda`, `.Rdata`  | Built in       |
+| `read_sas()`   | `.sas7bdat`       | `haven`        |
+
+## Learning Objectives
+
+1.  Recognize the tools from 511/611 that we will keep using in 512/612
+
+2.  Set up a class folder and R project, and load data with `here()`
+
+::: lob
+3.  Use the core R functions we will need for homework and labs
+:::
+
+## The pipe operator: `%>%`
+
+-   The pipe lets us write steps in order: "take this, *then* do this, *then* do this"
+
+::: heq
+I want to find my keys, then start my car, then drive to work, then park my car.
+:::
+
+::: columns
+::: {.column width="50%"}
+**Nested**
+
+```{r}
+#| echo: true
+#| eval: false
+park(drive(start_car(find("keys")),
+           to = "work"))
+```
+:::
+
+::: {.column width="50%"}
+**Piped**
+
+```{r}
+#| echo: true
+#| eval: false
+find("keys") %>%
+  start_car() %>%
+  drive(to = "work") %>%
+  park()
+```
+:::
+:::
+
+-   You may also see `|>`, which works the same way for our purposes
+
+## `glimpse()`: look at your data first
+
+-   We will use the `dds.discr` dataset (from 511!) for examples
+
+```{r}
+#| echo: true
+glimpse(dds.discr)
+```
+
+## `rename()` and `mutate()`: change and create variables
+
+```{r}
+#| echo: true
+dds = dds.discr %>%
+  rename(sex = gender, R_E = ethnicity) %>%           # new name = old name
+  mutate(exp_1000 = expenditures / 1000,              # new variable from old
+         age_sq = age^2)
+glimpse(dds)
+```
+
+## `case_match()`: give numeric codes their category names
+
+-   Many datasets (including our project data!) code categories as numbers
+
+::: heq
+In `mtcars`, `am` is `0` for automatic and `1` for manual. I want a variable with those names.
+:::
+
+```{r}
+#| echo: true
+mtcars = mtcars %>%
+  mutate(transmission = case_match(am,
+                                   0 ~ "automatic",
+                                   1 ~ "manual"))
+mtcars %>% select(am, transmission) %>% head(4)
+```
+
+-   **Always make a new variable name** so you keep the original
+
+-   For conditions (like `age > 50`), use `case_when()` instead
+
+## `fct_relevel()`: choose the reference category
+
+-   When we put categorical variables in a model, one category is the **reference**
+
+    -   R picks the first level (alphabetical by default)
+
+```{r}
+#| echo: true
+levels(dds$sex)
+dds = dds %>% mutate(sex = fct_relevel(sex, "Male"))
+levels(dds$sex)
+```
+
+
+
+-   This will be very important in Lesson 5 (categorical covariates)!
+
+## `filter()`, `select()`, and `drop_na()`
+
+::: columns
+::: column
+`filter()` keeps **rows** that match a condition
+
+```{r}
+#| echo: true
+dds %>%
+  filter(age >= 50 & age <= 60) %>%
+  nrow()
+```
+
+
+
+`drop_na()` removes rows with missing values
+
+```{r}
+#| echo: true
+#| eval: false
+dds %>% drop_na(age, expenditures)
+```
+:::
+
+::: column
+`select()` keeps (or drops) **columns**
+
+```{r}
+#| echo: true
+dds %>%
+  select(age, sex, expenditures) %>%
+  head(4)
+```
+:::
+:::
+
+## `tbl_summary()`: make a "Table 1"
+
+::: columns
+::: {.column width="60%"}
+-   From the `gtsummary` package
+
+-   You will need this for your labs and poster!
+
+```{r}
+#| echo: true
+#| eval: false
+
+dds %>%
+  select(age, sex, R_E, expenditures) %>%
+  tbl_summary(
+    label = list(age ~ "Age",
+                 sex ~ "Sex",
+                 R_E ~ "Race/Ethnicity",
+                 expenditures ~ "Expenditures"),
+    statistic = list(all_continuous() ~ "{mean} ({sd})"))
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| echo: false
+
+dds %>%
+  select(age, sex, R_E, expenditures) %>%
+  tbl_summary(
+    label = list(age ~ "Age",
+                 sex ~ "Sex",
+                 R_E ~ "Race/Ethnicity",
+                 expenditures ~ "Expenditures"),
+    statistic = list(all_continuous() ~ "{mean} ({sd})"))
+```
+:::
+:::
+
+## `ggplot()`: one variable
+
+-   Histogram of a continuous variable, with labels ready for a report
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 4
+#| fig-width: 8
+
+ggplot(data = dds, aes(x = age)) +
+  geom_histogram(binwidth = 5) +
+  labs(x = "Age (years)", y = "Count",
+       title = "Distribution of age in sample") +
+  theme(text = element_text(size = 20))
+```
+
+## `ggplot()`: two variables (a sneak peek at regression!)
+
+```{r}
+#| echo: true
+#| fig-align: center
+#| fig-height: 4.5
+#| fig-width: 9
+
+ggplot(data = dds, aes(x = age, y = exp_1000)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +       # adds the best fit line
+  labs(x = "Age (years)", y = "Expenditures ($1000s)",
+       title = "Expenditures vs. age") +
+  theme(text = element_text(size = 20))
+```
+
+## Functions to keep handy
+
+| Function                          | Package      | What it does                                     |
+|-----------------------------------|--------------|--------------------------------------------------|
+| `here()`                          | `here`       | Builds file paths from your project folder       |
+| `read_excel()`, `read.csv()`, `load()` | `readxl`, base | Loads data                                |
+| `glimpse()`                       | `dplyr`      | Quick look at variables and types                |
+| `rename()`, `mutate()`            | `dplyr`      | Rename and create variables                      |
+| `case_match()`, `case_when()`     | `dplyr`      | Recode values into categories                    |
+| `fct_relevel()`                   | `forcats`    | Set the reference category                       |
+| `filter()`, `select()`, `drop_na()` | `dplyr`, `tidyr` | Keep rows, keep columns, drop missing       |
+| `tbl_summary()`                   | `gtsummary`  | Table 1                                          |
+| `ggplot()`                        | `ggplot2`    | Plots                                            |
+| `pnorm()`, `qt()`, `t.test()`     | base         | Probabilities, critical values, t-tests          |
+
+
+
+-   Next week we add `lm()` and `tidy()` to fit and look at regression models
+
+## Resources
+
+-   [More `dplyr` functions](https://dplyr.tidyverse.org/reference/index.html) (you'll need this for HW 1!)
+
+-   [Online textbook: intro to data science](https://hellodata.science/)
+
+-   [Meike's BSTA 511 page](https://niederhausen.github.io/BSTA_511_F25/) and [Nicky's EPI 525 page](https://nwakim.github.io/EPI_525_25F/) to review 511 topics
+
+-   [Meike's R programming class (BSTA 526)](https://niederhausen.github.io/BSTA_526_W26/) for more R practice
+
+-   [UCLA: which test and R code for 511 tests](https://stats.oarc.ucla.edu/r/whatstat/what-statistical-analysis-should-i-usestatistical-analyses-using-r/)
+
+-   Basic Quarto set up: see the R recordings in OneDrive and my [EPI 525 site](https://nwakim.github.io/EPI_525_25F/)
 
 ## Do your exit ticket!!
 
 - Don't forget to go online and fill it out!
 
   - This will count as your attendance
-  
- 
-  
+
+
+
 - I look forward to the quarter with you!

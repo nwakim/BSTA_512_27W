@@ -133,7 +133,7 @@ Please copy and paste your chosen research question.
 
 ### Organize your "Project" folder
 
-Before downloading the data, go back to Lesson 2 and follow the file setup for our project. This includes making an `.Rproj` file within the main folder. Make sure you are working with the project by using the `here()` function to display your working directory. 
+Before downloading the data, go back to Lesson 1 (Review) and follow the file setup for our project. This includes making an `.Rproj` file within the main folder. Make sure you are working with the project by using the `here()` function to display your working directory. 
 
 ::: callout-important
 #### Task
@@ -366,7 +366,7 @@ Make a new dataset with only complete cases. Save this dataset in your project f
 
 #### Manipulating variables that are coded as numeric variables
 
-Many variables in this dataset are coded as numeric values, but have specific categories linking up to the numbers. Using `mutate()` and `cases()` similar to our Data Management lesson, please create a new categorical variable with the specified categories from the codebook. Make sure that you create a variable with a new name! Since some of these variables are ordered categories, we will investigate if it's appropriate to use the numeric or categorical version of the variable.
+Many variables in this dataset are coded as numeric values, but have specific categories linking up to the numbers. Using `mutate()` and `case_match()` similar to our Review lesson (Lesson 1), please create a new categorical variable with the specified categories from the codebook. Make sure that you create a variable with a new name! Since some of these variables are ordered categories, we will investigate if it's appropriate to use the numeric or categorical version of the variable.
 
 ::: callout-tip
 ##### Example of how I would create new variable for self-perception of weight (`iam_001`):
