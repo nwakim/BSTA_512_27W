@@ -3,7 +3,7 @@ title: "Lesson 6: SLR: More inference"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w4d2`"
+date: "`r library(here); source(here('class_dates.R')); w3d2`"
 format: 
   revealjs:
     css: ../../css/slides.css

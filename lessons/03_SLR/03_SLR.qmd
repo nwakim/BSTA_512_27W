@@ -3,7 +3,7 @@ title: "Lesson 3: Introduction to Simple Linear Regression (SLR)"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w2d1`"
+date: "`r library(here); source(here('class_dates.R')); w1d2`"
 format: 
   revealjs:
     css: ../../css/slides.css

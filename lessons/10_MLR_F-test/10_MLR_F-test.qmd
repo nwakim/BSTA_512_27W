@@ -3,7 +3,7 @@ title: "Lesson 10: MLR: Using the F-test"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w7d2`"
+date: "`r library(here); source(here('class_dates.R')); w5d2`"
 format: 
   revealjs:
     css: ../../css/slides.css

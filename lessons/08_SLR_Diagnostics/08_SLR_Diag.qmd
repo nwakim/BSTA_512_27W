@@ -3,7 +3,7 @@ title: "Lesson 8: SLR: Model Diagnostics"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w5d2`"
+date: "`r library(here); source(here('class_dates.R')); w4d2`"
 format: 
   revealjs:
     css: ../../css/slides.css
