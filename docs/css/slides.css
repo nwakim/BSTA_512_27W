@@ -1,6 +1,0 @@
-/* Shared styles for lesson slides (revealjs) */
-
-/* Let code blocks use the full slide height instead of scrolling */
-.reveal code {
-  max-height: 100% !important;
-}
