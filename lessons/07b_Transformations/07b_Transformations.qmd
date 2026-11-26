@@ -1,0 +1,714 @@
+---
+title: "Lesson 7b: SLR: Transformations"
+author: "Nicky Wakim"
+title-slide-attributes:
+    data-background-color: "#213c96"
+date: "`r library(here); source(here('class_dates.R')); w4d2`"
+format:
+  revealjs:
+    css: ../../css/slides.css
+    theme: "../simple_NW.scss"
+    chalkboard: true
+    slide-number: true
+    show-slide-number: all
+    width: 1955
+    height: 1100
+    footer: "Lesson 7b: Transformations"
+    html-math-method: mathjax
+    highlight-style: ayu
+execute:
+  echo: true
+  freeze: auto  # re-render only when source changes
+editor:
+  markdown:
+    wrap: 72
+---
+
+```{r}
+#| label: "setup"
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(gt)
+library(broom)
+library(here)
+library(gridExtra)    # grid.arrange()
+library(describedata) # gladder()
+
+knitr::opts_chunk$set(echo = TRUE, fig.height=6, fig.width=8,
+                      message = FALSE, warning = FALSE)
+theme_set(theme_bw(base_size = 22))
+
+# Helper to print regression tables the same way throughout
+reg_gt = function(model) {
+  tidy(model, conf.int = TRUE) %>% gt() %>%
+    tab_options(table.font.size = 36) %>%
+    fmt_number(decimals = 3)
+}
+```
+
+```{r}
+#| include: false
+
+load(here("data", "gapminder2022.RData"))
+gapm = gapm %>%
+  mutate(co2_bil = co2_emissions / 1e9)   # CO2 emissions in billions of tonnes
+```
+
+# Learning Objectives
+
+1.  Recognize when a transformation might help our model meet the LINE assumptions
+
+2.  Use the ladder of powers and `gladder()` to choose transformations of $X$ or $Y$
+
+3.  Fit and compare models with polynomial and log transformations
+
+4.  Interpret coefficients from models with log-transformed variables
+
+5.  Make predictions from a transformed model on the original scale
+
+# Learning Objectives
+
+::: lob
+1.  Recognize when a transformation might help our model meet the LINE assumptions
+:::
+
+2.  Use the ladder of powers and `gladder()` to choose transformations of $X$ or $Y$
+
+3.  Fit and compare models with polynomial and log transformations
+
+4.  Interpret coefficients from models with log-transformed variables
+
+5.  Make predictions from a transformed model on the original scale
+
+## Last time: checking the LINE assumptions
+
+::: columns
+::: column
+::: definition
+::: def-title
+**\[L\] Linearity**
+:::
+
+::: def-cont
+Scatterplot (with a smoother)
+:::
+:::
+:::
+
+::: column
+::: proof1
+::: proof-title
+**\[I\] Independence**
+:::
+
+::: proof-cont
+Study design
+:::
+:::
+:::
+
+::: column
+::: theorem
+::: thm-title
+**\[N\] Normality** of residuals
+:::
+
+::: thm-cont
+QQ plot, histogram of residuals
+:::
+:::
+:::
+
+::: column
+::: fact
+::: fact-title
+**\[E\] Equality** of variance
+:::
+
+::: fact-cont
+Residual plot
+:::
+:::
+:::
+:::
+
+
+
+-   But what do we do when an assumption does not hold?
+
+
+
+-   Today: **transformations** can help with **L**, **N**, and **E**
+
+    -   They cannot fix a problem with **I**! That is about how the data were collected
+
+## Transformations
+
+-   We can transform the dependent ($Y$) variable and/or the independent ($X$) variable
+
+    -   Usually we try transforming $X$ first, because it changes less about the model
+
+
+
+-   **Requires trial and error!!** We always re-check the assumptions after transforming
+
+
+
+-   **Major drawback:** interpreting the model becomes harder
+
+    -   Some transformations (like log) are still easy to interpret
+    -   Others (like $1/\sqrt{x}$) are very hard to explain to anyone
+
+## Three problems, three common fixes
+
+::: columns
+
+::: {.column width="33%"}
+
+::: definition
+::: def-title
+If relationship does not look linear
+:::
+::: def-cont
+- Transform X or Y
+- Check the scatterplot to see if it worked
+:::
+:::
+:::
+
+::: {.column width="33%"}
+
+::: theorem
+::: thm-title
+If residuals are not normal
+:::
+::: thm-cont
+- Transform Y
+
+-   If $Y$ is skewed left: use power \> 1 (like $Y^2$)
+
+-   If $Y$ is skewed right: use power \< 1 (like $\sqrt{Y}$ or $\log(Y)$)
+:::
+:::
+:::
+
+::: {.column width="34%"}
+
+::: fact
+::: fact-title
+If residuals have non-constant variance
+:::
+::: fact-cont
+- Transform Y
+
+-   If higher $X$ values have more spread in $Y$: use power \< 1
+
+-   If lower $X$ values have more spread in $Y$: use power \> 1
+:::
+:::
+:::
+:::
+
+# Learning Objectives
+
+1.  Recognize when a transformation might help our model meet the LINE assumptions
+
+::: lob
+2.  Use the ladder of powers and `gladder()` to choose transformations of $X$ or $Y$
+:::
+
+3.  Fit and compare models with polynomial and log transformations
+
+4.  Interpret coefficients from models with log-transformed variables
+
+5.  Make predictions from a transformed model on the original scale
+
+## Tukey's ladder of powers
+
+| Power p | -3              | -2              | -1            | -1/2                 | 0         | 1/2        | 1   | 2     | 3     |
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+|         | $\frac{1}{x^3}$ | $\frac{1}{x^2}$ | $\frac{1}{x}$ | $\frac{1}{\sqrt{x}}$ | $\log(x)$ | $\sqrt{x}$ | $x$ | $x^2$ | $x^3$ |
+
+
+
+-   Moving **down** the ladder (p \< 1) pulls in large values: fixes **right skew**
+
+-   Moving **up** the ladder (p \> 1) spreads out large values: fixes **left skew**
+
+-   $p = 0$ is the special case: $\log(x)$
+
+
+
+-   `gladder()` from the `describedata` package shows a histogram of a variable under each power
+
+    -   A quick way to see what each transformation does to the **distribution** of one variable
+
+## Our example: life expectancy and basic sanitation
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| fig-height: 7
+#| fig-width: 9
+
+ggplot(gapm, aes(x = basic_sani, y = life_exp)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", color = "#F14124", se = F, linewidth = 2) +
+  geom_smooth(method = "loess", color = "#34AC8B", se = F, linewidth = 2) +
+  labs(x = "Basic sanitation (% population with access)",
+       y = "Life expectancy (years)")
+```
+:::
+
+::: {.column width="50%"}
+-   [Red]{style="color:#F14124;"}: best-fit line
+
+-   [Green]{style="color:#34AC8B;"}: smoothed (loess) curve that follows the data
+
+
+
+-   The relationship **curves upward**: life expectancy rises faster at higher sanitation
+
+-   This is a problem with **[L] Linearity**
+:::
+:::
+
+## `gladder()` for $X$: basic sanitation
+
+```{r fig.width=7, fig.height=5}
+#| fig-align: center
+gladder(gapm$basic_sani)
+```
+
+-   Basic sanitation is skewed left, so powers \> 1 ( $X^2$, $X^3$ ) make it more symmetric
+
+## `gladder()` for $Y$: life expectancy
+
+```{r fig.width=7, fig.height=5}
+#| fig-align: center
+gladder(gapm$life_exp)
+```
+
+-   Life expectancy is a bit skewed left, so $Y^2$ or $Y^3$ might help
+
+# Learning Objectives
+
+1.  Recognize when a transformation might help our model meet the LINE assumptions
+
+2.  Use the ladder of powers and `gladder()` to choose transformations of $X$ or $Y$
+
+::: lob
+3.  Fit and compare models with polynomial and log transformations
+:::
+
+4.  Interpret coefficients from models with log-transformed variables
+
+5.  Make predictions from a transformed model on the original scale
+
+## Add transformed variables to the dataset
+
+-   Helpful to make new variables with the transformation in your dataset
+
+```{r}
+gapm = gapm %>%
+  mutate(LE_2 = life_exp^2,
+         LE_3 = life_exp^3,
+         BS_2 = basic_sani^2,
+         BS_3 = basic_sani^3)
+```
+
+
+
+-   We will compare these models ( $LE$ = life expectancy, $BS$ = basic sanitation):
+
+    -   Model 1: $LE = \beta_0 + \beta_1 BS + \epsilon$
+    -   Model 2: $LE^2 = \beta_0 + \beta_1 BS + \epsilon$
+    -   Model 3: $LE^3 = \beta_0 + \beta_1 BS + \epsilon$
+    -   Model 4: $LE = \beta_0 + \beta_1 BS + \beta_2 BS^2 +\epsilon$
+    -   Model 5: $LE = \beta_0 + \beta_1 BS + \beta_2 BS^2 +\beta_3 BS^3 +\epsilon$
+
+## Poll Everywhere Question 1
+
+## Fit the models
+
+```{r}
+model1 = lm(life_exp ~ basic_sani, data = gapm)
+model2 = lm(LE_2 ~ basic_sani, data = gapm)
+model3 = lm(LE_3 ~ basic_sani, data = gapm)
+model4 = lm(life_exp ~ basic_sani + BS_2, data = gapm)
+model5 = lm(life_exp ~ basic_sani + BS_2 + BS_3, data = gapm)
+```
+
+
+
+-   You can also transform inside the formula, without making new variables:
+
+```{r}
+#| eval: false
+lm(life_exp ~ basic_sani + I(basic_sani^2), data = gapm)
+lm(log(life_exp) ~ basic_sani, data = gapm)
+```
+
+-   `I()` tells R to do the math ( `^` means something else inside a formula)
+
+## Does linearity improve? Compare fitted curves
+
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: center
+
+aug_plot = function(model, yvar, title) {
+  augment(model, data = gapm) %>%
+    ggplot(aes(x = basic_sani, y = {{ yvar }})) +
+    geom_point() +
+    geom_line(aes(y = .fitted), color = "#213c96", linewidth = 1.2) +
+    geom_smooth(method = "loess", color = "#34AC8B", se = F) +
+    labs(title = title, x = "BS") +
+    theme_bw(base_size = 12)
+}
+
+grid.arrange(aug_plot(model1, life_exp, "Mod1: LE ~ BS"),
+             aug_plot(model2, LE_2, "Mod2: LE^2 ~ BS"),
+             aug_plot(model3, LE_3, "Mod3: LE^3 ~ BS"),
+             aug_plot(model4, life_exp, "Mod4: LE ~ BS + BS^2"),
+             aug_plot(model5, life_exp, "Mod5: LE ~ BS + BS^2 + BS^3"),
+             nrow = 2)
+```
+
+-   [Blue]{style="color:#213c96;"}: fitted model; [green]{style="color:#34AC8B;"}: smoothed curve. Closer = better linearity
+
+## Check the residuals too
+
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: center
+
+resid_plot = function(model, title) {
+  augment(model) %>%
+    ggplot(aes(x = .fitted, y = .resid)) +
+    geom_point() +
+    geom_hline(yintercept = 0, color = "#FF8021") +
+    labs(title = title) +
+    theme_bw(base_size = 12)
+}
+
+grid.arrange(resid_plot(model1, "Mod1: LE ~ BS"),
+             resid_plot(model2, "Mod2: LE^2 ~ BS"),
+             resid_plot(model3, "Mod3: LE^3 ~ BS"),
+             resid_plot(model4, "Mod4: LE ~ BS + BS^2"),
+             resid_plot(model5, "Mod5: LE ~ BS + BS^2 + BS^3"),
+             nrow = 2)
+```
+
+-   We want residuals scattered evenly around 0 with no curve
+
+## Polynomial models: interpretation changes
+
+```{r}
+#| echo: false
+reg_gt(model4)
+```
+
+-   In Model 4: $\widehat{LE} = \widehat\beta_0 + \widehat\beta_1 BS + \widehat\beta_2 BS^2$
+
+-   The effect of sanitation on life expectancy is **not constant anymore**
+
+    -   The slope at sanitation level $BS$ is $\widehat\beta_1 + 2\widehat\beta_2 BS$
+    -   $\widehat\beta_1$ cannot be interpreted on its own!
+
+-   Easier to interpret with **predictions** at meaningful values:
+
+```{r}
+new_bs = data.frame(basic_sani = c(50, 75, 100)) %>% 
+  mutate(BS_2 = basic_sani^2)     # predict() needs every variable in the model
+predict(model4, newdata = new_bs, interval = "confidence")
+```
+
+-   **Always** keep the lower-order terms ( $BS$ ) when you include $BS^2$ or $BS^3$
+
+# Learning Objectives
+
+1.  Recognize when a transformation might help our model meet the LINE assumptions
+
+2.  Use the ladder of powers and `gladder()` to choose transformations of $X$ or $Y$
+
+3.  Fit and compare models with polynomial and log transformations
+
+::: lob
+4.  Interpret coefficients from models with log-transformed variables
+:::
+
+5.  Make predictions from a transformed model on the original scale
+
+## Why is the log transformation special?
+
+-   Many health and economic variables are **right skewed** and **positive**: income, costs, biomarkers, emissions
+
+    -   Log pulls in the long right tail
+
+
+
+-   A log turns **multiplying** into **adding**: $\log(a \times b) = \log(a) + \log(b)$
+
+    -   So a slope on the log scale is about **ratios** or **percent changes**
+    -   This is why logs are the one transformation we can still interpret nicely!
+
+
+
+-   In R, `log()` is the **natural log** (base $e$)
+
+    -   `log10()` and `log2()` exist too, but the interpretations below use the natural log
+
+## New example: life expectancy and CO2 emissions
+
+```{r}
+#| echo: false
+#| fig-width: 14
+#| fig-height: 5.5
+#| fig-align: center
+
+p_raw = ggplot(gapm, aes(x = co2_bil, y = life_exp)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", color = "#F14124", se = F) +
+  geom_smooth(method = "loess", color = "#34AC8B", se = F) +
+  labs(x = "CO2 emissions (billion tonnes)", y = "Life expectancy (years)",
+       title = "Original scale") +
+  theme_bw(base_size = 18)
+
+p_log = ggplot(gapm, aes(x = log(co2_emissions), y = life_exp)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", color = "#F14124", se = F) +
+  geom_smooth(method = "loess", color = "#34AC8B", se = F) +
+  labs(x = "log(CO2 emissions)", y = "Life expectancy (years)",
+       title = "log(X)") +
+  theme_bw(base_size = 18)
+
+grid.arrange(p_raw, p_log, nrow = 1)
+```
+
+-   CO2 emissions are **extremely right skewed** (a few very large countries)
+
+-   On the log scale, the points spread out and the relationship looks much more linear
+
+-   *Note:* this is **total** CO2 emissions, so it partly reflects country size and industrialization
+
+## Case 1: log-transform $X$
+
+```{r}
+model_logx = lm(life_exp ~ log(co2_emissions), data = gapm)
+```
+
+```{r}
+#| echo: false
+reg_gt(model_logx)
+b_logx = coef(model_logx)[2]
+```
+
+-   $\widehat{LE} = `r round(coef(model_logx)[1], 2)` + `r round(b_logx, 3)` \cdot \log(CO2)$
+
+-   $\widehat\beta_1$: change in mean life expectancy for a 1-unit increase in $\log(CO2)$... not very meaningful!
+
+
+
+-   Better: for a **$k$-fold** increase in $X$, mean $Y$ changes by $\widehat\beta_1 \cdot \log(k)$
+
+    -   **Doubling** CO2 emissions ( $k = 2$ ): `r round(b_logx, 3)` $\times \log(2)$ = **`r round(b_logx * log(2), 2)` years**
+    -   A **10% increase** ( $k = 1.1$ ): `r round(b_logx, 3)` $\times \log(1.1)$ = **`r round(b_logx * log(1.1), 2)` years**
+
+## Case 1: interpretation in words
+
+::: heq
+For every doubling of a country's CO2 emissions, mean life expectancy is `r round(b_logx * log(2), 2)` years higher (95% CI: `r round(confint(model_logx)[2,1] * log(2), 2)`, `r round(confint(model_logx)[2,2] * log(2), 2)`).
+:::
+
+
+
+-   We get the CI by multiplying **both** CI bounds for $\beta_1$ by $\log(2)$
+
+```{r}
+confint(model_logx)[2, ] * log(2)
+```
+
+
+
+-   Compare the fit: $R^2$ goes from `r round(glance(lm(life_exp ~ co2_bil, data = gapm))$r.squared, 3)` on the original scale to `r round(glance(model_logx)$r.squared, 3)` with $\log(X)$
+
+## Case 2: log-transform $Y$
+
+-   Now let's treat CO2 emissions as the **outcome** and basic sanitation as the predictor
+
+```{r}
+model_logy = lm(log(co2_emissions) ~ basic_sani, data = gapm)
+```
+
+```{r}
+#| echo: false
+reg_gt(model_logy)
+b_logy = coef(model_logy)[2]
+```
+
+-   $\widehat{\log(CO2)} = `r round(coef(model_logy)[1], 2)` + `r round(b_logy, 3)` \cdot BS$
+
+-   $\widehat\beta_1$ is the change in $\log(Y)$, so we **exponentiate** to get back to $Y$:
+
+    -   $e^{\widehat\beta_1} = e^{`r round(b_logy, 3)`} = `r round(exp(b_logy), 3)`$: a **ratio** of CO2 emissions
+
+    -   Percent change: $(e^{\widehat\beta_1} - 1) \times 100\% = `r round((exp(b_logy) - 1) * 100, 1)`\%$
+
+## Case 2: interpretation in words
+
+::: heq
+For every 10 percentage point increase in basic sanitation access, CO2 emissions are `r round((exp(10 * b_logy) - 1) * 100, 0)`% higher (95% CI: `r round((exp(10 * confint(model_logy)[2,1]) - 1) * 100, 0)`%, `r round((exp(10 * confint(model_logy)[2,2]) - 1) * 100, 0)`%).
+:::
+
+
+
+-   For a $c$-unit increase in $X$: $(e^{c \cdot \widehat\beta_1} - 1) \times 100\%$
+
+```{r}
+(exp(10 * confint(model_logy)[2, ]) - 1) * 100
+```
+
+
+
+-   Shortcut: if $\widehat\beta_1$ is small (say, $|\widehat\beta_1| < 0.1$), then $e^{\widehat\beta_1} - 1 \approx \widehat\beta_1$
+
+    -   So $\widehat\beta_1 = `r round(b_logy, 3)`$ is roughly a `r round(b_logy * 100, 1)`% change
+
+## Case 3: log-transform both $X$ and $Y$
+
+```{r}
+model_loglog = lm(log(co2_emissions) ~ log(cell_phones_100), data = gapm)
+```
+
+```{r}
+#| echo: false
+reg_gt(model_loglog)
+b_ll = coef(model_loglog)[2]
+```
+
+-   $\widehat\beta_1$ is an **elasticity**: a 1% increase in $X$ goes with about a $\widehat\beta_1$% change in $Y$
+
+-   For a $k$-fold increase in $X$: $Y$ is multiplied by $k^{\widehat\beta_1}$
+
+::: heq
+For every 10% increase in cell phones per 100 people, CO2 emissions are `r round((1.1^b_ll - 1) * 100, 1)`% higher, since $1.1^{`r round(b_ll, 3)`} = `r round(1.1^b_ll, 3)`$.
+:::
+
+## Summary: interpreting log transformations
+
+| Model | Change in $X$ | Change in mean of $Y$ |
+|------------------------|-----------------|------------------------------------|
+| $Y = \beta_0 + \beta_1 X$ | $+c$ units | $+ c\beta_1$ units |
+| $Y = \beta_0 + \beta_1 \log(X)$ | multiply by $k$ | $+ \beta_1 \log(k)$ units |
+| $\log(Y) = \beta_0 + \beta_1 X$ | $+c$ units | multiply by $e^{c\beta_1}$, or $(e^{c\beta_1}-1)\times 100\%$ |
+| $\log(Y) = \beta_0 + \beta_1 \log(X)$ | multiply by $k$ | multiply by $k^{\beta_1}$, or $(k^{\beta_1}-1)\times 100\%$ |
+
+: {tbl-colwidths="\[30, 20, 50\]"}
+
+
+
+-   Pick a change in $X$ that is **meaningful** for your data (doubling, 10%, 10 units...)
+
+-   Always transform the **CI bounds** the same way as the estimate
+
+-   When $Y$ is logged, the "multiply by" is technically about the **median** (or geometric mean) of $Y$, not the mean
+
+# Learning Objectives
+
+1.  Recognize when a transformation might help our model meet the LINE assumptions
+
+2.  Use the ladder of powers and `gladder()` to choose transformations of $X$ or $Y$
+
+3.  Fit and compare models with polynomial and log transformations
+
+4.  Interpret coefficients from models with log-transformed variables
+
+::: lob
+5.  Make predictions from a transformed model on the original scale
+:::
+
+## Predictions when $X$ is transformed
+
+-   Give `predict()` the **original** $X$ value: R applies the transformation for you (if you transformed inside the formula)
+
+```{r}
+new_country = data.frame(co2_emissions = c(1e8, 1e9, 1e10))
+predict(model_logx, newdata = new_country, interval = "confidence")
+```
+
+
+
+-   If you made a new variable (like `BS_2`), you need to give `predict()` that variable too
+
+## Predictions when $Y$ is transformed: back-transform!
+
+-   `predict()` gives the prediction on the **log scale**
+
+```{r}
+pred_log = predict(model_logy, newdata = data.frame(basic_sani = 90),
+                   interval = "confidence")
+pred_log
+```
+
+-   Exponentiate to get back to the original units:
+
+```{r}
+exp(pred_log) / 1e9   # in billions of tonnes
+```
+
+-   For a country with 90% basic sanitation, the estimated **median** CO2 emissions is `r round(exp(pred_log[1]) / 1e9, 2)` billion tonnes
+
+    -   Back-transforming gives the median (geometric mean), not the mean: the right skew means the mean is higher
+
+# Wrapping up
+
+## Tips on transformations
+
+-   LINE assumptions are about $Y|X$ (the residuals), not $Y$ alone!
+
+    -   `gladder()` gives ideas, but **always re-check** the scatterplot, QQ plot, and residual plot after transforming
+
+-   Transformations work best if **all values are positive**
+
+    -   $\log(x)$ and $\sqrt{x}$ are not defined for negative values, and $\log(0)$ is not defined
+    -   We sometimes use $\log(X+1)$ if $X$ includes 0, but it is harder to interpret
+
+-   For polynomials ( $X^2$, $X^3$ ): **always keep the lower-order terms** in the model
+
+-   Transform $X$ for linearity; transform $Y$ for normality or unequal variance
+
+## Choosing to transform or not
+
+-   If the model **blatantly violates** a LINE assumption
+
+    -   A transformation is a good idea
+    -   If transformations do not help, keep it untransformed and report the limitation
+
+
+
+-   If the model is **mostly okay**
+
+    -   Try to avoid a transformation
+    -   Think about what predictors might be missing (coming up in MLR!)
+
+
+
+-   If **interpretability** matters (it usually does in public health!)
+
+    -   Prefer a **log** transformation over other powers
+    -   Report results on the original scale (percent change, doubling, predictions)
+
+## Do your exit ticket!!
+
+- Don't forget to go online and fill it out!
+
+  - This will count as your attendance

@@ -1,0 +1,12 @@
+---
+title: "Muddy Points"
+subtitle: "Lesson 7b: Transformations"
+date-modified: "today"
+format: 
+  html:
+    link-external-newwindow: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Muddy Points from Winter 2027
