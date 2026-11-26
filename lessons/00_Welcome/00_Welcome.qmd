@@ -67,7 +67,7 @@ library(tidyverse)
 
 -   Star the class website: <https://nwakim.github.io/BSTA_512_27W/>
 
--   Complete Homework 0 by this Thursday at 11pm!
+-   Complete Homework 0 by this Sunday at 11pm!
     - Checking OneDrive access
     - Completing whenisgood for office hours
 
