@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nicky Wakim">
-<meta name="dcterms.date" content="2027-02-01">
+<meta name="dcterms.date" content="2027-01-25">
 
 <title>Lesson 7: SLR: Checking model assumptions</title>
 <style>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0a25c3370f5beb4b563130c898b1415b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -273,7 +273,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 1, 2027</p>
+      <p class="date">January 25, 2027</p>
     </div>
   </div>
   
@@ -876,10 +876,17 @@ Y &amp;= \beta_0 + \beta_1 \cdot X + \epsilon \\
 
 </div><div class="column" style="width:43%;">
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1056"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -906,7 +913,7 @@ Y &amp;= \beta_0 + \beta_1 \cdot X + \epsilon \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1056"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -960,10 +967,17 @@ Y &amp;= \beta_0 + \beta_1 \cdot X + \epsilon \\
 <p><span class="math display">\[\widehat{Y}|X = \beta_0 + \beta_1 \cdot X\]</span></p>
 </div><div class="column" style="width:65%;">
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_point(size = 3, se = FALSE): Ignoring unknown parameters: `se`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1056"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -1010,7 +1024,7 @@ Y &amp;= \beta_0 + \beta_1 \cdot X + \epsilon \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1056"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -1159,10 +1173,17 @@ Y &amp;= \beta_0 + \beta_1 \cdot X + \epsilon \\
 <li><strong>Diagnostic tool:</strong> Scatterplot of <span class="math inline">\(X\)</span> vs.&nbsp;<span class="math inline">\(Y\)</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_point(size = 3, se = FALSE): Ignoring unknown parameters: `se`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1221,10 +1242,10 @@ Y &amp;= \beta_0 + \beta_1 \cdot X + \epsilon \\
 <li>Get a tibble with the orginal data, as well as the residuals and some other important values.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> cell_phones_100)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>aug1 <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1) </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(aug1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> cell_phones_100)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>aug1 <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1) </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(aug1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 105
 Columns: 8
@@ -1243,17 +1264,20 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <h2 class="anchored" data-anchor-id="n-check-normality-with-distribution-plots-of-residuals-12">N: Check normality with distribution plots of residuals (1/2)</h2>
 <p>Note that below I save each figure as an object, and then combine them together in one row of output using <code>grid.arrange()</code> from the <code>gridExtra</code> package</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>density1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>density1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>box1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(aug1, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -1265,11 +1289,14 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <li>So do these plots of the residuals look normal?</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(hist1, density1, box1, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -1307,7 +1334,7 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="720"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="720"></p>
 </figure>
 </div>
 </div>
@@ -1331,10 +1358,16 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 </div>
 </div>
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1343,7 +1376,7 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1365,10 +1398,16 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 </div>
 </div>
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1377,7 +1416,7 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1399,10 +1438,16 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 </div>
 </div>
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1411,7 +1456,7 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
@@ -1425,14 +1470,14 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <li>QQ plot from life expectancy vs.&nbsp;cell phones regression</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aug1, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aug1, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">sample =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1442,16 +1487,16 @@ $ .std.resid      &lt;dbl&gt; -0.45838569, 1.14653081, -0.86249588, 0.50441083, 
 <li>Simulated QQ plot of Normal Residuals with <span class="math inline">\(n = 105\)</span></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="fu">aes</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">rnorm</span>(<span class="dv">105</span>))) <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="fu">aes</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">rnorm</span>(<span class="dv">105</span>))) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1473,7 +1518,7 @@ H_1 &amp; : \text{data are NOT from a normally distributed population}
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(aug1<span class="sc">$</span>.resid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(aug1<span class="sc">$</span>.resid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -1531,22 +1576,22 @@ W = 0.98195, p-value = 0.1639</code></pre>
 <li><span class="math inline">\(y\)</span> = residuals from regression model</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aug1, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cell_phones_100, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>( <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">0</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"#FF8021"</span>) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residual plot"</span>) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aug1, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cell_phones_100, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .resid)) <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>( <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">0</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"#FF8021"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Residual plot"</span>) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>), </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1557,12 +1602,12 @@ W = 0.98195, p-value = 0.1639</code></pre>
 <section id="autoplot-can-be-a-helpful-tool" class="level2">
 <h2 class="anchored" data-anchor-id="autoplot-can-be-a-helpful-tool"><code>autoplot()</code> can be a helpful tool</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(model1, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(model1, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="07_SLR_Assumptions_files/figure-revealjs/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="07_SLR_Assumptions_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1657,44 +1702,6 @@ W = 0.98195, p-value = 0.1639</code></pre>
 </section>
 
 </main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

@@ -178,7 +178,7 @@ if(!require(lubridate)) { install.packages("lubridate"); library(lubridate) }
 Using the `haven` and `here` package, load the data (`sav` file) into this document. (Hint: the function needed in `haven` is `read_sav()`. Name your dataset something that feels intuitive to you and will distinguish it from other datasets that you work with.
 
 ```{r}
-#| echo: false
+#| eval: false
 iat_2024_raw = read_sav(file = here("../TA_files_BSTA_512/Project/data/Weight IAT.public.2024.sav"))
 ```
 

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nicky Wakim">
-<meta name="dcterms.date" content="2027-01-20">
+<meta name="dcterms.date" content="2027-01-13">
 
 <title>Lesson 5: SLR-ish: Categorical Covariates</title>
 <style>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0a25c3370f5beb4b563130c898b1415b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -287,7 +287,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 20, 2027</p>
+      <p class="date">January 13, 2027</p>
     </div>
   </div>
   
@@ -454,7 +454,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -478,7 +478,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -503,7 +503,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -535,7 +535,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -628,6 +628,11 @@ window.Quarto = {
 </ul>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>means_LE <span class="ot">=</span> gapm <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(freedom_status) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(life_exp))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <ul>
 <li><p>We want to create a function that can map each freedom status to life expectancy</p>
 <ul>
@@ -645,7 +650,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -721,7 +726,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -770,7 +775,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -865,29 +870,29 @@ Mean difference in life expectancy between free and not free countries
 <section id="regression-table-with-lm-function" class="level2">
 <h2 class="anchored" data-anchor-id="regression-table-with-lm-function">Regression table with <code>lm()</code> function</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">=</span> gapm <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> freedom_status)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model1, <span class="at">conf.int=</span>T) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">38</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">=</span> gapm <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> freedom_status)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model1, <span class="at">conf.int=</span>T) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">38</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="dscglckomg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dscglckomg table {
+<div id="vexrizxptv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vexrizxptv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dscglckomg thead, #dscglckomg tbody, #dscglckomg tfoot, #dscglckomg tr, #dscglckomg td, #dscglckomg th {
+#vexrizxptv thead, #vexrizxptv tbody, #vexrizxptv tfoot, #vexrizxptv tr, #vexrizxptv td, #vexrizxptv th {
   border-style: none;
 }
 
-#dscglckomg p {
+#vexrizxptv p {
   margin: 0;
   padding: 0;
 }
 
-#dscglckomg .gt_table {
+#vexrizxptv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -913,12 +918,12 @@ Mean difference in life expectancy between free and not free countries
   border-left-color: #D3D3D3;
 }
 
-#dscglckomg .gt_caption {
+#vexrizxptv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dscglckomg .gt_title {
+#vexrizxptv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -930,7 +935,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-width: 0;
 }
 
-#dscglckomg .gt_subtitle {
+#vexrizxptv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -942,7 +947,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-width: 0;
 }
 
-#dscglckomg .gt_heading {
+#vexrizxptv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -954,13 +959,13 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#dscglckomg .gt_bottom_border {
+#vexrizxptv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dscglckomg .gt_col_headings {
+#vexrizxptv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -975,7 +980,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#dscglckomg .gt_col_heading {
+#vexrizxptv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -995,7 +1000,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#dscglckomg .gt_column_spanner_outer {
+#vexrizxptv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1007,15 +1012,15 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 4px;
 }
 
-#dscglckomg .gt_column_spanner_outer:first-child {
+#vexrizxptv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dscglckomg .gt_column_spanner_outer:last-child {
+#vexrizxptv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dscglckomg .gt_column_spanner {
+#vexrizxptv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1027,11 +1032,11 @@ Mean difference in life expectancy between free and not free countries
   width: 100%;
 }
 
-#dscglckomg .gt_spanner_row {
+#vexrizxptv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dscglckomg .gt_group_heading {
+#vexrizxptv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1057,7 +1062,7 @@ Mean difference in life expectancy between free and not free countries
   text-align: left;
 }
 
-#dscglckomg .gt_empty_group_heading {
+#vexrizxptv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1072,15 +1077,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: middle;
 }
 
-#dscglckomg .gt_from_md > :first-child {
+#vexrizxptv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dscglckomg .gt_from_md > :last-child {
+#vexrizxptv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dscglckomg .gt_row {
+#vexrizxptv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1099,7 +1104,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#dscglckomg .gt_stub {
+#vexrizxptv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1112,7 +1117,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#dscglckomg .gt_stub_row_group {
+#vexrizxptv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1126,15 +1131,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: top;
 }
 
-#dscglckomg .gt_row_group_first td {
+#vexrizxptv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dscglckomg .gt_row_group_first th {
+#vexrizxptv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dscglckomg .gt_summary_row {
+#vexrizxptv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1144,16 +1149,16 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#dscglckomg .gt_first_summary_row {
+#vexrizxptv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dscglckomg .gt_first_summary_row.thick {
+#vexrizxptv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dscglckomg .gt_last_summary_row {
+#vexrizxptv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1163,7 +1168,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#dscglckomg .gt_grand_summary_row {
+#vexrizxptv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1173,7 +1178,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#dscglckomg .gt_first_grand_summary_row {
+#vexrizxptv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1183,7 +1188,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-color: #D3D3D3;
 }
 
-#dscglckomg .gt_last_grand_summary_row_top {
+#vexrizxptv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1193,11 +1198,11 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#dscglckomg .gt_striped {
+#vexrizxptv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dscglckomg .gt_table_body {
+#vexrizxptv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1206,7 +1211,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#dscglckomg .gt_footnotes {
+#vexrizxptv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1220,7 +1225,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#dscglckomg .gt_footnote {
+#vexrizxptv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1229,7 +1234,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#dscglckomg .gt_sourcenotes {
+#vexrizxptv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1243,7 +1248,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#dscglckomg .gt_sourcenote {
+#vexrizxptv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1251,72 +1256,72 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#dscglckomg .gt_left {
+#vexrizxptv .gt_left {
   text-align: left;
 }
 
-#dscglckomg .gt_center {
+#vexrizxptv .gt_center {
   text-align: center;
 }
 
-#dscglckomg .gt_right {
+#vexrizxptv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dscglckomg .gt_font_normal {
+#vexrizxptv .gt_font_normal {
   font-weight: normal;
 }
 
-#dscglckomg .gt_font_bold {
+#vexrizxptv .gt_font_bold {
   font-weight: bold;
 }
 
-#dscglckomg .gt_font_italic {
+#vexrizxptv .gt_font_italic {
   font-style: italic;
 }
 
-#dscglckomg .gt_super {
+#vexrizxptv .gt_super {
   font-size: 65%;
 }
 
-#dscglckomg .gt_footnote_marks {
+#vexrizxptv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dscglckomg .gt_asterisk {
+#vexrizxptv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dscglckomg .gt_indent_1 {
+#vexrizxptv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dscglckomg .gt_indent_2 {
+#vexrizxptv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dscglckomg .gt_indent_3 {
+#vexrizxptv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dscglckomg .gt_indent_4 {
+#vexrizxptv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dscglckomg .gt_indent_5 {
+#vexrizxptv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#dscglckomg .katex-display {
+#vexrizxptv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#dscglckomg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vexrizxptv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1413,14 +1418,14 @@ Mean difference in life expectancy between free and not free countries
 <li>Requires specification of a <code>newdata</code> “value”</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">freedom_status =</span> <span class="fu">c</span>(<span class="st">"NF"</span>, <span class="st">"PF"</span>, <span class="st">"F"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">freedom_status =</span> <span class="fu">c</span>(<span class="st">"NF"</span>, <span class="st">"PF"</span>, <span class="st">"F"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">pred =</span> <span class="fu">predict</span>(model1, </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">newdata=</span>newdata, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">interval=</span><span class="st">"confidence"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">pred =</span> <span class="fu">predict</span>(model1, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">newdata=</span>newdata, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">interval=</span><span class="st">"confidence"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       fit      lwr      upr
 1 68.99387 66.66958 71.31816
@@ -1449,28 +1454,28 @@ Mean difference in life expectancy between free and not free countries
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># means of each level of `freedom_status`</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gapm2_ave <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(freedom_status) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">life_ave =</span> <span class="fu">mean</span>(life_exp))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of `africa`</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>mean_NF <span class="ot">&lt;-</span> gapm2_ave <span class="sc">%&gt;%</span> </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(freedom_status <span class="sc">==</span> <span class="st">"NF"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(life_ave)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># differences in means between levels of `freedom_status` and `africa`</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>gapm2_ave_diff <span class="ot">&lt;-</span> gapm2_ave <span class="sc">%&gt;%</span> </span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Difference with NF</span><span class="st">`</span> <span class="ot">=</span> life_ave <span class="sc">-</span> mean_NF) <span class="sc">%&gt;%</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">Freedom status</span><span class="st">`</span> <span class="ot">=</span> freedom_status, </span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Average life expectancy</span><span class="st">`</span> <span class="ot">=</span> life_ave)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># At the beginning of the Rmd we loaded knitr, which is where the kable command is from</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># library(knitr)</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>gapm2_ave_diff <span class="sc">%&gt;%</span> <span class="fu">kable</span>(</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">1</span>,</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">"markdown"</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># means of each level of `freedom_status`</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gapm2_ave <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(freedom_status) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">life_ave =</span> <span class="fu">mean</span>(life_exp))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of `africa`</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>mean_NF <span class="ot">&lt;-</span> gapm2_ave <span class="sc">%&gt;%</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(freedom_status <span class="sc">==</span> <span class="st">"NF"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(life_ave)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># differences in means between levels of `freedom_status` and `africa`</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>gapm2_ave_diff <span class="ot">&lt;-</span> gapm2_ave <span class="sc">%&gt;%</span> </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Difference with NF</span><span class="st">`</span> <span class="ot">=</span> life_ave <span class="sc">-</span> mean_NF) <span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">Freedom status</span><span class="st">`</span> <span class="ot">=</span> freedom_status, </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Average life expectancy</span><span class="st">`</span> <span class="ot">=</span> life_ave)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># At the beginning of the Rmd we loaded knitr, which is where the kable command is from</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># library(knitr)</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>gapm2_ave_diff <span class="sc">%&gt;%</span> <span class="fu">kable</span>(</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">1</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">"markdown"</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1604,7 +1609,7 @@ Mean difference in life expectancy between free and not free countries
 <li><p>check this with <code>str()</code> or <code>class()</code> or <code>glimpse()</code></p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gapm<span class="sc">$</span>freedom_status) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gapm<span class="sc">$</span>freedom_status) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Factor w/ 3 levels "NF","PF","F": 1 2 1 3 2 1 2 2 3 2 ...</code></pre>
 </div>
@@ -1614,16 +1619,16 @@ Mean difference in life expectancy between free and not free countries
 <li><em>Any levels not mentioned will be left in their existing order, after the explicitly mentioned levels.</em></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">freedom_status =</span> <span class="fu">fct_relevel</span>(freedom_status, <span class="st">"PF"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">freedom_status =</span> <span class="fu">fct_relevel</span>(freedom_status, <span class="st">"PF"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Check the order:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gapm2<span class="sc">$</span>freedom_status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gapm2<span class="sc">$</span>freedom_status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "PF" "NF" "F" </code></pre>
 </div>
@@ -1632,31 +1637,31 @@ Mean difference in life expectancy between free and not free countries
 <section id="r-run-model-with-pf-as-the-reference-level" class="level2">
 <h2 class="anchored" data-anchor-id="r-run-model-with-pf-as-the-reference-level">R: Run model with <code>PF</code> as the reference level</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gapm2<span class="sc">$</span>freedom_status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(gapm2<span class="sc">$</span>freedom_status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "PF" "NF" "F" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> freedom_status)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model2) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> freedom_status)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model2) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="ectudxevdk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ectudxevdk table {
+<div id="cplmrkfphg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cplmrkfphg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ectudxevdk thead, #ectudxevdk tbody, #ectudxevdk tfoot, #ectudxevdk tr, #ectudxevdk td, #ectudxevdk th {
+#cplmrkfphg thead, #cplmrkfphg tbody, #cplmrkfphg tfoot, #cplmrkfphg tr, #cplmrkfphg td, #cplmrkfphg th {
   border-style: none;
 }
 
-#ectudxevdk p {
+#cplmrkfphg p {
   margin: 0;
   padding: 0;
 }
 
-#ectudxevdk .gt_table {
+#cplmrkfphg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1682,12 +1687,12 @@ Mean difference in life expectancy between free and not free countries
   border-left-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_caption {
+#cplmrkfphg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ectudxevdk .gt_title {
+#cplmrkfphg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1699,7 +1704,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-width: 0;
 }
 
-#ectudxevdk .gt_subtitle {
+#cplmrkfphg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1711,7 +1716,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-width: 0;
 }
 
-#ectudxevdk .gt_heading {
+#cplmrkfphg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1723,13 +1728,13 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_bottom_border {
+#cplmrkfphg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_col_headings {
+#cplmrkfphg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1744,7 +1749,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_col_heading {
+#cplmrkfphg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1764,7 +1769,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#ectudxevdk .gt_column_spanner_outer {
+#cplmrkfphg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1776,15 +1781,15 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 4px;
 }
 
-#ectudxevdk .gt_column_spanner_outer:first-child {
+#cplmrkfphg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ectudxevdk .gt_column_spanner_outer:last-child {
+#cplmrkfphg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ectudxevdk .gt_column_spanner {
+#cplmrkfphg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1796,11 +1801,11 @@ Mean difference in life expectancy between free and not free countries
   width: 100%;
 }
 
-#ectudxevdk .gt_spanner_row {
+#cplmrkfphg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ectudxevdk .gt_group_heading {
+#cplmrkfphg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1826,7 +1831,7 @@ Mean difference in life expectancy between free and not free countries
   text-align: left;
 }
 
-#ectudxevdk .gt_empty_group_heading {
+#cplmrkfphg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1841,15 +1846,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: middle;
 }
 
-#ectudxevdk .gt_from_md > :first-child {
+#cplmrkfphg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ectudxevdk .gt_from_md > :last-child {
+#cplmrkfphg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ectudxevdk .gt_row {
+#cplmrkfphg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1868,7 +1873,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#ectudxevdk .gt_stub {
+#cplmrkfphg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1881,7 +1886,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#ectudxevdk .gt_stub_row_group {
+#cplmrkfphg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1895,15 +1900,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: top;
 }
 
-#ectudxevdk .gt_row_group_first td {
+#cplmrkfphg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ectudxevdk .gt_row_group_first th {
+#cplmrkfphg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ectudxevdk .gt_summary_row {
+#cplmrkfphg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1913,16 +1918,16 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#ectudxevdk .gt_first_summary_row {
+#cplmrkfphg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_first_summary_row.thick {
+#cplmrkfphg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ectudxevdk .gt_last_summary_row {
+#cplmrkfphg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1932,7 +1937,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_grand_summary_row {
+#cplmrkfphg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1942,7 +1947,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#ectudxevdk .gt_first_grand_summary_row {
+#cplmrkfphg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1952,7 +1957,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_last_grand_summary_row_top {
+#cplmrkfphg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1962,11 +1967,11 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_striped {
+#cplmrkfphg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ectudxevdk .gt_table_body {
+#cplmrkfphg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1975,7 +1980,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_footnotes {
+#cplmrkfphg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1989,7 +1994,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_footnote {
+#cplmrkfphg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1998,7 +2003,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#ectudxevdk .gt_sourcenotes {
+#cplmrkfphg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2012,7 +2017,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#ectudxevdk .gt_sourcenote {
+#cplmrkfphg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2020,72 +2025,72 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#ectudxevdk .gt_left {
+#cplmrkfphg .gt_left {
   text-align: left;
 }
 
-#ectudxevdk .gt_center {
+#cplmrkfphg .gt_center {
   text-align: center;
 }
 
-#ectudxevdk .gt_right {
+#cplmrkfphg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ectudxevdk .gt_font_normal {
+#cplmrkfphg .gt_font_normal {
   font-weight: normal;
 }
 
-#ectudxevdk .gt_font_bold {
+#cplmrkfphg .gt_font_bold {
   font-weight: bold;
 }
 
-#ectudxevdk .gt_font_italic {
+#cplmrkfphg .gt_font_italic {
   font-style: italic;
 }
 
-#ectudxevdk .gt_super {
+#cplmrkfphg .gt_super {
   font-size: 65%;
 }
 
-#ectudxevdk .gt_footnote_marks {
+#cplmrkfphg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ectudxevdk .gt_asterisk {
+#cplmrkfphg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ectudxevdk .gt_indent_1 {
+#cplmrkfphg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ectudxevdk .gt_indent_2 {
+#cplmrkfphg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ectudxevdk .gt_indent_3 {
+#cplmrkfphg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ectudxevdk .gt_indent_4 {
+#cplmrkfphg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ectudxevdk .gt_indent_5 {
+#cplmrkfphg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ectudxevdk .katex-display {
+#cplmrkfphg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ectudxevdk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cplmrkfphg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2145,7 +2150,7 @@ Mean difference in life expectancy between free and not free countries
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -2156,14 +2161,14 @@ Mean difference in life expectancy between free and not free countries
 <section id="fitted-values-are-the-same-as-the-means" class="level2">
 <h2 class="anchored" data-anchor-id="fitted-values-are-the-same-as-the-means">Fitted values are the same as the means</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>m1_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m1_aug, <span class="fu">aes</span>(<span class="at">x =</span> freedom_status, <span class="at">y =</span> .fitted)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>), <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>m1_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(model1)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m1_aug, <span class="fu">aes</span>(<span class="at">x =</span> freedom_status, <span class="at">y =</span> .fitted)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>), <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -2172,12 +2177,15 @@ Mean difference in life expectancy between free and not free countries
 <section id="residual-plots-now-the-spread-within-each-status" class="level2">
 <h2 class="anchored" data-anchor-id="residual-plots-now-the-spread-within-each-status">Residual plots (now the spread within each status)</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m1_aug, <span class="fu">aes</span>(<span class="at">x=</span>.resid)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>), <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m1_aug, <span class="fu">aes</span>(<span class="at">x=</span>.resid)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>), <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -2224,7 +2232,7 @@ Mean difference in life expectancy between free and not free countries
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -2235,14 +2243,14 @@ Mean difference in life expectancy between free and not free countries
 <li>Put the income levels in order</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(<span class="at">income_level_4 =</span> <span class="fu">fct_relevel</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          income_level_4, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Low income"</span>, </span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Lower middle income"</span>, </span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Upper middle income"</span>, </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"High income"</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a> ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(<span class="at">income_level_4 =</span> <span class="fu">fct_relevel</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>          income_level_4, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Low income"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Lower middle income"</span>, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Upper middle income"</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"High income"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a> ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>Make the income levels readable</p>
@@ -2258,24 +2266,24 @@ Mean difference in life expectancy between free and not free countries
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapm2, <span class="fu">aes</span>(<span class="at">x =</span> income_level_4, <span class="at">y =</span> life_exp)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">shape =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Income levels"</span>, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Country life expectancy (years)"</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Life expectancy vs. income levels"</span>,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Diamonds = Income level averages"</span>) <span class="sc">+</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gapm2, <span class="fu">aes</span>(<span class="at">x =</span> income_level_4, <span class="at">y =</span> life_exp)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">shape =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Income levels"</span>, </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Country life expectancy (years)"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Life expectancy vs. income levels"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Diamonds = Income level averages"</span>) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">20</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2351,10 +2359,13 @@ Mean difference in life expectancy between free and not free countries
 </ul>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="720"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="720"></p>
 </figure>
 </div>
 </div>
@@ -2401,15 +2412,15 @@ Mean difference in life expectancy between free and not free countries
 </table>
 </div><div class="column" style="width:60%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_num =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"Low income"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"Lower middle income"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"Upper middle income"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"High income"</span> <span class="sc">~</span> <span class="dv">4</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(income_level_4, income_num) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_num =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"Low income"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"Lower middle income"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"Upper middle income"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    income_level_4 <span class="sc">==</span> <span class="st">"High income"</span> <span class="sc">~</span> <span class="dv">4</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(income_level_4, income_num) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   income_level_4      income_num
@@ -2428,27 +2439,27 @@ Mean difference in life expectancy between free and not free countries
 <section id="run-the-model-with-the-scored-income" class="level2">
 <h2 class="anchored" data-anchor-id="run-the-model-with-the-scored-income">Run the model with the scored income</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mod_inc2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> income_num)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mod_inc2) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mod_inc2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> income_num)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mod_inc2) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="yokrsjllta" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yokrsjllta table {
+<div id="zhpsqktinz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zhpsqktinz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yokrsjllta thead, #yokrsjllta tbody, #yokrsjllta tfoot, #yokrsjllta tr, #yokrsjllta td, #yokrsjllta th {
+#zhpsqktinz thead, #zhpsqktinz tbody, #zhpsqktinz tfoot, #zhpsqktinz tr, #zhpsqktinz td, #zhpsqktinz th {
   border-style: none;
 }
 
-#yokrsjllta p {
+#zhpsqktinz p {
   margin: 0;
   padding: 0;
 }
 
-#yokrsjllta .gt_table {
+#zhpsqktinz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2474,12 +2485,12 @@ Mean difference in life expectancy between free and not free countries
   border-left-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_caption {
+#zhpsqktinz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yokrsjllta .gt_title {
+#zhpsqktinz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2491,7 +2502,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-width: 0;
 }
 
-#yokrsjllta .gt_subtitle {
+#zhpsqktinz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2503,7 +2514,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-width: 0;
 }
 
-#yokrsjllta .gt_heading {
+#zhpsqktinz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2515,13 +2526,13 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_bottom_border {
+#zhpsqktinz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_col_headings {
+#zhpsqktinz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2536,7 +2547,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_col_heading {
+#zhpsqktinz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2556,7 +2567,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#yokrsjllta .gt_column_spanner_outer {
+#zhpsqktinz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2568,15 +2579,15 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 4px;
 }
 
-#yokrsjllta .gt_column_spanner_outer:first-child {
+#zhpsqktinz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yokrsjllta .gt_column_spanner_outer:last-child {
+#zhpsqktinz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yokrsjllta .gt_column_spanner {
+#zhpsqktinz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2588,11 +2599,11 @@ Mean difference in life expectancy between free and not free countries
   width: 100%;
 }
 
-#yokrsjllta .gt_spanner_row {
+#zhpsqktinz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yokrsjllta .gt_group_heading {
+#zhpsqktinz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2618,7 +2629,7 @@ Mean difference in life expectancy between free and not free countries
   text-align: left;
 }
 
-#yokrsjllta .gt_empty_group_heading {
+#zhpsqktinz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2633,15 +2644,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: middle;
 }
 
-#yokrsjllta .gt_from_md > :first-child {
+#zhpsqktinz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yokrsjllta .gt_from_md > :last-child {
+#zhpsqktinz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yokrsjllta .gt_row {
+#zhpsqktinz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2660,7 +2671,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#yokrsjllta .gt_stub {
+#zhpsqktinz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2673,7 +2684,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#yokrsjllta .gt_stub_row_group {
+#zhpsqktinz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2687,15 +2698,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: top;
 }
 
-#yokrsjllta .gt_row_group_first td {
+#zhpsqktinz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yokrsjllta .gt_row_group_first th {
+#zhpsqktinz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yokrsjllta .gt_summary_row {
+#zhpsqktinz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2705,16 +2716,16 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#yokrsjllta .gt_first_summary_row {
+#zhpsqktinz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_first_summary_row.thick {
+#zhpsqktinz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yokrsjllta .gt_last_summary_row {
+#zhpsqktinz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2724,7 +2735,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_grand_summary_row {
+#zhpsqktinz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2734,7 +2745,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#yokrsjllta .gt_first_grand_summary_row {
+#zhpsqktinz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2744,7 +2755,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_last_grand_summary_row_top {
+#zhpsqktinz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2754,11 +2765,11 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_striped {
+#zhpsqktinz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yokrsjllta .gt_table_body {
+#zhpsqktinz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2767,7 +2778,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_footnotes {
+#zhpsqktinz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2781,7 +2792,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_footnote {
+#zhpsqktinz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2790,7 +2801,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#yokrsjllta .gt_sourcenotes {
+#zhpsqktinz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2804,7 +2815,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#yokrsjllta .gt_sourcenote {
+#zhpsqktinz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2812,72 +2823,72 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#yokrsjllta .gt_left {
+#zhpsqktinz .gt_left {
   text-align: left;
 }
 
-#yokrsjllta .gt_center {
+#zhpsqktinz .gt_center {
   text-align: center;
 }
 
-#yokrsjllta .gt_right {
+#zhpsqktinz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yokrsjllta .gt_font_normal {
+#zhpsqktinz .gt_font_normal {
   font-weight: normal;
 }
 
-#yokrsjllta .gt_font_bold {
+#zhpsqktinz .gt_font_bold {
   font-weight: bold;
 }
 
-#yokrsjllta .gt_font_italic {
+#zhpsqktinz .gt_font_italic {
   font-style: italic;
 }
 
-#yokrsjllta .gt_super {
+#zhpsqktinz .gt_super {
   font-size: 65%;
 }
 
-#yokrsjllta .gt_footnote_marks {
+#zhpsqktinz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yokrsjllta .gt_asterisk {
+#zhpsqktinz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yokrsjllta .gt_indent_1 {
+#zhpsqktinz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yokrsjllta .gt_indent_2 {
+#zhpsqktinz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yokrsjllta .gt_indent_3 {
+#zhpsqktinz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yokrsjllta .gt_indent_4 {
+#zhpsqktinz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yokrsjllta .gt_indent_5 {
+#zhpsqktinz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yokrsjllta .katex-display {
+#zhpsqktinz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yokrsjllta div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zhpsqktinz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2927,24 +2938,27 @@ Mean difference in life expectancy between free and not free countries
 <section id="interpreting-the-model" class="level2">
 <h2 class="anchored" data-anchor-id="interpreting-the-model">Interpreting the model</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tidy_mod_inc2 <span class="ot">=</span> <span class="fu">tidy</span>(mod_inc2, <span class="at">conf.int=</span>T)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tidy_mod_inc2 <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="tkjandbgdt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tkjandbgdt table {
+<div id="osgtyxhpol" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#osgtyxhpol table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tkjandbgdt thead, #tkjandbgdt tbody, #tkjandbgdt tfoot, #tkjandbgdt tr, #tkjandbgdt td, #tkjandbgdt th {
+#osgtyxhpol thead, #osgtyxhpol tbody, #osgtyxhpol tfoot, #osgtyxhpol tr, #osgtyxhpol td, #osgtyxhpol th {
   border-style: none;
 }
 
-#tkjandbgdt p {
+#osgtyxhpol p {
   margin: 0;
   padding: 0;
 }
 
-#tkjandbgdt .gt_table {
+#osgtyxhpol .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2970,12 +2984,12 @@ Mean difference in life expectancy between free and not free countries
   border-left-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_caption {
+#osgtyxhpol .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tkjandbgdt .gt_title {
+#osgtyxhpol .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2987,7 +3001,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-width: 0;
 }
 
-#tkjandbgdt .gt_subtitle {
+#osgtyxhpol .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2999,7 +3013,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-width: 0;
 }
 
-#tkjandbgdt .gt_heading {
+#osgtyxhpol .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3011,13 +3025,13 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_bottom_border {
+#osgtyxhpol .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_col_headings {
+#osgtyxhpol .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3032,7 +3046,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_col_heading {
+#osgtyxhpol .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3052,7 +3066,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#tkjandbgdt .gt_column_spanner_outer {
+#osgtyxhpol .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3064,15 +3078,15 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 4px;
 }
 
-#tkjandbgdt .gt_column_spanner_outer:first-child {
+#osgtyxhpol .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tkjandbgdt .gt_column_spanner_outer:last-child {
+#osgtyxhpol .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tkjandbgdt .gt_column_spanner {
+#osgtyxhpol .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3084,11 +3098,11 @@ Mean difference in life expectancy between free and not free countries
   width: 100%;
 }
 
-#tkjandbgdt .gt_spanner_row {
+#osgtyxhpol .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tkjandbgdt .gt_group_heading {
+#osgtyxhpol .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3114,7 +3128,7 @@ Mean difference in life expectancy between free and not free countries
   text-align: left;
 }
 
-#tkjandbgdt .gt_empty_group_heading {
+#osgtyxhpol .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3129,15 +3143,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: middle;
 }
 
-#tkjandbgdt .gt_from_md > :first-child {
+#osgtyxhpol .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tkjandbgdt .gt_from_md > :last-child {
+#osgtyxhpol .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tkjandbgdt .gt_row {
+#osgtyxhpol .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3156,7 +3170,7 @@ Mean difference in life expectancy between free and not free countries
   overflow-x: hidden;
 }
 
-#tkjandbgdt .gt_stub {
+#osgtyxhpol .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3169,7 +3183,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#tkjandbgdt .gt_stub_row_group {
+#osgtyxhpol .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3183,15 +3197,15 @@ Mean difference in life expectancy between free and not free countries
   vertical-align: top;
 }
 
-#tkjandbgdt .gt_row_group_first td {
+#osgtyxhpol .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tkjandbgdt .gt_row_group_first th {
+#osgtyxhpol .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tkjandbgdt .gt_summary_row {
+#osgtyxhpol .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3201,16 +3215,16 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#tkjandbgdt .gt_first_summary_row {
+#osgtyxhpol .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_first_summary_row.thick {
+#osgtyxhpol .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tkjandbgdt .gt_last_summary_row {
+#osgtyxhpol .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3220,7 +3234,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_grand_summary_row {
+#osgtyxhpol .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3230,7 +3244,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#tkjandbgdt .gt_first_grand_summary_row {
+#osgtyxhpol .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3240,7 +3254,7 @@ Mean difference in life expectancy between free and not free countries
   border-top-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_last_grand_summary_row_top {
+#osgtyxhpol .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3250,11 +3264,11 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_striped {
+#osgtyxhpol .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tkjandbgdt .gt_table_body {
+#osgtyxhpol .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3263,7 +3277,7 @@ Mean difference in life expectancy between free and not free countries
   border-bottom-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_footnotes {
+#osgtyxhpol .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3277,7 +3291,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_footnote {
+#osgtyxhpol .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3286,7 +3300,7 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#tkjandbgdt .gt_sourcenotes {
+#osgtyxhpol .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3300,7 +3314,7 @@ Mean difference in life expectancy between free and not free countries
   border-right-color: #D3D3D3;
 }
 
-#tkjandbgdt .gt_sourcenote {
+#osgtyxhpol .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3308,72 +3322,72 @@ Mean difference in life expectancy between free and not free countries
   padding-right: 5px;
 }
 
-#tkjandbgdt .gt_left {
+#osgtyxhpol .gt_left {
   text-align: left;
 }
 
-#tkjandbgdt .gt_center {
+#osgtyxhpol .gt_center {
   text-align: center;
 }
 
-#tkjandbgdt .gt_right {
+#osgtyxhpol .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tkjandbgdt .gt_font_normal {
+#osgtyxhpol .gt_font_normal {
   font-weight: normal;
 }
 
-#tkjandbgdt .gt_font_bold {
+#osgtyxhpol .gt_font_bold {
   font-weight: bold;
 }
 
-#tkjandbgdt .gt_font_italic {
+#osgtyxhpol .gt_font_italic {
   font-style: italic;
 }
 
-#tkjandbgdt .gt_super {
+#osgtyxhpol .gt_super {
   font-size: 65%;
 }
 
-#tkjandbgdt .gt_footnote_marks {
+#osgtyxhpol .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tkjandbgdt .gt_asterisk {
+#osgtyxhpol .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tkjandbgdt .gt_indent_1 {
+#osgtyxhpol .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tkjandbgdt .gt_indent_2 {
+#osgtyxhpol .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tkjandbgdt .gt_indent_3 {
+#osgtyxhpol .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tkjandbgdt .gt_indent_4 {
+#osgtyxhpol .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tkjandbgdt .gt_indent_5 {
+#osgtyxhpol .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tkjandbgdt .katex-display {
+#osgtyxhpol .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tkjandbgdt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#osgtyxhpol div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3428,11 +3442,19 @@ Mean difference in life expectancy between free and not free countries
 <h2 class="anchored" data-anchor-id="what-if-life-expectancy-vs.-income-level-looked-like-this">What if life expectancy vs.&nbsp;income level looked like this?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">40</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>gapm2 <span class="ot">=</span> gapm2 <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">life_exp_sim =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">23</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">8</span><span class="sc">*</span>(income_num<span class="fl">-0.7</span>)), <span class="at">sd=</span><span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_Cat_covariates_files/figure-revealjs/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="720"></p>
+<p><img src="05_Cat_covariates_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="720"></p>
 </figure>
 </div>
 </div>
@@ -3468,44 +3490,6 @@ Mean difference in life expectancy between free and not free countries
 </section>
 
 </main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

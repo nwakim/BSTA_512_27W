@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -4144,7 +4144,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 20, 2026</p>
+      <p class="date-modified">November 25, 2026</p>
     </div>
   </div>
     
@@ -4332,7 +4332,7 @@ Warning
 </section>
 <section id="organize-your-project-folder" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="organize-your-project-folder"><span class="header-section-number">2.4</span> Organize your “Project” folder</h3>
-<p>Before downloading the data, go back to Lesson 2 and follow the file setup for our project. This includes making an <code>.Rproj</code> file within the main folder. Make sure you are working with the project by using the <code>here()</code> function to display your working directory.</p>
+<p>Before downloading the data, go back to Lesson 1 (Review) and follow the file setup for our project. This includes making an <code>.Rproj</code> file within the main folder. Make sure you are working with the project by using the <code>here()</code> function to display your working directory.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4380,13 +4380,16 @@ Warning
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(lubridate)) { <span class="fu">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>); <span class="fu">library</span>(lubridate) }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Using the <code>haven</code> and <code>here</code> package, load the data (<code>sav</code> file) into this document. (Hint: the function needed in <code>haven</code> is <code>read_sav()</code>. Name your dataset something that feels intuitive to you and will distinguish it from other datasets that you work with.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>iat_2024_raw <span class="ot">=</span> <span class="fu">read_sav</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;../TA_files_BSTA_512/Project/data/Weight IAT.public.2024.sav&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>Loading the <code>sav</code> file every time you render will take a long time. One way to speed this up is by saving the data as an <code>rda</code> file (R data file). Change the following R code to save the <code>rda</code> file. You will also need to remove the <code>#| eval: false</code> at the top of the code chunk once you have corrected the code. If you are confused on the syntax, don’t forget that you can use <code>?save</code> for more information.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="sc">&lt;</span>whatever you called the read sav file<span class="sc">&gt;</span>, <span class="at">file =</span> <span class="st">&quot;Where you would like to save the file with its name&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="sc">&lt;</span>whatever you called the read sav file<span class="sc">&gt;</span>, <span class="at">file =</span> <span class="st">&quot;Where you would like to save the file with its name&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Check that you have an <code>rda</code> file where you saved it. Now use <code>load()</code> with the file path to load the <code>rda</code> data here.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;Where you would like to save the file with its name&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="st">&quot;Where you would like to save the file with its name&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>At this point, if you think you loaded the file correctly, add <code>#| eval: false</code> to the code chunk where you loaded the <code>sav</code> file and back to the chunk where you saved the <code>rda</code> file.</p>
 <p>Take a <code>glimpse</code> at the data to make sure you loaded it correctly.</p>
@@ -4548,12 +4551,12 @@ Warning
 <p>Handling missing data is outside the scope of our class. There are many techniques to handling missing data, but we will use complete case analysis. This means we will only use observations that have information for every variable we chose. The function <code>drop_na()</code> will give you the complete cases. You can feed your dataset into the function and assign it as a new dataframe.</p>
 <p>For example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>new_df <span class="ot">=</span> old_df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>new_df <span class="ot">=</span> old_df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You will also need to save the new dataset so that you can load it in future labs/work.</p>
 <p>You can use something like:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(new_df, <span class="at">file =</span> <span class="st">&quot;IAT_data_complete.Rda&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(new_df, <span class="at">file =</span> <span class="st">&quot;IAT_data_complete.Rda&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Make sure this dataset saves into your project folder! And make sure you have a decent number of individuals in the complete dataset (mine was around 119,000 individuals)</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -4585,7 +4588,7 @@ Warning
 </section>
 <section id="manipulating-variables-that-are-coded-as-numeric-variables" class="level4" data-number="2.8.4">
 <h4 data-number="2.8.4" class="anchored" data-anchor-id="manipulating-variables-that-are-coded-as-numeric-variables"><span class="header-section-number">2.8.4</span> Manipulating variables that are coded as numeric variables</h4>
-<p>Many variables in this dataset are coded as numeric values, but have specific categories linking up to the numbers. Using <code>mutate()</code> and <code>cases()</code> similar to our Data Management lesson, please create a new categorical variable with the specified categories from the codebook. Make sure that you create a variable with a new name! Since some of these variables are ordered categories, we will investigate if it’s appropriate to use the numeric or categorical version of the variable.</p>
+<p>Many variables in this dataset are coded as numeric values, but have specific categories linking up to the numbers. Using <code>mutate()</code> and <code>case_match()</code> similar to our Review lesson (Lesson 1), please create a new categorical variable with the specified categories from the codebook. Make sure that you create a variable with a new name! Since some of these variables are ordered categories, we will investigate if it’s appropriate to use the numeric or categorical version of the variable.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4608,29 +4611,29 @@ Warning
 </ul>
 <p>If I look at the data as is, I see that the variable is numeric.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(iam_001) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(iam_001) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Again, I want to create a variable with the answers instead of numbers, so I will change transform the variable to include the text:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="ot">=</span> iat_2024 <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">iam_001_f =</span> <span class="fu">case_match</span>(iam_001,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;Very overweight&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;Moderately overweight&quot;</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Slightly overweight&quot;</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;Neither underweight nor underweight&quot;</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;Slightly underweight&quot;</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Moderately underweight&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Very underweight&quot;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                             <span class="at">.default =</span> <span class="cn">NA</span> <span class="co"># to add NA if unknown</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                             ) <span class="sc">%&gt;%</span> <span class="fu">factor</span>())</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="sc">%&gt;%</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(iam_001_f) <span class="sc">%&gt;%</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>iat_2024) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> iam_001_f, <span class="at">y =</span> IAT_score))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="ot">=</span> iat_2024 <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">iam_001_f =</span> <span class="fu">case_match</span>(iam_001,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;Very overweight&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;Moderately overweight&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Slightly overweight&quot;</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;Neither underweight nor underweight&quot;</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;Slightly underweight&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Moderately underweight&quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Very underweight&quot;</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                             <span class="at">.default =</span> <span class="cn">NA</span> <span class="co"># to add NA if unknown</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                             ) <span class="sc">%&gt;%</span> <span class="fu">factor</span>())</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="sc">%&gt;%</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(iam_001_f) <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>iat_2024) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> iam_001_f, <span class="at">y =</span> IAT_score))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>I have called the new variable <code>iam_001_f</code> to indicate that the variable is not in factor form. You can also call it something like <code>iam_001_cat</code> to indicate the categorical form.</p>
 </div>
@@ -4667,17 +4670,17 @@ Warning
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="ot">=</span> iat_2024 <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">birthdate =</span> <span class="fu">make_date</span>(<span class="at">month =</span> birthmonth, <span class="at">year =</span> birthyear), </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">testdate =</span> <span class="fu">make_date</span>(<span class="at">month =</span> month, <span class="at">year =</span> year))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="ot">=</span> iat_2024 <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">birthdate =</span> <span class="fu">make_date</span>(<span class="at">month =</span> birthmonth, <span class="at">year =</span> birthyear), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">testdate =</span> <span class="fu">make_date</span>(<span class="at">month =</span> month, <span class="at">year =</span> year))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Once the two dates are created, we can use further use <code>lubridate</code> to calculate the age in years. This code is a little complicated, so here is an example of how I have created age:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="ot">=</span> iat_2024 <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">interval</span>(<span class="at">start =</span> birthdate, <span class="at">end =</span> testdate) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">as.period</span>() <span class="sc">%&gt;%</span> <span class="fu">year</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>birthmonth, <span class="sc">-</span>birthyear, <span class="sc">-</span>year, <span class="sc">-</span>month, </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>         <span class="sc">-</span>testdate, <span class="sc">-</span>birthdate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>iat_2024 <span class="ot">=</span> iat_2024 <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">interval</span>(<span class="at">start =</span> birthdate, <span class="at">end =</span> testdate) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">as.period</span>() <span class="sc">%&gt;%</span> <span class="fu">year</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>birthmonth, <span class="sc">-</span>birthyear, <span class="sc">-</span>year, <span class="sc">-</span>month, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="sc">-</span>testdate, <span class="sc">-</span>birthdate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note that the name of my dataset is <code>iat_2024</code> and I feed it into <code>mutate()</code>. Within <code>mutate()</code>, I assigned <code>age</code> to the interval between the name of my birth date (<code>birthdate</code>) and the name of my test date (<code>testdate</code>). I need to convert the interval to a period of time (<code>as.period()</code>), then to a measurement of years (<code>year()</code>).</p>
 <div class="callout callout-style-default callout-important callout-titled">

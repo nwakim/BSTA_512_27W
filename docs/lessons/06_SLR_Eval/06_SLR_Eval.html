@@ -1,296 +1,222 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Nicky Wakim">
-<meta name="dcterms.date" content="2027-01-27">
-
-<title>Lesson 6: SLR: More inference</title>
-<style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
-
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<html lang="en"><head>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-0a25c3370f5beb4b563130c898b1415b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-1738bcfee8ac8d9805727612dd3124b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
+  <meta name="author" content="Nicky Wakim">
+  <meta name="dcterms.date" content="2027-01-20">
+  <title>Linear Models – Lesson 6: SLR: More inference</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
     }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #575f66;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #575f66; } /* Normal */
+    code span.al { color: #f51818; background-color: #faefef; font-weight: bold; } /* Alert */
+    code span.an { color: #e6ba7e; } /* Annotation */
+    code span.at { color: #399ee6; } /* Attribute */
+    code span.bn { color: #ff9940; } /* BaseN */
+    code span.bu { color: #4cbf99; } /* BuiltIn */
+    code span.cf { color: #fa8d3e; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4cbf99; } /* Char */
+    code span.cn { color: #a37acc; } /* Constant */
+    code span.co { color: #607880; font-style: italic; } /* Comment */
+    code span.cv { color: #a37acc; } /* CommentVar */
+    code span.do { color: #607880; } /* Documentation */
+    code span.dt { color: #fa8d3e; } /* DataType */
+    code span.dv { color: #ff9940; } /* DecVal */
+    code span.er { color: #f51818; text-decoration: underline; } /* Error */
+    code span.ex { color: #399ee6; font-weight: bold; } /* Extension */
+    code span.fl { color: #ff9940; } /* Float */
+    code span.fu { color: #f2ae49; } /* Function */
+    code span.im { color: #86b300; } /* Import */
+    code span.in { color: #ff9940; } /* Information */
+    code span.kw { color: #fa8d3e; font-weight: bold; } /* Keyword */
+    code span.op { color: #ed9366; } /* Operator */
+    code span.ot { color: #55b4d4; } /* Other */
+    code span.pp { color: #f07171; } /* Preprocessor */
+    code span.re { color: #399ee6; background-color: #ddecf3; } /* RegionMarker */
+    code span.sc { color: #4cbf99; } /* SpecialChar */
+    code span.ss { color: #4cbf99; } /* SpecialString */
+    code span.st { color: #86b300; } /* String */
+    code span.va { color: #55b4d4; } /* Variable */
+    code span.vs { color: #86b300; } /* VerbatimString */
+    code span.wa { color: #f07171; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-52116541b39bed432185870ab9f7ef33.css">
+  <link rel="stylesheet" href="../../css/slides.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
 </head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
-<body class="nav-fixed quarto-light">
+<section id="title-slide" data-background-color="#213c96" class="quarto-title-block center">
+  <h1 class="title">Lesson 6: SLR: More inference</h1>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-sm " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/bsta_512_hex.png" alt="" class="navbar-logo light-content">
-    <img src="../../images/bsta_512_hex.png" alt="" class="navbar-logo dark-content">
-    </a>
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Linear Models</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../schedule.html"> 
-<span class="menu-text">Schedule</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../syllabus.html"> 
-<span class="menu-text">Syllabus</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../instructors.html"> 
-<span class="menu-text">Instructors</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../quiz.html"> 
-<span class="menu-text">Quizzes</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../homework.html"> 
-<span class="menu-text">Homework</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../project.html"> 
-<span class="menu-text">Project</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Nicky Wakim
 </div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#so-far-in-our-regression-example" id="toc-so-far-in-our-regression-example" class="nav-link" data-scroll-target="#so-far-in-our-regression-example">So far in our regression example…</a></li>
-  <li><a href="#process-of-regression-data-analysis" id="toc-process-of-regression-data-analysis" class="nav-link" data-scroll-target="#process-of-regression-data-analysis">Process of regression data analysis</a></li>
-  </ul></li>
-  <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1">Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#getting-to-the-f-test" id="toc-getting-to-the-f-test" class="nav-link" data-scroll-target="#getting-to-the-f-test">Getting to the F-test</a></li>
-  <li><a href="#explained-vs.-unexplained-variation" id="toc-explained-vs.-unexplained-variation" class="nav-link" data-scroll-target="#explained-vs.-unexplained-variation">Explained vs.&nbsp;Unexplained Variation</a></li>
-  <li><a href="#more-on-the-equation" id="toc-more-on-the-equation" class="nav-link" data-scroll-target="#more-on-the-equation">More on the equation</a></li>
-  <li><a href="#another-way-of-thinking-about-the-different-deviations" id="toc-another-way-of-thinking-about-the-different-deviations" class="nav-link" data-scroll-target="#another-way-of-thinking-about-the-different-deviations">Another way of thinking about the different deviations</a></li>
-  <li><a href="#poll-everywhere-question-1" id="toc-poll-everywhere-question-1" class="nav-link" data-scroll-target="#poll-everywhere-question-1">Poll Everywhere Question 1</a></li>
-  <li><a href="#how-is-this-actually-calculated-for-our-fitted-model-12" id="toc-how-is-this-actually-calculated-for-our-fitted-model-12" class="nav-link" data-scroll-target="#how-is-this-actually-calculated-for-our-fitted-model-12">How is this actually calculated for our fitted model? (1/2)</a></li>
-  <li><a href="#how-is-this-actually-calculated-for-our-fitted-model-22" id="toc-how-is-this-actually-calculated-for-our-fitted-model-22" class="nav-link" data-scroll-target="#how-is-this-actually-calculated-for-our-fitted-model-22">How is this actually calculated for our fitted model? (2/2)</a></li>
-  <li><a href="#analysis-of-variance-anova-table-in-r" id="toc-analysis-of-variance-anova-table-in-r" class="nav-link" data-scroll-target="#analysis-of-variance-anova-table-in-r">Analysis of Variance (ANOVA) table in R</a></li>
-  </ul></li>
-  <li><a href="#learning-objectives-2" id="toc-learning-objectives-2" class="nav-link" data-scroll-target="#learning-objectives-2">Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#what-is-the-f-statistic-testing" id="toc-what-is-the-f-statistic-testing" class="nav-link" data-scroll-target="#what-is-the-f-statistic-testing">What is the F statistic testing?</a></li>
-  <li><a href="#f-test-vs.-t-test-for-the-population-slope" id="toc-f-test-vs.-t-test-for-the-population-slope" class="nav-link" data-scroll-target="#f-test-vs.-t-test-for-the-population-slope">F-test vs.&nbsp;t-test for the population slope</a></li>
-  <li><a href="#planting-a-seed-about-the-f-test" id="toc-planting-a-seed-about-the-f-test" class="nav-link" data-scroll-target="#planting-a-seed-about-the-f-test">Planting a seed about the F-test</a></li>
-  <li><a href="#poll-everywhere-question-2" id="toc-poll-everywhere-question-2" class="nav-link" data-scroll-target="#poll-everywhere-question-2">Poll Everywhere Question 2</a></li>
-  <li><a href="#f-test-general-steps-for-hypothesis-test-for-population-slope-beta_1" id="toc-f-test-general-steps-for-hypothesis-test-for-population-slope-beta_1" class="nav-link" data-scroll-target="#f-test-general-steps-for-hypothesis-test-for-population-slope-beta_1">F-test: general steps for hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span></a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1" id="toc-life-expectancy-example-hypothesis-test-for-population-slope-beta_1" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span></a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1-24" id="toc-life-expectancy-example-hypothesis-test-for-population-slope-beta_1-24" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1-24">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (2/4)</a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1-34" id="toc-life-expectancy-example-hypothesis-test-for-population-slope-beta_1-34" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1-34">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (3/4)</a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1-44" id="toc-life-expectancy-example-hypothesis-test-for-population-slope-beta_1-44" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-population-slope-beta_1-44">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (4/4)</a></li>
-  <li><a href="#did-you-notice-anything-about-the-p-value" id="toc-did-you-notice-anything-about-the-p-value" class="nav-link" data-scroll-target="#did-you-notice-anything-about-the-p-value">Did you notice anything about the p-value?</a></li>
-  </ul></li>
-  <li><a href="#learning-objectives-3" id="toc-learning-objectives-3" class="nav-link" data-scroll-target="#learning-objectives-3">Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#testing-association-between-continuous-outcome-and-categorical-variable" id="toc-testing-association-between-continuous-outcome-and-categorical-variable" class="nav-link" data-scroll-target="#testing-association-between-continuous-outcome-and-categorical-variable">Testing association between continuous outcome and categorical variable</a></li>
-  <li><a href="#poll-everywhere-question-3" id="toc-poll-everywhere-question-3" class="nav-link" data-scroll-target="#poll-everywhere-question-3">Poll Everywhere Question 3</a></li>
-  <li><a href="#we-can-extend-our-look-at-the-f-test" id="toc-we-can-extend-our-look-at-the-f-test" class="nav-link" data-scroll-target="#we-can-extend-our-look-at-the-f-test">We can extend our look at the F-test</a></li>
-  <li><a href="#lets-say-we-want-to-test-the-association-between-life-expectancy-and-freedom-status" id="toc-lets-say-we-want-to-test-the-association-between-life-expectancy-and-freedom-status" class="nav-link" data-scroll-target="#lets-say-we-want-to-test-the-association-between-life-expectancy-and-freedom-status">Let’s say we want to test the association between life expectancy and freedom status</a></li>
-  <li><a href="#f-test-general-steps-for-hypothesis-test-for-categorical-variable" id="toc-f-test-general-steps-for-hypothesis-test-for-categorical-variable" class="nav-link" data-scroll-target="#f-test-general-steps-for-hypothesis-test-for-categorical-variable">F-test: general steps for hypothesis test for categorical variable</a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-freedom-status-14" id="toc-life-expectancy-example-hypothesis-test-for-freedom-status-14" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-freedom-status-14">Life expectancy example: hypothesis test for freedom status (1/4)</a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-freedom-status-24" id="toc-life-expectancy-example-hypothesis-test-for-freedom-status-24" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-freedom-status-24">Life expectancy example: hypothesis test for freedom status (2/4)</a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-freedom-status-34" id="toc-life-expectancy-example-hypothesis-test-for-freedom-status-34" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-freedom-status-34">Life expectancy example: hypothesis test for freedom status (3/4)</a></li>
-  <li><a href="#life-expectancy-example-hypothesis-test-for-freedom-status-44" id="toc-life-expectancy-example-hypothesis-test-for-freedom-status-44" class="nav-link" data-scroll-target="#life-expectancy-example-hypothesis-test-for-freedom-status-44">Life expectancy example: hypothesis test for freedom status (4/4)</a></li>
-  </ul></li>
-  <li><a href="#learning-objectives-4" id="toc-learning-objectives-4" class="nav-link" data-scroll-target="#learning-objectives-4">Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#correlation-coefficient-from-511" id="toc-correlation-coefficient-from-511" class="nav-link" data-scroll-target="#correlation-coefficient-from-511">Correlation coefficient from 511</a></li>
-  <li><a href="#correlation-coefficient-r-or-r" id="toc-correlation-coefficient-r-or-r" class="nav-link" data-scroll-target="#correlation-coefficient-r-or-r">Correlation coefficient (<span class="math inline">\(r\)</span> or <span class="math inline">\(R\)</span>)</a></li>
-  <li><a href="#coefficient-of-determination-r2" id="toc-coefficient-of-determination-r2" class="nav-link" data-scroll-target="#coefficient-of-determination-r2">Coefficient of determination: <span class="math inline">\(R^2\)</span></a></li>
-  <li><a href="#life-expectancy-example-correlation-coeffiicent-r-and-coefficient-of-determination-r2" id="toc-life-expectancy-example-correlation-coeffiicent-r-and-coefficient-of-determination-r2" class="nav-link" data-scroll-target="#life-expectancy-example-correlation-coeffiicent-r-and-coefficient-of-determination-r2">Life expectancy example: correlation coeffiicent <span class="math inline">\(r\)</span> and coefficient of determination <span class="math inline">\(R^2\)</span></a></li>
-  <li><a href="#what-does-r2-not-measure" id="toc-what-does-r2-not-measure" class="nav-link" data-scroll-target="#what-does-r2-not-measure">What does <span class="math inline">\(R^2\)</span> not measure?</a></li>
-  </ul></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06_SLR_Eval.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Lesson 6: SLR: More inference</h1>
+</div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Nicky Wakim </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 27, 2027</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="learning-objectives" class="level1">
+  <p class="date">2027-01-20</p>
+</section>
+<section>
+<section id="learning-objectives" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li><p>Identify different sources of variation in an Analysis of Variance (ANOVA) table</p></li>
@@ -298,8 +224,9 @@ window.Quarto = {
 <li><p>Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable</p></li>
 <li><p>Calculate and interpret the coefficient of determination</p></li>
 </ol>
-<section id="so-far-in-our-regression-example" class="level2">
-<h2 class="anchored" data-anchor-id="so-far-in-our-regression-example">So far in our regression example…</h2>
+</section>
+<section id="so-far-in-our-regression-example" class="slide level2">
+<h2>So far in our regression example…</h2>
 <div class="columns">
 <div class="column" style="width:49%;">
 <p><strong>Lesson 3: SLR 1</strong></p>
@@ -322,17 +249,10 @@ window.Quarto = {
 
 </div><div class="column" style="width:49%;">
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1056"></p>
+<figure>
+<p><img data-src="06_SLR_Eval_files/figure-revealjs/unnamed-chunk-3-1.png" width="1056"></p>
 </figure>
 </div>
 </div>
@@ -341,13 +261,12 @@ window.Quarto = {
 \widehat{Y} &amp;= \widehat\beta_0 + \widehat\beta_1 \cdot X\\
 \widehat{\text{LE}} &amp;=  60.04 + 0.094\cdot\text{CP}
 \end{aligned}\]</span>
-</div>
-</div>
+</div></div>
 </section>
-<section id="process-of-regression-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="process-of-regression-data-analysis">Process of regression data analysis</h2>
+<section id="process-of-regression-data-analysis" class="slide level2">
+<h2>Process of regression data analysis</h2>
 <div class="box">
-<p><img src="../img_slides/arrow2.png" class="absolute img-fluid" data-top="13.5%" data-right="62.1%" width="155"> <img src="../img_slides/arrow2.png" class="absolute img-fluid" data-top="13.5%" data-right="28.4%" width="155"><img src="../img_slides/arrow_back4.png" class="absolute img-fluid" data-top="7.5%" data-right="30.5%" width="820"> <img src="../img_slides/arrow_down.png" class="absolute img-fluid" data-top="60.5%" data-right="48%" width="85"></p>
+<p><img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 62.1%; width: 155px; "> <img data-src="../img_slides/arrow2.png" class="absolute" style="top: 13.5%; right: 28.4%; width: 155px; "><img data-src="../img_slides/arrow_back4.png" class="absolute" style="top: 7.5%; right: 30.5%; width: 820px; "> <img data-src="../img_slides/arrow_down.png" class="absolute" style="top: 60.5%; right: 48%; width: 85px; "></p>
 <div class="columns">
 <div class="column" style="width:30%;">
 <div class="RAP1">
@@ -398,8 +317,7 @@ window.Quarto = {
 </ul>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </div>
 <div class="RAP4">
 <div class="RAP4-title">
@@ -417,13 +335,12 @@ window.Quarto = {
 <li>Inference for expected <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 <li>Prediction of new <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span></li>
 </ul>
+</div></div>
 </div>
 </div>
-</div>
-</div>
-</section>
-</section>
-<section id="learning-objectives-1" class="level1">
+</section></section>
+<section>
+<section id="learning-objectives-1" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <div class="lob">
 <ol type="1">
@@ -435,8 +352,9 @@ window.Quarto = {
 <li><p>Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable</p></li>
 <li><p>Calculate and interpret the coefficient of determination</p></li>
 </ol>
-<section id="getting-to-the-f-test" class="level2">
-<h2 class="anchored" data-anchor-id="getting-to-the-f-test">Getting to the F-test</h2>
+</section>
+<section id="getting-to-the-f-test" class="slide level2">
+<h2>Getting to the F-test</h2>
 <p>The F statistic in linear regression is essentially a proportion of the variance explained by the model vs.&nbsp;the variance not explained by the model</p>
 <p>&nbsp;</p>
 <ol type="1">
@@ -455,27 +373,16 @@ window.Quarto = {
 <li>Build the F-test</li>
 </ol>
 </section>
-<section id="explained-vs.-unexplained-variation" class="level2">
-<h2 class="anchored" data-anchor-id="explained-vs.-unexplained-variation">Explained vs.&nbsp;Unexplained Variation</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="math display">\[ \begin{aligned}
+<section id="explained-vs.-unexplained-variation" class="slide level2">
+<h2>Explained vs.&nbsp;Unexplained Variation</h2>
+
+<img data-src="06_SLR_Eval_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><p><span class="math display">\[ \begin{aligned}
 Y_i - \overline{Y} &amp; = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\\
 \text{Total variation} &amp; = \text{Residual variation after regression} + \text{Variation explained by regression}
 \end{aligned}\]</span></p>
 </section>
-<section id="more-on-the-equation" class="level2">
-<h2 class="anchored" data-anchor-id="more-on-the-equation">More on the equation</h2>
+<section id="more-on-the-equation" class="slide level2">
+<h2>More on the equation</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><span class="math display">\[Y_i - \overline{Y} = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\]</span></p>
@@ -496,33 +403,31 @@ Y_i - \overline{Y} &amp; = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})
 </div><div class="column" style="width:60%;">
 <p>&nbsp; &nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img_slides/SS.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure>
+<p><img data-src="../img_slides/SS.png" class="quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="another-way-of-thinking-about-the-different-deviations" class="level2">
-<h2 class="anchored" data-anchor-id="another-way-of-thinking-about-the-different-deviations">Another way of thinking about the different deviations</h2>
+<section id="another-way-of-thinking-about-the-different-deviations" class="slide level2">
+<h2>Another way of thinking about the different deviations</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img_slides/SSY_SSE_SSR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1000"></p>
+<figure>
+<p><img data-src="../img_slides/SSY_SSE_SSR.png" class="quarto-figure quarto-figure-center" width="1000"></p>
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
 
-</div>
-</div>
+</div></div>
 <div class="columns">
 <div class="column" style="width:33%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<figure>
+<p><img data-src="06_SLR_Eval_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
 </figure>
 </div>
 </div>
@@ -531,8 +436,8 @@ Y_i - \overline{Y} &amp; = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<figure>
+<p><img data-src="06_SLR_Eval_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
 </figure>
 </div>
 </div>
@@ -541,20 +446,19 @@ Y_i - \overline{Y} &amp; = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<figure>
+<p><img data-src="06_SLR_Eval_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="poll-everywhere-question-1" class="level2">
-<h2 class="anchored" data-anchor-id="poll-everywhere-question-1">Poll Everywhere Question 1</h2>
+<section id="poll-everywhere-question-1" class="slide level2">
+<h2>Poll Everywhere Question 1</h2>
 </section>
-<section id="how-is-this-actually-calculated-for-our-fitted-model-12" class="level2">
-<h2 class="anchored" data-anchor-id="how-is-this-actually-calculated-for-our-fitted-model-12">How is this actually calculated for our fitted model? (1/2)</h2>
+<section id="how-is-this-actually-calculated-for-our-fitted-model-12" class="slide level2">
+<h2>How is this actually calculated for our fitted model? (1/2)</h2>
 <p><span class="math display">\[ \begin{aligned}
 Y_i - \overline{Y} &amp; = (Y_i - \widehat{Y}_i) + (\widehat{Y}_i- \overline{Y})\\
 \text{Total variation} &amp; = \text{Variation explained by regression} + \text{Residual variation after regression}
@@ -568,7 +472,7 @@ SSY &amp; = SSR + SSE
 
 </div><div class="column" style="width:82%;">
 <p>ANOVA table:</p>
-<table class="caption-top table">
+<table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -616,11 +520,10 @@ SSY &amp; = SSR + SSE
 </table>
 </div><div class="column" style="width:9%;">
 
-</div>
-</div>
+</div></div>
 </section>
-<section id="how-is-this-actually-calculated-for-our-fitted-model-22" class="level2">
-<h2 class="anchored" data-anchor-id="how-is-this-actually-calculated-for-our-fitted-model-22">How is this actually calculated for our fitted model? (2/2)</h2>
+<section id="how-is-this-actually-calculated-for-our-fitted-model-22" class="slide level2">
+<h2>How is this actually calculated for our fitted model? (2/2)</h2>
 <p><span class="math display">\[\begin{aligned}
 \sum_{i=1}^n (Y_i - \overline{Y})^2 &amp; = \sum_{i=1}^n (\widehat{Y}_i- \overline{Y})^2 + \sum_{i=1}^n (Y_i - \widehat{Y}_i)^2 \\
 SSY &amp; = SSR + SSE
@@ -630,7 +533,7 @@ SSY &amp; = SSR + SSE
 
 </div><div class="column" style="width:82%;">
 <p>ANOVA table:</p>
-<table class="caption-top table">
+<table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -678,20 +581,19 @@ SSY &amp; = SSR + SSE
 </table>
 </div><div class="column" style="width:9%;">
 
-</div>
-</div>
+</div></div>
 <p>&nbsp;</p>
 <div class="hl3">
 <p><strong>F-statistic</strong>: Proportion of variation that is explained by the model to variation not explained by the model</p>
 </div>
 </section>
-<section id="analysis-of-variance-anova-table-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-of-variance-anova-table-in-r">Analysis of Variance (ANOVA) table in R</h2>
+<section id="analysis-of-variance-anova-table-in-r" class="slide level2">
+<h2>Analysis of Variance (ANOVA) table in R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit regression model:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> cell_phones_100)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="co"># Fit regression model:</span></span>
+<span id="cb1-2"><a aria-label="2"></a>model1 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> cell_phones_100)</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="fu">anova</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -702,27 +604,27 @@ Residuals       103 3663.7   35.57
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a aria-label="2"></a>   <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a aria-label="3"></a>   <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="etatllefwz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#etatllefwz table {
+<div id="rbgtmnaeiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rbgtmnaeiv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#etatllefwz thead, #etatllefwz tbody, #etatllefwz tfoot, #etatllefwz tr, #etatllefwz td, #etatllefwz th {
+#rbgtmnaeiv thead, #rbgtmnaeiv tbody, #rbgtmnaeiv tfoot, #rbgtmnaeiv tr, #rbgtmnaeiv td, #rbgtmnaeiv th {
   border-style: none;
 }
 
-#etatllefwz p {
+#rbgtmnaeiv p {
   margin: 0;
   padding: 0;
 }
 
-#etatllefwz .gt_table {
+#rbgtmnaeiv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -748,12 +650,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#etatllefwz .gt_caption {
+#rbgtmnaeiv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#etatllefwz .gt_title {
+#rbgtmnaeiv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -765,7 +667,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-bottom-width: 0;
 }
 
-#etatllefwz .gt_subtitle {
+#rbgtmnaeiv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -777,7 +679,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-top-width: 0;
 }
 
-#etatllefwz .gt_heading {
+#rbgtmnaeiv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -789,13 +691,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#etatllefwz .gt_bottom_border {
+#rbgtmnaeiv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#etatllefwz .gt_col_headings {
+#rbgtmnaeiv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -810,7 +712,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#etatllefwz .gt_col_heading {
+#rbgtmnaeiv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -830,7 +732,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   overflow-x: hidden;
 }
 
-#etatllefwz .gt_column_spanner_outer {
+#rbgtmnaeiv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -842,15 +744,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   padding-right: 4px;
 }
 
-#etatllefwz .gt_column_spanner_outer:first-child {
+#rbgtmnaeiv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#etatllefwz .gt_column_spanner_outer:last-child {
+#rbgtmnaeiv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#etatllefwz .gt_column_spanner {
+#rbgtmnaeiv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -862,11 +764,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   width: 100%;
 }
 
-#etatllefwz .gt_spanner_row {
+#rbgtmnaeiv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#etatllefwz .gt_group_heading {
+#rbgtmnaeiv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -892,7 +794,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   text-align: left;
 }
 
-#etatllefwz .gt_empty_group_heading {
+#rbgtmnaeiv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -907,15 +809,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   vertical-align: middle;
 }
 
-#etatllefwz .gt_from_md > :first-child {
+#rbgtmnaeiv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#etatllefwz .gt_from_md > :last-child {
+#rbgtmnaeiv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#etatllefwz .gt_row {
+#rbgtmnaeiv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -934,7 +836,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   overflow-x: hidden;
 }
 
-#etatllefwz .gt_stub {
+#rbgtmnaeiv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -947,7 +849,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   padding-right: 5px;
 }
 
-#etatllefwz .gt_stub_row_group {
+#rbgtmnaeiv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -961,15 +863,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   vertical-align: top;
 }
 
-#etatllefwz .gt_row_group_first td {
+#rbgtmnaeiv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#etatllefwz .gt_row_group_first th {
+#rbgtmnaeiv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#etatllefwz .gt_summary_row {
+#rbgtmnaeiv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -979,16 +881,16 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   padding-right: 5px;
 }
 
-#etatllefwz .gt_first_summary_row {
+#rbgtmnaeiv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#etatllefwz .gt_first_summary_row.thick {
+#rbgtmnaeiv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#etatllefwz .gt_last_summary_row {
+#rbgtmnaeiv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -998,7 +900,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#etatllefwz .gt_grand_summary_row {
+#rbgtmnaeiv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1008,7 +910,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   padding-right: 5px;
 }
 
-#etatllefwz .gt_first_grand_summary_row {
+#rbgtmnaeiv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1018,7 +920,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#etatllefwz .gt_last_grand_summary_row_top {
+#rbgtmnaeiv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1028,11 +930,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#etatllefwz .gt_striped {
+#rbgtmnaeiv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#etatllefwz .gt_table_body {
+#rbgtmnaeiv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1041,7 +943,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#etatllefwz .gt_footnotes {
+#rbgtmnaeiv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1055,7 +957,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#etatllefwz .gt_footnote {
+#rbgtmnaeiv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1064,7 +966,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   padding-right: 5px;
 }
 
-#etatllefwz .gt_sourcenotes {
+#rbgtmnaeiv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1078,7 +980,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#etatllefwz .gt_sourcenote {
+#rbgtmnaeiv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1086,77 +988,77 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   padding-right: 5px;
 }
 
-#etatllefwz .gt_left {
+#rbgtmnaeiv .gt_left {
   text-align: left;
 }
 
-#etatllefwz .gt_center {
+#rbgtmnaeiv .gt_center {
   text-align: center;
 }
 
-#etatllefwz .gt_right {
+#rbgtmnaeiv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#etatllefwz .gt_font_normal {
+#rbgtmnaeiv .gt_font_normal {
   font-weight: normal;
 }
 
-#etatllefwz .gt_font_bold {
+#rbgtmnaeiv .gt_font_bold {
   font-weight: bold;
 }
 
-#etatllefwz .gt_font_italic {
+#rbgtmnaeiv .gt_font_italic {
   font-style: italic;
 }
 
-#etatllefwz .gt_super {
+#rbgtmnaeiv .gt_super {
   font-size: 65%;
 }
 
-#etatllefwz .gt_footnote_marks {
+#rbgtmnaeiv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#etatllefwz .gt_asterisk {
+#rbgtmnaeiv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#etatllefwz .gt_indent_1 {
+#rbgtmnaeiv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#etatllefwz .gt_indent_2 {
+#rbgtmnaeiv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#etatllefwz .gt_indent_3 {
+#rbgtmnaeiv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#etatllefwz .gt_indent_4 {
+#rbgtmnaeiv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#etatllefwz .gt_indent_5 {
+#rbgtmnaeiv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#etatllefwz .katex-display {
+#rbgtmnaeiv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#etatllefwz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rbgtmnaeiv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -1190,9 +1092,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="learning-objectives-2" class="level1">
+</section></section>
+<section>
+<section id="learning-objectives-2" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li>Identify different sources of variation in an Analysis of Variance (ANOVA) table</li>
@@ -1206,8 +1108,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><p>Using the F-test, determine if there is enough evidence for association between an outcome and a categorical variable</p></li>
 <li><p>Calculate and interpret the coefficient of determination</p></li>
 </ol>
-<section id="what-is-the-f-statistic-testing" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-the-f-statistic-testing">What is the F statistic testing?</h2>
+</section>
+<section id="what-is-the-f-statistic-testing" class="slide level2">
+<h2>What is the F statistic testing?</h2>
 <ul>
 <li>The F statistic is testing whether the model with the predictor variable <span class="math inline">\(X\)</span> explains significantly more variation in <span class="math inline">\(Y\)</span> than a model with no predictors (intercept only model)</li>
 </ul>
@@ -1232,8 +1135,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>In <strong>simple linear regression</strong>, this is equivalent to testing whether the population slope <span class="math inline">\(\beta_1\)</span> is equal to 0</li>
 </ul>
 </section>
-<section id="f-test-vs.-t-test-for-the-population-slope" class="level2">
-<h2 class="anchored" data-anchor-id="f-test-vs.-t-test-for-the-population-slope">F-test vs.&nbsp;t-test for the population slope</h2>
+<section id="f-test-vs.-t-test-for-the-population-slope" class="slide level2">
+<h2>F-test vs.&nbsp;t-test for the population slope</h2>
 <p>The square of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(df = \nu\)</span> is an <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(df = 1, \nu\)</span></p>
 <p><span class="math display">\[T_{\nu}^2 \sim F_{1,\nu}\]</span></p>
 <ul>
@@ -1250,8 +1153,8 @@ H_0 &amp;: \beta_1 = 0\\
 </ul></li>
 </ul>
 </section>
-<section id="planting-a-seed-about-the-f-test" class="level2">
-<h2 class="anchored" data-anchor-id="planting-a-seed-about-the-f-test">Planting a seed about the F-test</h2>
+<section id="planting-a-seed-about-the-f-test" class="slide level2">
+<h2>Planting a seed about the F-test</h2>
 <p>We can think about the hypothesis test for the slope…</p>
 <div class="columns">
 <div class="column" style="width:17%;">
@@ -1274,8 +1177,7 @@ H_0 &amp;: \beta_1 = 0\\
 <p><span class="math inline">\(\beta_1\neq0\)</span></p>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <p>in a slightly different way…</p>
 <div class="columns">
 <div class="column" style="width:17%;">
@@ -1304,8 +1206,7 @@ H_0 &amp;: \beta_1 = 0\\
 </ul>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <ul>
 <li><p>In multiple linear regression, we can start using this framework to test multiple coefficient parameters at once</p>
 <ul>
@@ -1314,11 +1215,11 @@ H_0 &amp;: \beta_1 = 0\\
 </ul></li>
 </ul>
 </section>
-<section id="poll-everywhere-question-2" class="level2">
-<h2 class="anchored" data-anchor-id="poll-everywhere-question-2">Poll Everywhere Question 2</h2>
+<section id="poll-everywhere-question-2" class="slide level2">
+<h2>Poll Everywhere Question 2</h2>
 </section>
-<section id="f-test-general-steps-for-hypothesis-test-for-population-slope-beta_1" class="level2">
-<h2 class="anchored" data-anchor-id="f-test-general-steps-for-hypothesis-test-for-population-slope-beta_1">F-test: general steps for hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span></h2>
+<section id="f-test-general-steps-for-hypothesis-test-for-population-slope-beta_1" class="slide level2">
+<h2>F-test: general steps for hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span></h2>
 <div class="columns">
 <div class="column" style="width:48%;">
 <ol type="1">
@@ -1361,11 +1262,10 @@ H_0 &amp;: \beta_1 = 0\\
 </ul></li>
 </ol>
 <p>We (reject/fail to reject) the null hypothesis that the slope is 0 at the <span class="math inline">\(100\alpha\%\)</span> significance level. There is (sufficient/insufficient) evidence that there is significant association between (<span class="math inline">\(Y\)</span>) and (<span class="math inline">\(X\)</span>) (p-value = <span class="math inline">\(P(F_{1, n-2} &gt; F)\)</span>).</p>
-</div>
-</div>
+</div></div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span></h2>
+<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1" class="slide level2">
+<h2>Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span></h2>
 <ul>
 <li>Steps 1-4 are setting up our hypothesis test: not much change from the general steps</li>
 </ul>
@@ -1392,40 +1292,39 @@ H_0 &amp;: \beta_1 = 0\\
 <p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=1\)</span> and denominator <span class="math inline">\(df=n-2 = 80-2\)</span>.</p>
 </div><div class="column" style="width:30%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nobs</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">nobs</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 105</code></pre>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-24" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-24">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (2/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-24" class="slide level2">
+<h2>Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (2/4)</h2>
 <ol start="5" type="1">
 <li>Calculate the <span style="color:#4FADF3"><strong>test statistic</strong></span></li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>anova_tab <span class="ot">=</span> <span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>anova_tab <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>anova_tab <span class="ot">=</span> <span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span>
+<span id="cb6-2"><a aria-label="2"></a>anova_tab <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="lcnprjqwag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lcnprjqwag table {
+<div id="caiamjexgc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#caiamjexgc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lcnprjqwag thead, #lcnprjqwag tbody, #lcnprjqwag tfoot, #lcnprjqwag tr, #lcnprjqwag td, #lcnprjqwag th {
+#caiamjexgc thead, #caiamjexgc tbody, #caiamjexgc tfoot, #caiamjexgc tr, #caiamjexgc td, #caiamjexgc th {
   border-style: none;
 }
 
-#lcnprjqwag p {
+#caiamjexgc p {
   margin: 0;
   padding: 0;
 }
 
-#lcnprjqwag .gt_table {
+#caiamjexgc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1451,12 +1350,12 @@ H_0 &amp;: \beta_1 = 0\\
   border-left-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_caption {
+#caiamjexgc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lcnprjqwag .gt_title {
+#caiamjexgc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1468,7 +1367,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-width: 0;
 }
 
-#lcnprjqwag .gt_subtitle {
+#caiamjexgc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1480,7 +1379,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-width: 0;
 }
 
-#lcnprjqwag .gt_heading {
+#caiamjexgc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1492,13 +1391,13 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_bottom_border {
+#caiamjexgc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_col_headings {
+#caiamjexgc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1513,7 +1412,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_col_heading {
+#caiamjexgc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1533,7 +1432,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#lcnprjqwag .gt_column_spanner_outer {
+#caiamjexgc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1545,15 +1444,15 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 4px;
 }
 
-#lcnprjqwag .gt_column_spanner_outer:first-child {
+#caiamjexgc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lcnprjqwag .gt_column_spanner_outer:last-child {
+#caiamjexgc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lcnprjqwag .gt_column_spanner {
+#caiamjexgc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1565,11 +1464,11 @@ H_0 &amp;: \beta_1 = 0\\
   width: 100%;
 }
 
-#lcnprjqwag .gt_spanner_row {
+#caiamjexgc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lcnprjqwag .gt_group_heading {
+#caiamjexgc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1595,7 +1494,7 @@ H_0 &amp;: \beta_1 = 0\\
   text-align: left;
 }
 
-#lcnprjqwag .gt_empty_group_heading {
+#caiamjexgc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1610,15 +1509,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: middle;
 }
 
-#lcnprjqwag .gt_from_md > :first-child {
+#caiamjexgc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lcnprjqwag .gt_from_md > :last-child {
+#caiamjexgc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lcnprjqwag .gt_row {
+#caiamjexgc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1637,7 +1536,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#lcnprjqwag .gt_stub {
+#caiamjexgc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1650,7 +1549,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#lcnprjqwag .gt_stub_row_group {
+#caiamjexgc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1664,15 +1563,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: top;
 }
 
-#lcnprjqwag .gt_row_group_first td {
+#caiamjexgc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lcnprjqwag .gt_row_group_first th {
+#caiamjexgc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lcnprjqwag .gt_summary_row {
+#caiamjexgc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1682,16 +1581,16 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#lcnprjqwag .gt_first_summary_row {
+#caiamjexgc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_first_summary_row.thick {
+#caiamjexgc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lcnprjqwag .gt_last_summary_row {
+#caiamjexgc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1701,7 +1600,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_grand_summary_row {
+#caiamjexgc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1711,7 +1610,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#lcnprjqwag .gt_first_grand_summary_row {
+#caiamjexgc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1721,7 +1620,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_last_grand_summary_row_top {
+#caiamjexgc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1731,11 +1630,11 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_striped {
+#caiamjexgc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lcnprjqwag .gt_table_body {
+#caiamjexgc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1744,7 +1643,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_footnotes {
+#caiamjexgc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1758,7 +1657,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_footnote {
+#caiamjexgc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1767,7 +1666,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#lcnprjqwag .gt_sourcenotes {
+#caiamjexgc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1781,7 +1680,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#lcnprjqwag .gt_sourcenote {
+#caiamjexgc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1789,77 +1688,77 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#lcnprjqwag .gt_left {
+#caiamjexgc .gt_left {
   text-align: left;
 }
 
-#lcnprjqwag .gt_center {
+#caiamjexgc .gt_center {
   text-align: center;
 }
 
-#lcnprjqwag .gt_right {
+#caiamjexgc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lcnprjqwag .gt_font_normal {
+#caiamjexgc .gt_font_normal {
   font-weight: normal;
 }
 
-#lcnprjqwag .gt_font_bold {
+#caiamjexgc .gt_font_bold {
   font-weight: bold;
 }
 
-#lcnprjqwag .gt_font_italic {
+#caiamjexgc .gt_font_italic {
   font-style: italic;
 }
 
-#lcnprjqwag .gt_super {
+#caiamjexgc .gt_super {
   font-size: 65%;
 }
 
-#lcnprjqwag .gt_footnote_marks {
+#caiamjexgc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lcnprjqwag .gt_asterisk {
+#caiamjexgc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lcnprjqwag .gt_indent_1 {
+#caiamjexgc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lcnprjqwag .gt_indent_2 {
+#caiamjexgc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lcnprjqwag .gt_indent_3 {
+#caiamjexgc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lcnprjqwag .gt_indent_4 {
+#caiamjexgc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lcnprjqwag .gt_indent_5 {
+#caiamjexgc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lcnprjqwag .katex-display {
+#caiamjexgc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lcnprjqwag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#caiamjexgc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -1903,17 +1802,16 @@ H_0 &amp;: \beta_1 = 0\\
 <p><strong>Option 2:</strong> Get the test statistic value (F) from the ANOVA table</p>
 <p><span class="math display">\[F = 30.759\]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>F_stat <span class="ot">=</span> anova_tab<span class="sc">$</span>statistic[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>F_stat <span class="ot">=</span> anova_tab<span class="sc">$</span>statistic[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
+</div></div>
 <p>&nbsp;</p>
 <div class="hl">
 <p>I tend to skip this step because I can do it all with step 6</p>
 </div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-34" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-34">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (3/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-34" class="slide level2">
+<h2>Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (3/4)</h2>
 <ol start="6" type="1">
 <li>Calculate the <span style="color:#4FADF3"><strong>p-value</strong></span></li>
 </ol>
@@ -1925,9 +1823,9 @@ H_0 &amp;: \beta_1 = 0\\
 <li><p><strong>Option 1:</strong> Use <code>pf()</code> and our calculated test statistic</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value is ALWAYS the right tail for F-test</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nobs</span>(model1)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(F_stat, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> n<span class="dv">-2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="co"># p-value is ALWAYS the right tail for F-test</span></span>
+<span id="cb8-2"><a aria-label="2"></a>n <span class="ot">=</span> <span class="fu">nobs</span>(model1)</span>
+<span id="cb8-3"><a aria-label="3"></a><span class="fu">pf</span>(F_stat, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> n<span class="dv">-2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.271176e-07</code></pre>
 </div>
@@ -1936,26 +1834,26 @@ H_0 &amp;: \beta_1 = 0\\
 <li><strong>Option 2:</strong> Use the ANOVA table</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a aria-label="2"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="iyhtyzrmag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iyhtyzrmag table {
+<div id="qxfajtzgbn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qxfajtzgbn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iyhtyzrmag thead, #iyhtyzrmag tbody, #iyhtyzrmag tfoot, #iyhtyzrmag tr, #iyhtyzrmag td, #iyhtyzrmag th {
+#qxfajtzgbn thead, #qxfajtzgbn tbody, #qxfajtzgbn tfoot, #qxfajtzgbn tr, #qxfajtzgbn td, #qxfajtzgbn th {
   border-style: none;
 }
 
-#iyhtyzrmag p {
+#qxfajtzgbn p {
   margin: 0;
   padding: 0;
 }
 
-#iyhtyzrmag .gt_table {
+#qxfajtzgbn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1981,12 +1879,12 @@ H_0 &amp;: \beta_1 = 0\\
   border-left-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_caption {
+#qxfajtzgbn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iyhtyzrmag .gt_title {
+#qxfajtzgbn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1998,7 +1896,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-width: 0;
 }
 
-#iyhtyzrmag .gt_subtitle {
+#qxfajtzgbn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2010,7 +1908,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-width: 0;
 }
 
-#iyhtyzrmag .gt_heading {
+#qxfajtzgbn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2022,13 +1920,13 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_bottom_border {
+#qxfajtzgbn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_col_headings {
+#qxfajtzgbn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2043,7 +1941,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_col_heading {
+#qxfajtzgbn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2063,7 +1961,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#iyhtyzrmag .gt_column_spanner_outer {
+#qxfajtzgbn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2075,15 +1973,15 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 4px;
 }
 
-#iyhtyzrmag .gt_column_spanner_outer:first-child {
+#qxfajtzgbn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iyhtyzrmag .gt_column_spanner_outer:last-child {
+#qxfajtzgbn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iyhtyzrmag .gt_column_spanner {
+#qxfajtzgbn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2095,11 +1993,11 @@ H_0 &amp;: \beta_1 = 0\\
   width: 100%;
 }
 
-#iyhtyzrmag .gt_spanner_row {
+#qxfajtzgbn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iyhtyzrmag .gt_group_heading {
+#qxfajtzgbn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2125,7 +2023,7 @@ H_0 &amp;: \beta_1 = 0\\
   text-align: left;
 }
 
-#iyhtyzrmag .gt_empty_group_heading {
+#qxfajtzgbn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2140,15 +2038,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: middle;
 }
 
-#iyhtyzrmag .gt_from_md > :first-child {
+#qxfajtzgbn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iyhtyzrmag .gt_from_md > :last-child {
+#qxfajtzgbn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iyhtyzrmag .gt_row {
+#qxfajtzgbn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2167,7 +2065,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#iyhtyzrmag .gt_stub {
+#qxfajtzgbn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2180,7 +2078,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#iyhtyzrmag .gt_stub_row_group {
+#qxfajtzgbn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2194,15 +2092,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: top;
 }
 
-#iyhtyzrmag .gt_row_group_first td {
+#qxfajtzgbn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iyhtyzrmag .gt_row_group_first th {
+#qxfajtzgbn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iyhtyzrmag .gt_summary_row {
+#qxfajtzgbn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2212,16 +2110,16 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#iyhtyzrmag .gt_first_summary_row {
+#qxfajtzgbn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_first_summary_row.thick {
+#qxfajtzgbn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iyhtyzrmag .gt_last_summary_row {
+#qxfajtzgbn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2231,7 +2129,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_grand_summary_row {
+#qxfajtzgbn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2241,7 +2139,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#iyhtyzrmag .gt_first_grand_summary_row {
+#qxfajtzgbn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2251,7 +2149,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_last_grand_summary_row_top {
+#qxfajtzgbn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2261,11 +2159,11 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_striped {
+#qxfajtzgbn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iyhtyzrmag .gt_table_body {
+#qxfajtzgbn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2274,7 +2172,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_footnotes {
+#qxfajtzgbn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2288,7 +2186,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_footnote {
+#qxfajtzgbn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2297,7 +2195,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#iyhtyzrmag .gt_sourcenotes {
+#qxfajtzgbn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2311,7 +2209,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#iyhtyzrmag .gt_sourcenote {
+#qxfajtzgbn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2319,77 +2217,77 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#iyhtyzrmag .gt_left {
+#qxfajtzgbn .gt_left {
   text-align: left;
 }
 
-#iyhtyzrmag .gt_center {
+#qxfajtzgbn .gt_center {
   text-align: center;
 }
 
-#iyhtyzrmag .gt_right {
+#qxfajtzgbn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iyhtyzrmag .gt_font_normal {
+#qxfajtzgbn .gt_font_normal {
   font-weight: normal;
 }
 
-#iyhtyzrmag .gt_font_bold {
+#qxfajtzgbn .gt_font_bold {
   font-weight: bold;
 }
 
-#iyhtyzrmag .gt_font_italic {
+#qxfajtzgbn .gt_font_italic {
   font-style: italic;
 }
 
-#iyhtyzrmag .gt_super {
+#qxfajtzgbn .gt_super {
   font-size: 65%;
 }
 
-#iyhtyzrmag .gt_footnote_marks {
+#qxfajtzgbn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iyhtyzrmag .gt_asterisk {
+#qxfajtzgbn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iyhtyzrmag .gt_indent_1 {
+#qxfajtzgbn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iyhtyzrmag .gt_indent_2 {
+#qxfajtzgbn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iyhtyzrmag .gt_indent_3 {
+#qxfajtzgbn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iyhtyzrmag .gt_indent_4 {
+#qxfajtzgbn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iyhtyzrmag .gt_indent_5 {
+#qxfajtzgbn .gt_indent_5 {
   text-indent: 25px;
 }
 
-#iyhtyzrmag .katex-display {
+#qxfajtzgbn .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#iyhtyzrmag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qxfajtzgbn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -2424,40 +2322,40 @@ H_0 &amp;: \beta_1 = 0\\
 </div>
 </div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-44" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-44">Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (4/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-population-slope-beta_1-44" class="slide level2">
+<h2>Life expectancy example: hypothesis test for population <strong>slope</strong> <span class="math inline">\(\beta_1\)</span> (4/4)</h2>
 <ol start="7" type="1">
 <li>Write a <span style="color:#4FADF3"><strong>conclusion</strong></span></li>
 </ol>
 <p>We reject the null hypothesis that the slope is 0 at the <span class="math inline">\(5\%\)</span> significance level. There is sufficient evidence that there is significant association between life expectancy and cell phones per 100 people (p-value &lt; 0.0001).</p>
 </section>
-<section id="did-you-notice-anything-about-the-p-value" class="level2">
-<h2 class="anchored" data-anchor-id="did-you-notice-anything-about-the-p-value">Did you notice anything about the p-value?</h2>
+<section id="did-you-notice-anything-about-the-p-value" class="slide level2">
+<h2>Did you notice anything about the p-value?</h2>
 <p>The p-value of the t-test and F-test are the same!!</p>
 <ul>
 <li>For the t-test:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a><span class="fu">tidy</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a aria-label="2"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="qkgxgjqnpz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qkgxgjqnpz table {
+<div id="tkkswzvhkd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tkkswzvhkd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qkgxgjqnpz thead, #qkgxgjqnpz tbody, #qkgxgjqnpz tfoot, #qkgxgjqnpz tr, #qkgxgjqnpz td, #qkgxgjqnpz th {
+#tkkswzvhkd thead, #tkkswzvhkd tbody, #tkkswzvhkd tfoot, #tkkswzvhkd tr, #tkkswzvhkd td, #tkkswzvhkd th {
   border-style: none;
 }
 
-#qkgxgjqnpz p {
+#tkkswzvhkd p {
   margin: 0;
   padding: 0;
 }
 
-#qkgxgjqnpz .gt_table {
+#tkkswzvhkd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2483,12 +2381,12 @@ H_0 &amp;: \beta_1 = 0\\
   border-left-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_caption {
+#tkkswzvhkd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qkgxgjqnpz .gt_title {
+#tkkswzvhkd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2500,7 +2398,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-width: 0;
 }
 
-#qkgxgjqnpz .gt_subtitle {
+#tkkswzvhkd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2512,7 +2410,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-width: 0;
 }
 
-#qkgxgjqnpz .gt_heading {
+#tkkswzvhkd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2524,13 +2422,13 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_bottom_border {
+#tkkswzvhkd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_col_headings {
+#tkkswzvhkd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2545,7 +2443,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_col_heading {
+#tkkswzvhkd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2565,7 +2463,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#qkgxgjqnpz .gt_column_spanner_outer {
+#tkkswzvhkd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2577,15 +2475,15 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 4px;
 }
 
-#qkgxgjqnpz .gt_column_spanner_outer:first-child {
+#tkkswzvhkd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qkgxgjqnpz .gt_column_spanner_outer:last-child {
+#tkkswzvhkd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qkgxgjqnpz .gt_column_spanner {
+#tkkswzvhkd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2597,11 +2495,11 @@ H_0 &amp;: \beta_1 = 0\\
   width: 100%;
 }
 
-#qkgxgjqnpz .gt_spanner_row {
+#tkkswzvhkd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qkgxgjqnpz .gt_group_heading {
+#tkkswzvhkd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2627,7 +2525,7 @@ H_0 &amp;: \beta_1 = 0\\
   text-align: left;
 }
 
-#qkgxgjqnpz .gt_empty_group_heading {
+#tkkswzvhkd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2642,15 +2540,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: middle;
 }
 
-#qkgxgjqnpz .gt_from_md > :first-child {
+#tkkswzvhkd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qkgxgjqnpz .gt_from_md > :last-child {
+#tkkswzvhkd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qkgxgjqnpz .gt_row {
+#tkkswzvhkd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2669,7 +2567,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#qkgxgjqnpz .gt_stub {
+#tkkswzvhkd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2682,7 +2580,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#qkgxgjqnpz .gt_stub_row_group {
+#tkkswzvhkd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2696,15 +2594,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: top;
 }
 
-#qkgxgjqnpz .gt_row_group_first td {
+#tkkswzvhkd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qkgxgjqnpz .gt_row_group_first th {
+#tkkswzvhkd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qkgxgjqnpz .gt_summary_row {
+#tkkswzvhkd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2714,16 +2612,16 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#qkgxgjqnpz .gt_first_summary_row {
+#tkkswzvhkd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_first_summary_row.thick {
+#tkkswzvhkd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qkgxgjqnpz .gt_last_summary_row {
+#tkkswzvhkd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2733,7 +2631,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_grand_summary_row {
+#tkkswzvhkd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2743,7 +2641,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#qkgxgjqnpz .gt_first_grand_summary_row {
+#tkkswzvhkd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2753,7 +2651,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_last_grand_summary_row_top {
+#tkkswzvhkd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2763,11 +2661,11 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_striped {
+#tkkswzvhkd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qkgxgjqnpz .gt_table_body {
+#tkkswzvhkd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2776,7 +2674,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_footnotes {
+#tkkswzvhkd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2790,7 +2688,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_footnote {
+#tkkswzvhkd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2799,7 +2697,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#qkgxgjqnpz .gt_sourcenotes {
+#tkkswzvhkd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2813,7 +2711,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#qkgxgjqnpz .gt_sourcenote {
+#tkkswzvhkd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2821,77 +2719,77 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#qkgxgjqnpz .gt_left {
+#tkkswzvhkd .gt_left {
   text-align: left;
 }
 
-#qkgxgjqnpz .gt_center {
+#tkkswzvhkd .gt_center {
   text-align: center;
 }
 
-#qkgxgjqnpz .gt_right {
+#tkkswzvhkd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qkgxgjqnpz .gt_font_normal {
+#tkkswzvhkd .gt_font_normal {
   font-weight: normal;
 }
 
-#qkgxgjqnpz .gt_font_bold {
+#tkkswzvhkd .gt_font_bold {
   font-weight: bold;
 }
 
-#qkgxgjqnpz .gt_font_italic {
+#tkkswzvhkd .gt_font_italic {
   font-style: italic;
 }
 
-#qkgxgjqnpz .gt_super {
+#tkkswzvhkd .gt_super {
   font-size: 65%;
 }
 
-#qkgxgjqnpz .gt_footnote_marks {
+#tkkswzvhkd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qkgxgjqnpz .gt_asterisk {
+#tkkswzvhkd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qkgxgjqnpz .gt_indent_1 {
+#tkkswzvhkd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qkgxgjqnpz .gt_indent_2 {
+#tkkswzvhkd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qkgxgjqnpz .gt_indent_3 {
+#tkkswzvhkd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qkgxgjqnpz .gt_indent_4 {
+#tkkswzvhkd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qkgxgjqnpz .gt_indent_5 {
+#tkkswzvhkd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qkgxgjqnpz .katex-display {
+#tkkswzvhkd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qkgxgjqnpz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tkkswzvhkd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -2926,26 +2824,26 @@ H_0 &amp;: \beta_1 = 0\\
 <li>For the F-test:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a><span class="fu">anova</span>(model1) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a aria-label="2"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="yyoonztegp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yyoonztegp table {
+<div id="uzzfsvujcj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uzzfsvujcj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yyoonztegp thead, #yyoonztegp tbody, #yyoonztegp tfoot, #yyoonztegp tr, #yyoonztegp td, #yyoonztegp th {
+#uzzfsvujcj thead, #uzzfsvujcj tbody, #uzzfsvujcj tfoot, #uzzfsvujcj tr, #uzzfsvujcj td, #uzzfsvujcj th {
   border-style: none;
 }
 
-#yyoonztegp p {
+#uzzfsvujcj p {
   margin: 0;
   padding: 0;
 }
 
-#yyoonztegp .gt_table {
+#uzzfsvujcj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2971,12 +2869,12 @@ H_0 &amp;: \beta_1 = 0\\
   border-left-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_caption {
+#uzzfsvujcj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yyoonztegp .gt_title {
+#uzzfsvujcj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2988,7 +2886,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-width: 0;
 }
 
-#yyoonztegp .gt_subtitle {
+#uzzfsvujcj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3000,7 +2898,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-width: 0;
 }
 
-#yyoonztegp .gt_heading {
+#uzzfsvujcj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3012,13 +2910,13 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_bottom_border {
+#uzzfsvujcj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_col_headings {
+#uzzfsvujcj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3033,7 +2931,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_col_heading {
+#uzzfsvujcj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3053,7 +2951,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#yyoonztegp .gt_column_spanner_outer {
+#uzzfsvujcj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3065,15 +2963,15 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 4px;
 }
 
-#yyoonztegp .gt_column_spanner_outer:first-child {
+#uzzfsvujcj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yyoonztegp .gt_column_spanner_outer:last-child {
+#uzzfsvujcj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yyoonztegp .gt_column_spanner {
+#uzzfsvujcj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3085,11 +2983,11 @@ H_0 &amp;: \beta_1 = 0\\
   width: 100%;
 }
 
-#yyoonztegp .gt_spanner_row {
+#uzzfsvujcj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yyoonztegp .gt_group_heading {
+#uzzfsvujcj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3115,7 +3013,7 @@ H_0 &amp;: \beta_1 = 0\\
   text-align: left;
 }
 
-#yyoonztegp .gt_empty_group_heading {
+#uzzfsvujcj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3130,15 +3028,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: middle;
 }
 
-#yyoonztegp .gt_from_md > :first-child {
+#uzzfsvujcj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yyoonztegp .gt_from_md > :last-child {
+#uzzfsvujcj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yyoonztegp .gt_row {
+#uzzfsvujcj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3157,7 +3055,7 @@ H_0 &amp;: \beta_1 = 0\\
   overflow-x: hidden;
 }
 
-#yyoonztegp .gt_stub {
+#uzzfsvujcj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3170,7 +3068,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#yyoonztegp .gt_stub_row_group {
+#uzzfsvujcj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3184,15 +3082,15 @@ H_0 &amp;: \beta_1 = 0\\
   vertical-align: top;
 }
 
-#yyoonztegp .gt_row_group_first td {
+#uzzfsvujcj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yyoonztegp .gt_row_group_first th {
+#uzzfsvujcj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yyoonztegp .gt_summary_row {
+#uzzfsvujcj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3202,16 +3100,16 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#yyoonztegp .gt_first_summary_row {
+#uzzfsvujcj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_first_summary_row.thick {
+#uzzfsvujcj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yyoonztegp .gt_last_summary_row {
+#uzzfsvujcj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3221,7 +3119,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_grand_summary_row {
+#uzzfsvujcj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3231,7 +3129,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#yyoonztegp .gt_first_grand_summary_row {
+#uzzfsvujcj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3241,7 +3139,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-top-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_last_grand_summary_row_top {
+#uzzfsvujcj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3251,11 +3149,11 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_striped {
+#uzzfsvujcj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yyoonztegp .gt_table_body {
+#uzzfsvujcj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3264,7 +3162,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_footnotes {
+#uzzfsvujcj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3278,7 +3176,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_footnote {
+#uzzfsvujcj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3287,7 +3185,7 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#yyoonztegp .gt_sourcenotes {
+#uzzfsvujcj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3301,7 +3199,7 @@ H_0 &amp;: \beta_1 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#yyoonztegp .gt_sourcenote {
+#uzzfsvujcj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3309,77 +3207,77 @@ H_0 &amp;: \beta_1 = 0\\
   padding-right: 5px;
 }
 
-#yyoonztegp .gt_left {
+#uzzfsvujcj .gt_left {
   text-align: left;
 }
 
-#yyoonztegp .gt_center {
+#uzzfsvujcj .gt_center {
   text-align: center;
 }
 
-#yyoonztegp .gt_right {
+#uzzfsvujcj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yyoonztegp .gt_font_normal {
+#uzzfsvujcj .gt_font_normal {
   font-weight: normal;
 }
 
-#yyoonztegp .gt_font_bold {
+#uzzfsvujcj .gt_font_bold {
   font-weight: bold;
 }
 
-#yyoonztegp .gt_font_italic {
+#uzzfsvujcj .gt_font_italic {
   font-style: italic;
 }
 
-#yyoonztegp .gt_super {
+#uzzfsvujcj .gt_super {
   font-size: 65%;
 }
 
-#yyoonztegp .gt_footnote_marks {
+#uzzfsvujcj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yyoonztegp .gt_asterisk {
+#uzzfsvujcj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yyoonztegp .gt_indent_1 {
+#uzzfsvujcj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yyoonztegp .gt_indent_2 {
+#uzzfsvujcj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yyoonztegp .gt_indent_3 {
+#uzzfsvujcj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yyoonztegp .gt_indent_4 {
+#uzzfsvujcj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yyoonztegp .gt_indent_5 {
+#uzzfsvujcj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yyoonztegp .katex-display {
+#uzzfsvujcj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yyoonztegp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#uzzfsvujcj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -3414,9 +3312,9 @@ H_0 &amp;: \beta_1 = 0\\
 </div>
 </div>
 <p>This is true when we use the F-test for a single coefficient!</p>
-</section>
-</section>
-<section id="learning-objectives-3" class="level1">
+</section></section>
+<section>
+<section id="learning-objectives-3" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li><p>Identify different sources of variation in an Analysis of Variance (ANOVA) table</p></li>
@@ -3430,8 +3328,9 @@ H_0 &amp;: \beta_1 = 0\\
 <ol start="4" type="1">
 <li>Calculate and interpret the coefficient of determination</li>
 </ol>
-<section id="testing-association-between-continuous-outcome-and-categorical-variable" class="level2">
-<h2 class="anchored" data-anchor-id="testing-association-between-continuous-outcome-and-categorical-variable">Testing association between continuous outcome and categorical variable</h2>
+</section>
+<section id="testing-association-between-continuous-outcome-and-categorical-variable" class="slide level2">
+<h2>Testing association between continuous outcome and categorical variable</h2>
 <ul>
 <li>Before we used the F-test (or t-test) to determine association between two continuous variables</li>
 <li>We CANNOT use the t-test to determine association between a continuous outcome and a multi-level categorical variable</li>
@@ -3442,11 +3341,11 @@ H_0 &amp;: \beta_1 = 0\\
 <li>We can use the t-test or F-test for a categorical variable with only 2 levels</li>
 </ul>
 </section>
-<section id="poll-everywhere-question-3" class="level2">
-<h2 class="anchored" data-anchor-id="poll-everywhere-question-3">Poll Everywhere Question 3</h2>
+<section id="poll-everywhere-question-3" class="slide level2">
+<h2>Poll Everywhere Question 3</h2>
 </section>
-<section id="we-can-extend-our-look-at-the-f-test" class="level2">
-<h2 class="anchored" data-anchor-id="we-can-extend-our-look-at-the-f-test">We can extend our look at the F-test</h2>
+<section id="we-can-extend-our-look-at-the-f-test" class="slide level2">
+<h2>We can extend our look at the F-test</h2>
 <p>We can create a hypothesis test for more than one coefficient at a time…</p>
 <div class="columns">
 <div class="column" style="width:17%;">
@@ -3469,8 +3368,7 @@ H_0 &amp;: \beta_1 = 0\\
 <p><span class="math inline">\(\beta_1\neq0\)</span> and/or <span class="math inline">\(\beta_2\neq0\)</span></p>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <p>in a slightly different way…</p>
 <div class="columns">
 <div class="column" style="width:17%;">
@@ -3499,12 +3397,11 @@ H_0 &amp;: \beta_1 = 0\\
 </ul>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <p>*This is <strong>not quite</strong> the alternative, but if we reject the null, then this is the model we move forward with</p>
 </section>
-<section id="lets-say-we-want-to-test-the-association-between-life-expectancy-and-freedom-status" class="level2">
-<h2 class="anchored" data-anchor-id="lets-say-we-want-to-test-the-association-between-life-expectancy-and-freedom-status">Let’s say we want to test the association between life expectancy and freedom status</h2>
+<section id="lets-say-we-want-to-test-the-association-between-life-expectancy-and-freedom-status" class="slide level2">
+<h2>Let’s say we want to test the association between life expectancy and freedom status</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><span class="math display">\[\begin{aligned}
@@ -3518,17 +3415,16 @@ H_0 &amp;: \beta_1 = 0\\
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<figure>
+<p><img data-src="06_SLR_Eval_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="f-test-general-steps-for-hypothesis-test-for-categorical-variable" class="level2">
-<h2 class="anchored" data-anchor-id="f-test-general-steps-for-hypothesis-test-for-categorical-variable">F-test: general steps for hypothesis test for categorical variable</h2>
+<section id="f-test-general-steps-for-hypothesis-test-for-categorical-variable" class="slide level2">
+<h2>F-test: general steps for hypothesis test for categorical variable</h2>
 <div class="columns">
 <div class="column" style="width:48%;">
 <ol type="1">
@@ -3572,11 +3468,10 @@ H_0 :&amp; \beta_1 = ... = \beta_k = 0\\
 </ul></li>
 </ol>
 <p>We (reject/fail to reject) the null hypothesis that the slope is 0 at the <span class="math inline">\(100\alpha\%\)</span> significance level. There is (sufficient/insufficient) evidence that there is significant association between (<span class="math inline">\(Y\)</span>) and (<span class="math inline">\(X\)</span>) (p-value = <span class="math inline">\(P(F_{1, n-(k+1)} &gt; F)\)</span>).</p>
-</div>
-</div>
+</div></div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-freedom-status-14" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-freedom-status-14">Life expectancy example: hypothesis test for freedom status (1/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-freedom-status-14" class="slide level2">
+<h2>Life expectancy example: hypothesis test for freedom status (1/4)</h2>
 <ul>
 <li>Steps 1-4 are setting up our hypothesis test: not much change from the general steps</li>
 </ul>
@@ -3603,41 +3498,40 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 <p>The test statistic is <span class="math inline">\(F\)</span>, and follows an F-distribution with numerator <span class="math inline">\(df=k\)</span> and denominator <span class="math inline">\(df=n-(k+1) = 105-(2+1)\)</span></p>
 </div><div class="column" style="width:30%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nobs</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-label="1"></a><span class="fu">nobs</span>(model1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 105</code></pre>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-freedom-status-24" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-freedom-status-24">Life expectancy example: hypothesis test for freedom status (2/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-freedom-status-24" class="slide level2">
+<h2>Life expectancy example: hypothesis test for freedom status (2/4)</h2>
 <ol start="5" type="1">
 <li>Calculate the <span style="color:#4FADF3"><strong>test statistic</strong></span></li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> freedom_status)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>anova_tab2 <span class="ot">=</span> <span class="fu">anova</span>(model2) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>anova_tab2 <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a>model2 <span class="ot">&lt;-</span> gapm <span class="sc">%&gt;%</span> <span class="fu">lm</span>(<span class="at">formula =</span> life_exp <span class="sc">~</span> freedom_status)</span>
+<span id="cb15-2"><a aria-label="2"></a>anova_tab2 <span class="ot">=</span> <span class="fu">anova</span>(model2) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span>
+<span id="cb15-3"><a aria-label="3"></a>anova_tab2 <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span> <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="mqoteboxso" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mqoteboxso table {
+<div id="ajaubpkite" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ajaubpkite table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mqoteboxso thead, #mqoteboxso tbody, #mqoteboxso tfoot, #mqoteboxso tr, #mqoteboxso td, #mqoteboxso th {
+#ajaubpkite thead, #ajaubpkite tbody, #ajaubpkite tfoot, #ajaubpkite tr, #ajaubpkite td, #ajaubpkite th {
   border-style: none;
 }
 
-#mqoteboxso p {
+#ajaubpkite p {
   margin: 0;
   padding: 0;
 }
 
-#mqoteboxso .gt_table {
+#ajaubpkite .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3663,12 +3557,12 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-left-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_caption {
+#ajaubpkite .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mqoteboxso .gt_title {
+#ajaubpkite .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3680,7 +3574,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-width: 0;
 }
 
-#mqoteboxso .gt_subtitle {
+#ajaubpkite .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3692,7 +3586,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-top-width: 0;
 }
 
-#mqoteboxso .gt_heading {
+#ajaubpkite .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3704,13 +3598,13 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_bottom_border {
+#ajaubpkite .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_col_headings {
+#ajaubpkite .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3725,7 +3619,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_col_heading {
+#ajaubpkite .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3745,7 +3639,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   overflow-x: hidden;
 }
 
-#mqoteboxso .gt_column_spanner_outer {
+#ajaubpkite .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3757,15 +3651,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 4px;
 }
 
-#mqoteboxso .gt_column_spanner_outer:first-child {
+#ajaubpkite .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mqoteboxso .gt_column_spanner_outer:last-child {
+#ajaubpkite .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mqoteboxso .gt_column_spanner {
+#ajaubpkite .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3777,11 +3671,11 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   width: 100%;
 }
 
-#mqoteboxso .gt_spanner_row {
+#ajaubpkite .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mqoteboxso .gt_group_heading {
+#ajaubpkite .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3807,7 +3701,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   text-align: left;
 }
 
-#mqoteboxso .gt_empty_group_heading {
+#ajaubpkite .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3822,15 +3716,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   vertical-align: middle;
 }
 
-#mqoteboxso .gt_from_md > :first-child {
+#ajaubpkite .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mqoteboxso .gt_from_md > :last-child {
+#ajaubpkite .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mqoteboxso .gt_row {
+#ajaubpkite .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3849,7 +3743,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   overflow-x: hidden;
 }
 
-#mqoteboxso .gt_stub {
+#ajaubpkite .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3862,7 +3756,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#mqoteboxso .gt_stub_row_group {
+#ajaubpkite .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3876,15 +3770,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   vertical-align: top;
 }
 
-#mqoteboxso .gt_row_group_first td {
+#ajaubpkite .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mqoteboxso .gt_row_group_first th {
+#ajaubpkite .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mqoteboxso .gt_summary_row {
+#ajaubpkite .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3894,16 +3788,16 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#mqoteboxso .gt_first_summary_row {
+#ajaubpkite .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_first_summary_row.thick {
+#ajaubpkite .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mqoteboxso .gt_last_summary_row {
+#ajaubpkite .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3913,7 +3807,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_grand_summary_row {
+#ajaubpkite .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3923,7 +3817,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#mqoteboxso .gt_first_grand_summary_row {
+#ajaubpkite .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3933,7 +3827,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-top-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_last_grand_summary_row_top {
+#ajaubpkite .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3943,11 +3837,11 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_striped {
+#ajaubpkite .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mqoteboxso .gt_table_body {
+#ajaubpkite .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3956,7 +3850,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_footnotes {
+#ajaubpkite .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3970,7 +3864,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_footnote {
+#ajaubpkite .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3979,7 +3873,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#mqoteboxso .gt_sourcenotes {
+#ajaubpkite .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3993,7 +3887,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#mqoteboxso .gt_sourcenote {
+#ajaubpkite .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4001,77 +3895,77 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#mqoteboxso .gt_left {
+#ajaubpkite .gt_left {
   text-align: left;
 }
 
-#mqoteboxso .gt_center {
+#ajaubpkite .gt_center {
   text-align: center;
 }
 
-#mqoteboxso .gt_right {
+#ajaubpkite .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mqoteboxso .gt_font_normal {
+#ajaubpkite .gt_font_normal {
   font-weight: normal;
 }
 
-#mqoteboxso .gt_font_bold {
+#ajaubpkite .gt_font_bold {
   font-weight: bold;
 }
 
-#mqoteboxso .gt_font_italic {
+#ajaubpkite .gt_font_italic {
   font-style: italic;
 }
 
-#mqoteboxso .gt_super {
+#ajaubpkite .gt_super {
   font-size: 65%;
 }
 
-#mqoteboxso .gt_footnote_marks {
+#ajaubpkite .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mqoteboxso .gt_asterisk {
+#ajaubpkite .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mqoteboxso .gt_indent_1 {
+#ajaubpkite .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mqoteboxso .gt_indent_2 {
+#ajaubpkite .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mqoteboxso .gt_indent_3 {
+#ajaubpkite .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mqoteboxso .gt_indent_4 {
+#ajaubpkite .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mqoteboxso .gt_indent_5 {
+#ajaubpkite .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mqoteboxso .katex-display {
+#ajaubpkite .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mqoteboxso div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ajaubpkite div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -4115,17 +4009,16 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 <p><strong>Option 2:</strong> Get the test statistic value (F) from the ANOVA table</p>
 <p><span class="math display">\[F = 4.886\]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>F_stat2 <span class="ot">=</span> anova_tab2<span class="sc">$</span>statistic[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a>F_stat2 <span class="ot">=</span> anova_tab2<span class="sc">$</span>statistic[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
+</div></div>
 <p>&nbsp;</p>
 <div class="hl">
 <p>I tend to skip this step because I can do it all with step 6</p>
 </div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-freedom-status-34" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-freedom-status-34">Life expectancy example: hypothesis test for freedom status (3/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-freedom-status-34" class="slide level2">
+<h2>Life expectancy example: hypothesis test for freedom status (3/4)</h2>
 <ol start="6" type="1">
 <li>Calculate the <span style="color:#4FADF3"><strong>p-value</strong></span></li>
 </ol>
@@ -4137,9 +4030,9 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 <li><p><strong>Option 1:</strong> Use <code>pf()</code> and our calculated test statistic</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p-value is ALWAYS the right tail for F-test</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nobs</span>(model1)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(F_stat2, <span class="at">df1 =</span> <span class="dv">2</span>, <span class="at">df2 =</span> n<span class="dv">-3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a><span class="co"># p-value is ALWAYS the right tail for F-test</span></span>
+<span id="cb17-2"><a aria-label="2"></a>n <span class="ot">=</span> <span class="fu">nobs</span>(model1)</span>
+<span id="cb17-3"><a aria-label="3"></a><span class="fu">pf</span>(F_stat2, <span class="at">df1 =</span> <span class="dv">2</span>, <span class="at">df2 =</span> n<span class="dv">-3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.009414324</code></pre>
 </div>
@@ -4148,26 +4041,26 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 <li><strong>Option 2:</strong> Use the ANOVA table</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model2) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-label="1"></a><span class="fu">anova</span>(model2) <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a aria-label="2"></a>  <span class="fu">tab_options</span>(<span class="at">table.font.size =</span> <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fkcdmysfwj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fkcdmysfwj table {
+<div id="eznovetkrp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eznovetkrp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fkcdmysfwj thead, #fkcdmysfwj tbody, #fkcdmysfwj tfoot, #fkcdmysfwj tr, #fkcdmysfwj td, #fkcdmysfwj th {
+#eznovetkrp thead, #eznovetkrp tbody, #eznovetkrp tfoot, #eznovetkrp tr, #eznovetkrp td, #eznovetkrp th {
   border-style: none;
 }
 
-#fkcdmysfwj p {
+#eznovetkrp p {
   margin: 0;
   padding: 0;
 }
 
-#fkcdmysfwj .gt_table {
+#eznovetkrp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4193,12 +4086,12 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-left-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_caption {
+#eznovetkrp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fkcdmysfwj .gt_title {
+#eznovetkrp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4210,7 +4103,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-width: 0;
 }
 
-#fkcdmysfwj .gt_subtitle {
+#eznovetkrp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4222,7 +4115,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-top-width: 0;
 }
 
-#fkcdmysfwj .gt_heading {
+#eznovetkrp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4234,13 +4127,13 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_bottom_border {
+#eznovetkrp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_col_headings {
+#eznovetkrp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4255,7 +4148,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_col_heading {
+#eznovetkrp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4275,7 +4168,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   overflow-x: hidden;
 }
 
-#fkcdmysfwj .gt_column_spanner_outer {
+#eznovetkrp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4287,15 +4180,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 4px;
 }
 
-#fkcdmysfwj .gt_column_spanner_outer:first-child {
+#eznovetkrp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fkcdmysfwj .gt_column_spanner_outer:last-child {
+#eznovetkrp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fkcdmysfwj .gt_column_spanner {
+#eznovetkrp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4307,11 +4200,11 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   width: 100%;
 }
 
-#fkcdmysfwj .gt_spanner_row {
+#eznovetkrp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fkcdmysfwj .gt_group_heading {
+#eznovetkrp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4337,7 +4230,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   text-align: left;
 }
 
-#fkcdmysfwj .gt_empty_group_heading {
+#eznovetkrp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4352,15 +4245,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   vertical-align: middle;
 }
 
-#fkcdmysfwj .gt_from_md > :first-child {
+#eznovetkrp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fkcdmysfwj .gt_from_md > :last-child {
+#eznovetkrp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fkcdmysfwj .gt_row {
+#eznovetkrp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4379,7 +4272,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   overflow-x: hidden;
 }
 
-#fkcdmysfwj .gt_stub {
+#eznovetkrp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4392,7 +4285,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#fkcdmysfwj .gt_stub_row_group {
+#eznovetkrp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4406,15 +4299,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   vertical-align: top;
 }
 
-#fkcdmysfwj .gt_row_group_first td {
+#eznovetkrp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fkcdmysfwj .gt_row_group_first th {
+#eznovetkrp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fkcdmysfwj .gt_summary_row {
+#eznovetkrp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4424,16 +4317,16 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#fkcdmysfwj .gt_first_summary_row {
+#eznovetkrp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_first_summary_row.thick {
+#eznovetkrp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fkcdmysfwj .gt_last_summary_row {
+#eznovetkrp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4443,7 +4336,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_grand_summary_row {
+#eznovetkrp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4453,7 +4346,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#fkcdmysfwj .gt_first_grand_summary_row {
+#eznovetkrp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4463,7 +4356,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-top-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_last_grand_summary_row_top {
+#eznovetkrp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4473,11 +4366,11 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_striped {
+#eznovetkrp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fkcdmysfwj .gt_table_body {
+#eznovetkrp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4486,7 +4379,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-bottom-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_footnotes {
+#eznovetkrp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4500,7 +4393,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_footnote {
+#eznovetkrp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4509,7 +4402,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#fkcdmysfwj .gt_sourcenotes {
+#eznovetkrp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4523,7 +4416,7 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   border-right-color: #D3D3D3;
 }
 
-#fkcdmysfwj .gt_sourcenote {
+#eznovetkrp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4531,77 +4424,77 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
   padding-right: 5px;
 }
 
-#fkcdmysfwj .gt_left {
+#eznovetkrp .gt_left {
   text-align: left;
 }
 
-#fkcdmysfwj .gt_center {
+#eznovetkrp .gt_center {
   text-align: center;
 }
 
-#fkcdmysfwj .gt_right {
+#eznovetkrp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fkcdmysfwj .gt_font_normal {
+#eznovetkrp .gt_font_normal {
   font-weight: normal;
 }
 
-#fkcdmysfwj .gt_font_bold {
+#eznovetkrp .gt_font_bold {
   font-weight: bold;
 }
 
-#fkcdmysfwj .gt_font_italic {
+#eznovetkrp .gt_font_italic {
   font-style: italic;
 }
 
-#fkcdmysfwj .gt_super {
+#eznovetkrp .gt_super {
   font-size: 65%;
 }
 
-#fkcdmysfwj .gt_footnote_marks {
+#eznovetkrp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fkcdmysfwj .gt_asterisk {
+#eznovetkrp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fkcdmysfwj .gt_indent_1 {
+#eznovetkrp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fkcdmysfwj .gt_indent_2 {
+#eznovetkrp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fkcdmysfwj .gt_indent_3 {
+#eznovetkrp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fkcdmysfwj .gt_indent_4 {
+#eznovetkrp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fkcdmysfwj .gt_indent_5 {
+#eznovetkrp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fkcdmysfwj .katex-display {
+#eznovetkrp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fkcdmysfwj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#eznovetkrp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -4636,15 +4529,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 </div>
 </div>
 </section>
-<section id="life-expectancy-example-hypothesis-test-for-freedom-status-44" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-hypothesis-test-for-freedom-status-44">Life expectancy example: hypothesis test for freedom status (4/4)</h2>
+<section id="life-expectancy-example-hypothesis-test-for-freedom-status-44" class="slide level2">
+<h2>Life expectancy example: hypothesis test for freedom status (4/4)</h2>
 <ol start="7" type="1">
 <li>Write a <span style="color:#4FADF3"><strong>conclusion</strong></span></li>
 </ol>
 <p>We reject the null hypothesis that both coefficients are equal to 0 at the <span class="math inline">\(5\%\)</span> significance level. There is sufficient evidence that there is association between life expectancy and the country’s freedom status (p-value = 0.009).</p>
-</section>
-</section>
-<section id="learning-objectives-4" class="level1">
+</section></section>
+<section>
+<section id="learning-objectives-4" class="title-slide slide level1 center">
 <h1>Learning Objectives</h1>
 <ol type="1">
 <li><p>Identify different sources of variation in an Analysis of Variance (ANOVA) table</p></li>
@@ -4656,8 +4549,9 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 <li>Calculate and interpret the coefficient of determination</li>
 </ol>
 </div>
-<section id="correlation-coefficient-from-511" class="level2">
-<h2 class="anchored" data-anchor-id="correlation-coefficient-from-511">Correlation coefficient from 511</h2>
+</section>
+<section id="correlation-coefficient-from-511" class="slide level2">
+<h2>Correlation coefficient from 511</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <p>Correlation coefficient <span class="math inline">\(r\)</span> can tell us about the strength of a relationship <strong>between two continuous variables</strong></p>
@@ -4669,39 +4563,15 @@ H_0 :&amp; \beta_1 = \beta_2 = 0\\
 <p>Note: All other values of <span class="math inline">\(r\)</span> tell us that the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is not perfect. The closer <span class="math inline">\(r\)</span> is to 0, the weaker the linear relationship.</p>
 </div><div class="column" style="width:55%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img_slides/corr_coef.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="878"></p>
+<figure>
+<p><img data-src="../img_slides/corr_coef.png" class="quarto-figure quarto-figure-center" width="878"></p>
 </figure>
 </div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="correlation-coefficient-r-or-r" class="level2" data-visibility="hidden">
-<h2 data-visibility="hidden" class="anchored" data-anchor-id="correlation-coefficient-r-or-r">Correlation coefficient (<span class="math inline">\(r\)</span> or <span class="math inline">\(R\)</span>)</h2>
-<div class="columns">
-<div class="column">
-<p>The (Pearson) correlation coefficient <span class="math inline">\(r\)</span> of variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> can be computed using the formula:</p>
-<p><span class="math display">\[\begin{aligned}
-r  &amp; = \frac{\sum_{i=1}^n (X_i - \overline{X})(Y_i - \overline{Y})}{\Big(\sum_{i=1}^n (X_i - \overline{X})^2 \sum_{i=1}^n (Y_i - \overline{Y})^2\Big)^{1/2}} \\
-&amp; = \frac{SSXY}{\sqrt{SSX \cdot SSY}}
-\end{aligned}\]</span></p>
-<p>we have the relationship</p>
-<p><span class="math display">\[\widehat{\beta}_1 = r\frac{SSY}{SSX},\ \ \text{or},\ \  r = \widehat{\beta}_1\frac{SSX}{SSY}\]</span></p>
-</div><div class="column">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="06_SLR_Eval_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="1056"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="coefficient-of-determination-r2" class="level2">
-<h2 class="anchored" data-anchor-id="coefficient-of-determination-r2">Coefficient of determination: <span class="math inline">\(R^2\)</span></h2>
+
+<section id="coefficient-of-determination-r2" class="slide level2">
+<h2>Coefficient of determination: <span class="math inline">\(R^2\)</span></h2>
 <p>It can be shown that the square of the correlation coefficient <span class="math inline">\(r\)</span> is equal to</p>
 <p><span class="math display">\[R^2 = \frac{SSR}{SSY} = \frac{SSY - SSE}{SSY}\]</span></p>
 <ul>
@@ -4720,16 +4590,16 @@ r  &amp; = \frac{\sum_{i=1}^n (X_i - \overline{X})(Y_i - \overline{Y})}{\Big(\su
 </ul></li>
 </ul>
 </section>
-<section id="life-expectancy-example-correlation-coeffiicent-r-and-coefficient-of-determination-r2" class="level2">
-<h2 class="anchored" data-anchor-id="life-expectancy-example-correlation-coeffiicent-r-and-coefficient-of-determination-r2">Life expectancy example: correlation coeffiicent <span class="math inline">\(r\)</span> and coefficient of determination <span class="math inline">\(R^2\)</span></h2>
+<section id="life-expectancy-example-correlation-coeffiicent-r-and-coefficient-of-determination-r2" class="slide level2">
+<h2>Life expectancy example: correlation coeffiicent <span class="math inline">\(r\)</span> and coefficient of determination <span class="math inline">\(R^2\)</span></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>We can find the correlation coefficient and square it:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="fu">cor</span>(<span class="at">x =</span> gapm<span class="sc">$</span>life_exp, </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> gapm<span class="sc">$</span>cell_phones_100, </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">use =</span>  <span class="st">"complete.obs"</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>r<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a>r <span class="ot">=</span> <span class="fu">cor</span>(<span class="at">x =</span> gapm<span class="sc">$</span>life_exp, </span>
+<span id="cb20-2"><a aria-label="2"></a>        <span class="at">y =</span> gapm<span class="sc">$</span>cell_phones_100, </span>
+<span id="cb20-3"><a aria-label="3"></a>        <span class="at">use =</span>  <span class="st">"complete.obs"</span>)</span>
+<span id="cb20-4"><a aria-label="4"></a>r<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2299573</code></pre>
 </div>
@@ -4737,15 +4607,14 @@ r  &amp; = \frac{\sum_{i=1}^n (X_i - \overline{X})(Y_i - \overline{Y})}{\Big(\su
 </div><div class="column" style="width:50%;">
 <p>We can pull the coefficient of determination from the model summary:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model1_sum <span class="ot">=</span> <span class="fu">summary</span>(model1)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>r_squared <span class="ot">=</span> model1_sum<span class="sc">$</span>r.squared</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>r_squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-label="1"></a>model1_sum <span class="ot">=</span> <span class="fu">summary</span>(model1)</span>
+<span id="cb22-2"><a aria-label="2"></a>r_squared <span class="ot">=</span> model1_sum<span class="sc">$</span>r.squared</span>
+<span id="cb22-3"><a aria-label="3"></a>r_squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2299573</code></pre>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <div class="fact">
 <div class="fact-title">
 <p>Interpretation</p>
@@ -4755,8 +4624,8 @@ r  &amp; = \frac{\sum_{i=1}^n (X_i - \overline{X})(Y_i - \overline{Y})}{\Big(\su
 </div>
 </div>
 </section>
-<section id="what-does-r2-not-measure" class="level2">
-<h2 class="anchored" data-anchor-id="what-does-r2-not-measure">What does <span class="math inline">\(R^2\)</span> not measure?</h2>
+<section id="what-does-r2-not-measure" class="slide level2">
+<h2>What does <span class="math inline">\(R^2\)</span> not measure?</h2>
 <div class="columns">
 <div class="column" style="width:37%;">
 <ul>
@@ -4771,421 +4640,437 @@ r  &amp; = \frac{\sum_{i=1}^n (X_i - \overline{X})(Y_i - \overline{Y})}{\Big(\su
 </ul>
 </div><div class="column" style="width:63%;">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img_slides/anscombe.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure>
+<p><img data-src="../img_slides/anscombe.png" class="quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
+</div></div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Lesson 6: SLR 3</p>
 </div>
-</div>
+</div></div>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
 
-</section>
-</section>
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1955,
+
+        height: 1100,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
         },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
       });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
         }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
             }
           }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          return note.innerHTML;
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      }
-    }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
         }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
             }
           } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
             });
           }
-        } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
-            if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
         }
-      }, function(instance) {
       });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
-      } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
-        });
-      }
-    }
-  });
-  </script>
-</div> <!-- /content -->
-
-
-
+      </script>
+    
 
 </body></html>

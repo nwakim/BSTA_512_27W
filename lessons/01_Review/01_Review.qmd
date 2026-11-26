@@ -37,7 +37,7 @@ BodyTemps = read.csv(here("data", "BodyTemperatures.csv"))
 set.seed(456)
 ```
 
-## Learning Objectives
+# Learning Objectives
 
 1.  Recognize the tools from 511/611 that we will keep using in 512/612
 
@@ -45,7 +45,7 @@ set.seed(456)
 
 3.  Use the core R functions we will need for homework and labs
 
-## Learning Objectives
+# Learning Objectives
 
 ::: lob
 1.  Recognize the tools from 511/611 that we will keep using in 512/612
@@ -219,7 +219,7 @@ tidy(temps_ttest) %>% gt() %>% tab_options(table.font.size = 36)
 :::
 :::
 
-## Learning Objectives
+# Learning Objectives
 
 1.  Recognize the tools from 511/611 that we will keep using in 512/612
 
@@ -323,7 +323,7 @@ load(here("data", "dds.discr.rda"))
 | `load()`       | `.rda`, `.Rdata`  | Built in       |
 | `read_sas()`   | `.sas7bdat`       | `haven`        |
 
-## Learning Objectives
+# Learning Objectives
 
 1.  Recognize the tools from 511/611 that we will keep using in 512/612
 
