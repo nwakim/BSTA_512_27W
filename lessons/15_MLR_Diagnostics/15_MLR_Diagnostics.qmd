@@ -3,7 +3,7 @@ title: "Lesson 15: MLR Model Diagnostics"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w9d1`"
+date: "`r library(here); source(here('class_dates.R')); w9d2`"
 format: 
   revealjs:
     theme: "../simple_NW.scss"

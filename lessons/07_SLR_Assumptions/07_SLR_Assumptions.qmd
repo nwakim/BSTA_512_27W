@@ -1122,8 +1122,8 @@ autoplot(model1, size = 1) + theme(text=element_text(size=14))
 - We will consider this more once we get into multiple linear regression
 - For now, with SLR, when assumptions do not hold, there are three next steps I can take:
   1. Add more variables to the model (SLR is not usually enough to explain an outcome)
-  2. Check flagged countries (more in next lesson)
-  3. See if we need to transform the response variable (more in a future lesson)
+  2. See if we need to transform a variable (next lesson, 7b!)
+  3. Check flagged countries (Lesson 8)
 
  
 

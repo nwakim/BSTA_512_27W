@@ -3,7 +3,7 @@ title: "Lesson 14: Purposeful model selection"
 author: "Nicky Wakim"
 title-slide-attributes:
     data-background-color: "#213c96"
-date: "`r library(here); source(here('class_dates.R')); w8d2`"
+date: "`r library(here); source(here('class_dates.R')); w9d1`"
 format: 
   revealjs:
     css: ../../css/slides.css
